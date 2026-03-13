@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sub-whisper.com/sitemap.xml
