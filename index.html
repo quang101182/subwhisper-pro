@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>SubWhisper Pro v1.1.6</title>
+<title>SubWhisper Pro v1.1.7</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1134,7 +1134,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 <header>
   <div class="logo">
     <div class="logo-text"><span class="logo-sub">Sub</span><span class="logo-whisper">Whisper</span></div>
-    <span class="ver-badge">Pro v1.1.6</span>
+    <span class="ver-badge">Pro v1.1.7</span>
   </div>
   <div class="hdr-r">
     <div id="apiBar" title="API keys configured" style="display:none">
@@ -1719,7 +1719,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 </div>
 
 <footer>
-  <span class="ft">SubWhisper Pro v1.1.6</span>
+  <span class="ft">SubWhisper Pro v1.1.7</span>
   <span class="ft">Universal-3-pro &middot; 99 languages</span>
 </footer>
 
@@ -1736,7 +1736,7 @@ var selFile = null;
 var srtTxt = '';
 var srtOriginal = '';
 var origName = '';
-function _warnLongName() { if (origName.length > 80) toast('\u26a0 Filename too long (' + origName.length + ' chars) \u2014 rename it before exporting or the file will be empty'); }
+function _warnLongName() { if (origName.length > 50) toast('\u26a0 Filename too long (' + origName.length + ' chars) \u2014 rename it before exporting or the file will be empty'); }
 var pollTimer = null;
 var currentJobId = null;
 var destDirHandle = null;
@@ -4393,7 +4393,7 @@ async function exportDiag() {
   var engine = getAIEngine();
   var diag = {
     type: 'DIAG',
-    version: 'pro-v1.1.6',
+    version: 'pro-v1.1.7',
     date: new Date().toISOString(),
     file: origName || 'unknown',
     lang_source: src,
@@ -4479,6 +4479,9 @@ function _safeName(n, truncate) {
 async function exportFile(content, ext, mime, btn) {
   var fname = _safeName(origName || 'subtitles') + ext;
   if (!content || !content.trim()) { toast('\u274c Nothing to export \u2014 content is empty'); _flashExportBtn(btn, false); return; }
+  var userFname = prompt('Filename:', fname);
+  if (!userFname) { toast('Export cancelled'); _flashExportBtn(btn, false); return; }
+  fname = userFname;
   // 1. Mapped folder (IndexedDB) — full filename, File System API handles it
   if (destDirHandle && await _verifyDirPermission()) {
     try {
