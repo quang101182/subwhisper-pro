@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>SubWhisper Pro v1.1.4</title>
+<title>SubWhisper Pro v1.1.5</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1134,7 +1134,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 <header>
   <div class="logo">
     <div class="logo-text"><span class="logo-sub">Sub</span><span class="logo-whisper">Whisper</span></div>
-    <span class="ver-badge">Pro v1.1.4</span>
+    <span class="ver-badge">Pro v1.1.5</span>
   </div>
   <div class="hdr-r">
     <div id="apiBar" title="API keys configured" style="display:none">
@@ -1719,7 +1719,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 </div>
 
 <footer>
-  <span class="ft">SubWhisper Pro v1.1.4</span>
+  <span class="ft">SubWhisper Pro v1.1.5</span>
   <span class="ft">Universal-3-pro &middot; 99 languages</span>
 </footer>
 
@@ -4391,7 +4391,7 @@ async function exportDiag() {
   var engine = getAIEngine();
   var diag = {
     type: 'DIAG',
-    version: 'pro-v1.1.4',
+    version: 'pro-v1.1.5',
     date: new Date().toISOString(),
     file: origName || 'unknown',
     lang_source: src,
@@ -4468,19 +4468,16 @@ function _flashExportBtn(btn, ok) {
   setTimeout(function() { btn.classList.remove('exp-ok','exp-fail'); }, 1200);
 }
 
-function _safeName(n) {
+function _safeName(n, truncate) {
   var clean = n.replace(/[<>:"/\\|?*]/g, '').replace(/\s+/g, ' ').trim();
-  if (clean.length > 80) {
-    clean = clean.substring(0, 80).trim();
-    toast('\u26a0 Filename too long — truncated to 80 chars');
-  }
+  if (truncate && clean.length > 80) clean = clean.substring(0, 80).trim();
   return clean || 'subtitles';
 }
 
 async function exportFile(content, ext, mime, btn) {
   var fname = _safeName(origName || 'subtitles') + ext;
   if (!content || !content.trim()) { toast('\u274c Nothing to export \u2014 content is empty'); _flashExportBtn(btn, false); return; }
-  // 1. Dossier mappé (IndexedDB)
+  // 1. Mapped folder (IndexedDB) — full filename, File System API handles it
   if (destDirHandle && await _verifyDirPermission()) {
     try {
       var fh = await destDirHandle.getFileHandle(fname, { create: true });
@@ -4495,25 +4492,34 @@ async function exportFile(content, ext, mime, btn) {
       destDirHandle = null; _deleteDirHandle(); updateDirInfo();
     }
   }
-  // 2. Mobile → navigator.share
-  if (navigator.canShare) {
-    try {
-      var file = new File([content], fname, { type: mime });
-      if (navigator.canShare({ files: [file] })) {
-        toast('\u2705 ' + fname + ' \u2014 choose where to save');
+  // 2. No mapped folder → ask user to pick one
+  if ('showDirectoryPicker' in window) {
+    toast('\ud83d\udcc1 Choose a target folder for exports');
+    await pickDir();
+    if (destDirHandle) {
+      try {
+        var fh2 = await destDirHandle.getFileHandle(fname, { create: true });
+        var w2 = await fh2.createWritable();
+        await w2.write(content); await w2.close();
+        toast('\u2705 ' + fname + ' \u2192 \ud83d\udcc1 ' + destDirHandle.name);
         _flashExportBtn(btn, true);
-        await navigator.share({ files: [file], title: fname });
+        return;
+      } catch(e) {
+        if (e.name === 'AbortError') return;
+        toast('\u274c Write error: ' + e.message);
+        _flashExportBtn(btn, false);
         return;
       }
-    } catch(e) {
-      if (e.name === 'AbortError') { toast('Export cancelled'); return; }
-      toast('\u26a0 Share failed \u2014 trying download...');
     }
+    toast('\u26a0 Export cancelled \u2014 no folder selected');
+    _flashExportBtn(btn, false);
+    return;
   }
-  // 3. Download classique
+  // 3. Last resort (no File System API) — truncated name to avoid empty file
+  var safeFname = _safeName(origName || 'subtitles', true) + ext;
   try {
-    dlBlob(content, ext, mime);
-    toast('\u2705 ' + fname + ' downloaded');
+    dlBlob(content, ext, mime, safeFname);
+    toast('\u2705 ' + safeFname + ' downloaded');
     _flashExportBtn(btn, true);
   } catch(e) {
     toast('\u274c Export error: ' + e.message);
@@ -4583,8 +4589,8 @@ async function dlJSON(btn) {
   await exportFile(JSON.stringify(data, null, 2), '.json', 'application/json', btn);
 }
 
-function dlBlob(content, ext, mime) {
-  var fname = _safeName(origName || 'subtitles') + ext;
+function dlBlob(content, ext, mime, overrideName) {
+  var fname = overrideName || (_safeName(origName || 'subtitles') + ext);
   var blob = new Blob([content], { type: mime + ';charset=utf-8' });
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
@@ -4611,8 +4617,15 @@ function clearDir() { destDirHandle = null; _deleteDirHandle(); updateDirInfo();
 
 function updateDirInfo() {
   var el = document.getElementById('dirInfo');
-  if (destDirHandle) { document.getElementById('dirName').textContent = destDirHandle.name; el.classList.add('vis'); }
-  else { el.classList.remove('vis'); }
+  if (!el) return;
+  if (destDirHandle) {
+    document.getElementById('dirName').textContent = destDirHandle.name;
+    el.classList.add('vis');
+    el.style.display = 'flex';
+  } else {
+    el.classList.remove('vis');
+    el.style.display = '';
+  }
 }
 
 // ── COPY SRT ──────────────────────────────────────────────
