@@ -23,6 +23,8 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
+  // Skip cross-origin requests (PostHog, analytics, APIs, fonts, etc.)
+  if (!e.request.url.startsWith(self.location.origin)) return;
   // Only cache same-origin navigation/page requests
   if (e.request.mode === 'navigate' || e.request.url.endsWith('index.html')) {
     e.respondWith(
@@ -36,6 +38,4 @@ self.addEventListener('fetch', function(e) {
     );
     return;
   }
-  // All other requests (APIs, fonts, etc.) → network only
-  e.respondWith(fetch(e.request));
 });
