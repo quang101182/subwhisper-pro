@@ -245,11 +245,147 @@ footer {
 }
 footer a { color: var(--accent); text-decoration: none; }
 
+/* ── TESTIMONIALS ── */
+.testimonials {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+  text-align: center;
+}
+.testimonials h2 {
+  font-size: 28px;
+  margin-bottom: 32px;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: left;
+  transition: transform .2s, border-color .2s;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124,106,255,.3);
+}
+.testimonial-stars {
+  color: #f5a623;
+  font-size: 16px;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+.testimonial-quote {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  font-style: italic;
+  opacity: .9;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.testimonial-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+.testimonial-role {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── FAQ ── */
+.faq {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+  text-align: center;
+}
+.faq h2 {
+  font-size: 28px;
+  margin-bottom: 32px;
+}
+.faq-list {
+  text-align: left;
+}
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  transition: border-color .2s;
+}
+.faq-item:hover {
+  border-color: rgba(124,106,255,.3);
+}
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  user-select: none;
+  transition: color .2s;
+}
+.faq-question:hover {
+  color: var(--accent);
+}
+.faq-icon {
+  font-size: 18px;
+  transition: transform .3s;
+  flex-shrink: 0;
+  margin-left: 12px;
+  color: var(--muted);
+}
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease, padding .3s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+}
+.faq-answer-inner {
+  padding: 0 20px 16px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 @media (max-width: 600px) {
   nav { padding: 12px 16px; }
   .hero { padding: 48px 16px 40px; }
   .compare th, .compare td { padding: 8px; font-size: 12px; }
   .steps { flex-direction: column; align-items: center; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .faq-question { font-size: 14px; padding: 14px 16px; }
 }
 </style>
 <!-- PostHog Analytics -->
@@ -419,6 +555,75 @@ footer a { color: var(--accent); text-decoration: none; }
   <span class="price-tag">Then €9/mo</span>
 </section>
 
+<section class="testimonials">
+  <h2>Trusted by Content Creators</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-quote">"I upload videos in English and need subtitles in French, Spanish, and Portuguese. SubWhisper Pro does all three in minutes with better accuracy than what I was getting from VEED. The multi-pass translation actually catches nuances that single-pass tools miss."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">M</div>
+        <div>
+          <div class="testimonial-name">Marco D.</div>
+          <div class="testimonial-role">YouTuber &mdash; 120K subscribers, tech reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-quote">"As a freelance subtitle translator, this tool cut my turnaround time in half. I use SubWhisper Pro to generate the first draft, then I just review and polish. The AI cleanup feature saves me from fixing Whisper hallucinations manually. Game changer for my workflow."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">S</div>
+        <div>
+          <div class="testimonial-name">Sofia R.</div>
+          <div class="testimonial-role">Freelance subtitle translator &mdash; Fiverr Top Rated</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-quote">"I record a weekly podcast in English and needed transcripts for my international audience. SubWhisper Pro transcribes the full episode and translates it to Japanese and Korean with proper formatting. At &euro;9/month, it's a no-brainer compared to hiring a transcriptionist."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">J</div>
+        <div>
+          <div class="testimonial-name">James T.</div>
+          <div class="testimonial-role">Podcaster &mdash; "The Global Dev Show"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question">What audio and video formats are supported?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">SubWhisper Pro supports all major formats: MP4, MKV, MOV, AVI, WEBM for video, and MP3, WAV, FLAC, OGG, M4A for audio. Files up to 5 GB are supported. The audio is extracted client-side before being sent to the AI engine.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How many languages are available for translation?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">SubWhisper Pro supports 75+ languages for translation, including specialized handling for CJK languages (Chinese, Japanese, Korean) with proper honorifics, writing systems, and cultural context. Transcription is available in 100+ languages via Whisper and Universal-3 engines.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How does the 14-day free trial work?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">When you sign up, you get 14 days of full access to all Pro features with no limitations. Your card is charged only after the trial ends. You can cancel anytime during the trial period and you won't be charged at all.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Are my files secure and private?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. Your video and audio files are processed entirely in your browser. Only the extracted audio is sent to the AI transcription API, and it is not stored after processing. No video is ever uploaded to our servers. SubWhisper Pro is a privacy-first tool.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I cancel my subscription at any time?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Absolutely. You can cancel your subscription at any time from your LemonSqueezy customer portal. There are no cancellation fees and no long-term commitments. If you cancel, you retain access until the end of your current billing period.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What's the difference with the free version of SubWhisper?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">The free version supports 12 translation languages and basic transcription. SubWhisper Pro adds 75+ languages, multi-pass AI translation for higher accuracy, AI cleanup to fix hallucinations, ASS export format, foreign language detection, and priority processing. It's built for professionals who need reliable, production-ready subtitles.</div></div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <p>SubWhisper Pro v1.1.9 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
   <p style="margin-top:8px">Questions? <a href="mailto:support@subwhisper.pro">support@subwhisper.pro</a></p>
@@ -440,6 +645,19 @@ footer a { color: var(--accent); text-decoration: none; }
       d.total.toLocaleString()+' visitors';
   }catch(e){}
 })();
+</script>
+<!-- FAQ Accordion -->
+<script>
+document.querySelectorAll('.faq-question').forEach(function(q) {
+  q.addEventListener('click', function() {
+    var item = this.parentElement;
+    var wasOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+    // Toggle clicked
+    if (!wasOpen) item.classList.add('open');
+  });
+});
 </script>
 <!-- PostHog Event Tracking -->
 <script>
