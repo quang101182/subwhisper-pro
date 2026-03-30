@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SubWhisper Pro Blog — Subtitle & Transcription Guides</title>
+<meta name="description" content="Learn how to transcribe, translate, and add subtitles to your videos. Free guides, tool comparisons, and tips for content creators.">
+<meta property="og:title" content="SubWhisper Pro Blog — Subtitle & Transcription Guides">
+<meta property="og:description" content="Free guides on subtitles, transcription, and translation for content creators.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sub-whisper.com/og-image.png">
+<meta property="og:url" content="https://sub-whisper.com/blog/">
+<link rel="canonical" href="https://sub-whisper.com/blog/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SubWhisper Pro Blog — Subtitle & Transcription Guides">
+<meta name="twitter:image" content="https://sub-whisper.com/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "SubWhisper Pro Blog",
+  "description": "Guides and tutorials on video transcription, subtitle translation, and captioning for content creators.",
+  "url": "https://sub-whisper.com/blog/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "SubWhisper Pro",
+    "url": "https://sub-whisper.com"
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- v1.2.0 -->
+<style>
+:root {
+  --bg: #080810;
+  --surface: rgba(255,255,255,.04);
+  --surface2: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.08);
+  --accent: #7c6aff;
+  --accent2: #00d4aa;
+  --text: #f0f0f8;
+  --muted: #888;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 10% 10%, rgba(124,106,255,.12) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 90% 85%, rgba(0,212,170,.09) 0%, transparent 60%);
+}
+body > * { position: relative; z-index: 1; }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,8,16,.85);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo { font-family: var(--mono); font-weight: 700; font-size: 18px; text-decoration: none; color: var(--text); }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 16px; align-items: center; }
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all .2s;
+}
+.nav-links a:hover { background: var(--surface2); }
+.nav-links a.cta-nav {
+  border: 1px solid var(--accent);
+  padding: 8px 20px;
+}
+.nav-links a.cta-nav:hover { background: var(--accent); }
+
+.hero {
+  text-align: center;
+  padding: 60px 24px 40px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.hero h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.articles {
+  max-width: 900px;
+  margin: 40px auto 60px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.article-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform .2s, border-color .2s;
+  display: flex;
+  flex-direction: column;
+}
+.article-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124,106,255,.3);
+}
+.article-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+.tag-tutorial { background: rgba(124,106,255,.15); color: var(--accent); }
+.tag-comparison { background: rgba(0,212,170,.15); color: var(--accent2); }
+.tag-guide { background: rgba(255,165,0,.15); color: #ffa500; }
+.article-card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.article-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+}
+.article-meta {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: .7;
+}
+
+.tools-section {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+}
+.tools-section h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+.tool-link {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-decoration: none;
+  color: var(--text);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+}
+.tool-link:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.tool-flag { font-size: 24px; display: block; margin-bottom: 6px; }
+
+.cta-section {
+  text-align: center;
+  padding: 40px 24px 60px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.cta-section h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+.cta-section p {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.cta {
+  display: inline-block;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, var(--accent), #6c5ce7);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+.cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,106,255,.4); }
+
+footer {
+  text-align: center;
+  padding: 32px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+footer a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 600px) {
+  nav { padding: 12px 16px; }
+  .nav-links a { font-size: 13px; padding: 6px 10px; }
+  .hero { padding: 40px 16px 24px; }
+  .articles { padding: 0 16px; }
+  .tools-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+}
+</style>
+<!-- PostHog Analytics -->
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_xjwSr0DOxL83qRLQDZkFEOoZA8ex5yYRUKbVxHfqb2Q', {
+    api_host: 'https://posthog-proxy.quang101182.workers.dev',
+    ui_host: 'https://us.posthog.com',
+    person_profiles: 'identified_only'
+  })
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="../landing.html" class="logo">SubWhisper <span>Pro</span></a>
+  <div class="nav-links">
+    <a href="../landing.html">Home</a>
+    <a href="../landing.html#pricing">Pricing</a>
+    <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e" class="cta-nav">Start Free Trial</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Subtitle & Transcription <em>Guides</em></h1>
+  <p>Free tutorials, tool comparisons, and practical tips for content creators who need subtitles and transcriptions.</p>
+</section>
+
+<div class="articles">
+  <a href="how-to-add-subtitles-to-video.html" class="article-card">
+    <span class="article-tag tag-tutorial">Tutorial</span>
+    <h2>How to Add Subtitles to Any Video in 2026</h2>
+    <p>Step-by-step guide to adding subtitles to MP4, MKV, and more. Compare manual methods, auto tools, and AI-powered solutions.</p>
+    <div class="article-meta">8 min read</div>
+  </a>
+
+  <a href="best-free-subtitle-generators-2026.html" class="article-card">
+    <span class="article-tag tag-comparison">Comparison</span>
+    <h2>7 Best Free Subtitle Generators in 2026</h2>
+    <p>Detailed comparison of VEED, Kapwing, CapCut, HappyScribe, Canva, YouTube, and SubWhisper. Prices, features, and honest pros/cons.</p>
+    <div class="article-meta">10 min read</div>
+  </a>
+
+  <a href="happyscribe-alternative.html" class="article-card">
+    <span class="article-tag tag-comparison">Alternative</span>
+    <h2>Best HappyScribe Alternatives in 2026 — Cheaper & Better</h2>
+    <p>Looking for a HappyScribe or VEED alternative? Compare features, pricing, and translation quality side by side.</p>
+    <div class="article-meta">9 min read</div>
+  </a>
+
+  <a href="convert-audio-to-text.html" class="article-card">
+    <span class="article-tag tag-tutorial">Tutorial</span>
+    <h2>How to Convert Audio to Text — Free & Accurate</h2>
+    <p>Transcribe podcasts, interviews, and meetings to text. Guide for choosing the right engine and getting the best accuracy.</p>
+    <div class="article-meta">8 min read</div>
+  </a>
+
+  <a href="automatic-captions-instagram-reels-tiktok.html" class="article-card">
+    <span class="article-tag tag-guide">Guide</span>
+    <h2>Auto Captions for Instagram Reels & TikTok in 2026</h2>
+    <p>Why captions boost engagement by 80%, and how to add them automatically to your Reels, TikToks, and YouTube Shorts.</p>
+    <div class="article-meta">7 min read</div>
+  </a>
+</div>
+
+<section class="tools-section">
+  <h2>Subtitle Generator by Language</h2>
+  <div class="tools-grid">
+    <a href="../tools/french-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127467;&#127479;</span>French</a>
+    <a href="../tools/spanish-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127466;&#127480;</span>Spanish</a>
+    <a href="../tools/japanese-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127471;&#127477;</span>Japanese</a>
+    <a href="../tools/arabic-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127474;&#127462;</span>Arabic</a>
+    <a href="../tools/german-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127465;&#127466;</span>German</a>
+    <a href="../tools/portuguese-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127463;&#127479;</span>Portuguese</a>
+    <a href="../tools/chinese-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127464;&#127475;</span>Chinese</a>
+    <a href="../tools/korean-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127472;&#127479;</span>Korean</a>
+    <a href="../tools/italian-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127470;&#127481;</span>Italian</a>
+    <a href="../tools/hindi-subtitle-generator.html" class="tool-link"><span class="tool-flag">&#127470;&#127475;</span>Hindi</a>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Ready to translate your subtitles?</h2>
+  <p>Start with a 14-day free trial. No credit card required.</p>
+  <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e" class="cta">Start Free Trial — €9/mo</a>
+</section>
+
+<footer>
+  <p>SubWhisper Pro v1.2.0 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
+  <p style="margin-top:8px"><a href="../landing.html">Home</a> &middot; <a href="./">Blog</a> &middot; <a href="mailto:support@subwhisper.pro">Contact</a></p>
+</footer>
+
+<script>
+  posthog.capture('page_view', { product: 'subwhisper-pro', page: 'blog-index' });
+</script>
+</body>
+</html>
