@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japanese Subtitle Generator — Translate & Transcribe | SubWhisper Pro</title>
+<meta name="description" content="Generate accurate Japanese subtitles from any video. AI-powered transcription with proper kanji, hiragana, and katakana handling. Multi-pass translation for natural Japanese.">
+<meta property="og:title" content="Japanese Subtitle Generator — AI-Powered | SubWhisper Pro">
+<meta property="og:description" content="Generate accurate Japanese subtitles with proper kanji, hiragana, and katakana. Multi-pass AI for natural results.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sub-whisper.com/og-image.png">
+<meta property="og:url" content="https://sub-whisper.com/tools/japanese-subtitle-generator.html">
+<link rel="canonical" href="https://sub-whisper.com/tools/japanese-subtitle-generator.html">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+[{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SubWhisper Pro — Japanese Subtitle Generator",
+  "description": "AI-powered Japanese subtitle generator with proper handling of kanji, hiragana, katakana, and honorific systems.",
+  "url": "https://sub-whisper.com/tools/japanese-subtitle-generator.html",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "9", "priceCurrency": "EUR", "priceValidUntil": "2026-12-31"}
+},{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can SubWhisper Pro translate Japanese subtitles?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. SubWhisper Pro transcribes Japanese audio with proper kanji/kana output and translates between Japanese and 75+ languages using multi-pass AI that respects honorific levels and sentence-final particles."}},
+    {"@type": "Question", "name": "How accurate is AI Japanese subtitle translation?", "acceptedAnswer": {"@type": "Answer", "text": "SubWhisper Pro's multi-pass engine handles the unique challenges of Japanese — word boundaries without spaces, three writing systems, and context-dependent politeness levels — achieving significantly better results than single-pass tools."}},
+    {"@type": "Question", "name": "What subtitle formats can I export?", "acceptedAnswer": {"@type": "Answer", "text": "Export Japanese subtitles in SRT, VTT, ASS, TXT, and JSON. ASS format supports CJK font specifications for proper rendering."}},
+    {"@type": "Question", "name": "How much does the Japanese subtitle generator cost?", "acceptedAnswer": {"@type": "Answer", "text": "€9/month with a 14-day free trial. No credit card required. Cancel anytime."}}
+  ]
+},{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "SubWhisper Pro", "item": "https://sub-whisper.com"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://sub-whisper.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Japanese Subtitle Generator", "item": "https://sub-whisper.com/tools/japanese-subtitle-generator.html"}
+  ]
+}]
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- v1.0.0 -->
+<style>
+:root{--bg:#080810;--surface:rgba(255,255,255,.04);--surface2:rgba(255,255,255,.08);--border:rgba(255,255,255,.08);--accent:#7c6aff;--accent2:#00d4aa;--text:#f0f0f8;--muted:#888;--mono:'Space Mono',monospace;--sans:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 55% at 10% 10%,rgba(124,106,255,.12) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 90% 85%,rgba(0,212,170,.09) 0%,transparent 60%)}
+body>*{position:relative;z-index:1}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;border-bottom:1px solid var(--border);background:rgba(8,8,16,.85);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100}
+.logo{font-family:var(--mono);font-weight:700;font-size:18px;text-decoration:none;color:var(--text)}
+.logo span{color:var(--accent)}
+nav a.cta-nav{color:var(--text);text-decoration:none;font-size:14px;padding:8px 20px;border-radius:8px;border:1px solid var(--accent);transition:all .2s}
+nav a.cta-nav:hover{background:var(--accent)}
+.hero{text-align:center;padding:80px 24px 60px;max-width:800px;margin:0 auto}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:700;line-height:1.15;margin-bottom:20px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;color:var(--muted);max-width:600px;margin:0 auto 32px}
+.cta{display:inline-block;padding:14px 36px;background:linear-gradient(135deg,var(--accent),#6c5ce7);color:#fff;font-weight:600;font-size:16px;border-radius:10px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,106,255,.4)}
+.price-tag{display:inline-block;margin-left:12px;font-family:var(--mono);font-size:14px;color:var(--accent2);border:1px solid rgba(0,212,170,.3);padding:4px 12px;border-radius:20px}
+section.content{max-width:800px;margin:0 auto 60px;padding:0 24px}
+section.content h2{font-size:28px;margin-bottom:20px;text-align:center}
+section.content h3{font-size:20px;margin:28px 0 12px;color:var(--accent)}
+section.content p,section.content li{font-size:15px;color:var(--muted);line-height:1.8}
+section.content ul{list-style:none;padding:0}
+section.content ul li{padding:6px 0 6px 24px;position:relative}
+section.content ul li::before{content:'>';position:absolute;left:0;color:var(--accent);font-family:var(--mono);font-weight:700}
+.how{max-width:700px;margin:0 auto 60px;padding:0 24px;text-align:center}
+.how h2{font-size:28px;margin-bottom:32px}
+.steps{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+.step{flex:1;min-width:180px;max-width:200px;text-align:center}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-family:var(--mono);margin-bottom:12px}
+.step h4{font-size:14px;margin-bottom:6px}
+.step p{font-size:12px;color:var(--muted)}
+.compare{max-width:800px;margin:0 auto 60px;padding:0 24px}
+.compare h2{text-align:center;font-size:28px;margin-bottom:24px}
+.compare table{width:100%;border-collapse:collapse;font-size:14px}
+.compare th,.compare td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.compare th{color:var(--muted);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.compare .pro-col{color:var(--accent2);font-weight:600}
+.check{color:var(--accent2)}.cross{color:#ff4d6d;opacity:.6}
+.faq{max-width:700px;margin:0 auto 60px;padding:0 24px;text-align:center}
+.faq h2{font-size:28px;margin-bottom:32px}
+.faq-list{text-align:left}
+.faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;background:var(--surface);transition:border-color .2s}
+.faq-item:hover{border-color:rgba(124,106,255,.3)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;font-weight:600;font-size:15px;user-select:none;transition:color .2s}
+.faq-question:hover{color:var(--accent)}
+.faq-icon{font-size:18px;transition:transform .3s;flex-shrink:0;margin-left:12px;color:var(--muted)}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--accent)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-answer{max-height:300px}
+.faq-answer-inner{padding:0 20px 16px;font-size:14px;color:var(--muted);line-height:1.7}
+.final-cta{text-align:center;padding:60px 24px}
+.final-cta h2{font-size:28px;margin-bottom:16px}
+.final-cta p{color:var(--muted);margin-bottom:24px}
+footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+footer a{color:var(--accent);text-decoration:none}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:16px;font-size:12px}
+.footer-links a{color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+@media(max-width:600px){nav{padding:12px 16px}.hero{padding:48px 16px 40px}.steps{flex-direction:column;align-items:center}.compare th,.compare td{padding:8px;font-size:12px}}
+</style>
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_xjwSr0DOxL83qRLQDZkFEOoZA8ex5yYRUKbVxHfqb2Q',{api_host:'https://posthog-proxy.quang101182.workers.dev',ui_host:'https://us.posthog.com',person_profiles:'identified_only'})
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="../landing.html" class="logo">SubWhisper <span>Pro</span></a>
+  <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e" class="cta-nav">Start Free Trial</a>
+</nav>
+
+<section class="hero">
+  <h1><em>Japanese Subtitle Generator</em> — AI-Powered Transcription & Translation</h1>
+  <p>Generate professional Japanese subtitles with proper kanji, hiragana, and katakana output. SubWhisper Pro's multi-pass AI handles honorifics, sentence-final particles, and the three writing systems that make Japanese one of the hardest languages for subtitle automation.</p>
+  <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e" class="cta">Generate Japanese Subtitles Free</a>
+  <span class="price-tag">14 days free — then €9/mo</span>
+</section>
+
+<section class="how">
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h4>Drop Your File</h4><p>MP4, MKV, MOV, MP3, WAV — up to 5 GB</p></div>
+    <div class="step"><div class="step-num">2</div><h4>Select Japanese</h4><p>Choose Japanese as source or target language</p></div>
+    <div class="step"><div class="step-num">3</div><h4>Download SRT</h4><p>AI transcribes, translates, and cleans up automatically</p></div>
+  </div>
+</section>
+
+<section class="content">
+  <h2>Why SubWhisper Pro for Japanese Subtitles?</h2>
+  <p>Japanese is spoken by approximately 125 million people, primarily in Japan — the world's third-largest economy and a cultural powerhouse in anime, gaming, technology, and entertainment. Japan's content industry generates over $200 billion annually, and subtitling is the primary method for making this content accessible internationally. Whether you are subtitling anime, corporate presentations, or YouTube vlogs, Japanese demands specialized processing that generic tools cannot provide.</p>
+
+  <h3>Three Writing Systems, One Challenge</h3>
+  <p>Japanese is unique among major languages in using three writing systems simultaneously: kanji (Chinese characters), hiragana (native syllabary), and katakana (used for foreign words). A single sentence can contain all three. Most subtitle generators produce output with incorrect kanji choices (homophone errors), missing katakana for loanwords, or unnatural hiragana distribution. SubWhisper Pro's multi-pass verification specifically checks character selection, ensuring the output matches native Japanese writing conventions.</p>
+
+  <h3>Honorific Levels and Context</h3>
+  <p>Japanese has multiple politeness levels — casual (tameguchi), polite (teineigo), humble (kenjougo), and respectful (sonkeigo). Choosing the wrong level in subtitles changes the entire tone of a scene. A business meeting subtitled in casual Japanese reads as disrespectful; a casual conversation between friends in keigo sounds robotic. SubWhisper Pro's context-aware translation maintains consistent honorific levels within scenes, a distinction that single-pass tools regularly fumble.</p>
+
+  <h3>Word Boundaries and Segmentation</h3>
+  <p>Japanese does not use spaces between words, making subtitle segmentation a non-trivial problem. Where to break a line in Japanese subtitles affects readability significantly — breaking mid-word or mid-particle creates confusion. SubWhisper Pro uses morphological analysis to identify natural break points, producing subtitles that are comfortable to read at standard display speeds.</p>
+
+  <h3>Features Built for Japanese Content</h3>
+  <ul>
+    <li>Proper kanji/hiragana/katakana output with homophone verification</li>
+    <li>Context-aware honorific level consistency</li>
+    <li>Morphological word boundary detection for natural line breaks</li>
+    <li>Translation between Japanese and 75+ languages</li>
+    <li>ASS export with CJK font support for hardcoded subtitles</li>
+    <li>Foreign word detection (wasei-eigo) with proper katakana rendering</li>
+  </ul>
+</section>
+
+<section class="compare">
+  <h2>Japanese Subtitles: SubWhisper Pro vs Alternatives</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>VEED</th><th>Manual Translation</th><th class="pro-col">SubWhisper Pro</th></tr></thead>
+    <tbody>
+      <tr><td>Price</td><td>$24/mo</td><td>$0.15–0.30/word</td><td class="pro-col">€9/mo</td></tr>
+      <tr><td>Writing System Handling</td><td>Basic</td><td><span class="check">&#10003;</span> Native</td><td class="pro-col"><span class="check">&#10003;</span> Multi-pass verified</td></tr>
+      <tr><td>Honorific Consistency</td><td><span class="cross">&#10007;</span></td><td><span class="check">&#10003;</span></td><td class="pro-col"><span class="check">&#10003;</span></td></tr>
+      <tr><td>Line Break Quality</td><td>Basic</td><td><span class="check">&#10003;</span></td><td class="pro-col"><span class="check">&#10003;</span> Morphological</td></tr>
+      <tr><td>Turnaround Time</td><td>Minutes</td><td>Days</td><td class="pro-col">Minutes</td></tr>
+      <tr><td>ASS/CJK Font Export</td><td><span class="cross">&#10007;</span></td><td>N/A</td><td class="pro-col"><span class="check">&#10003;</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="faq" id="faq">
+  <h2>Japanese Subtitle Generator — FAQ</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question">Can SubWhisper Pro translate Japanese subtitles to English?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. SubWhisper Pro can transcribe Japanese audio and translate the resulting subtitles into English or any of 75+ supported languages. The multi-pass engine handles the significant structural differences between Japanese (SOV word order) and English (SVO), producing natural-sounding translations.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How accurate is AI Japanese subtitle translation?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Japanese is one of the most challenging languages for AI translation due to its context-dependent grammar, three writing systems, and honorific complexity. SubWhisper Pro's multi-pass approach significantly outperforms single-pass tools by verifying kanji selection, honorific consistency, and natural sentence flow in a dedicated quality-check pass.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What subtitle formats are available for Japanese export?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Export in SRT, VTT, ASS, TXT, and JSON. ASS format is particularly useful for Japanese as it supports CJK font specifications, vertical text layout, and ruby text (furigana) annotations through styling tags.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How much does the Japanese subtitle generator cost?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">€9/month with a 14-day free trial. No credit card required. Professional Japanese translation typically costs $0.15–0.30 per word — a single 10-minute video could cost $50–150 to translate manually. SubWhisper Pro handles unlimited videos for a flat monthly fee.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>Start Generating Japanese Subtitles Today</h2>
+  <p>14-day free trial. No credit card required.</p>
+  <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e" class="cta">Start Free Trial</a>
+</section>
+
+<footer>
+  <p>SubWhisper Pro &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
+  <div class="footer-links">
+    <a href="../landing.html">Home</a>
+    <a href="french-subtitle-generator.html">French Subtitles</a>
+    <a href="spanish-subtitle-generator.html">Spanish Subtitles</a>
+    <a href="arabic-subtitle-generator.html">Arabic Subtitles</a>
+    <a href="german-subtitle-generator.html">German Subtitles</a>
+    <a href="portuguese-subtitle-generator.html">Portuguese Subtitles</a>
+    <a href="chinese-subtitle-generator.html">Chinese Subtitles</a>
+    <a href="korean-subtitle-generator.html">Korean Subtitles</a>
+    <a href="italian-subtitle-generator.html">Italian Subtitles</a>
+    <a href="hindi-subtitle-generator.html">Hindi Subtitles</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(function(q){q.addEventListener('click',function(){var item=this.parentElement;var wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});if(!wasOpen)item.classList.add('open')})});
+posthog.capture('page_view',{product:'subwhisper-pro',page:'tools-japanese'});
+document.querySelectorAll('a[href*="lemonsqueezy"]').forEach(function(link){link.addEventListener('click',function(){posthog.capture('cta_click',{product:'subwhisper-pro',button_text:this.textContent.trim(),destination:'lemonsqueezy_checkout'})})});
+</script>
+</body>
+</html>

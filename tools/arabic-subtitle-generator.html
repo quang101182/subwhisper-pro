@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arabic Subtitle Generator — Translate & Transcribe | SubWhisper Pro</title>
+<meta name="description" content="Generate accurate Arabic subtitles with RTL support from any video. AI-powered transcription handles Modern Standard Arabic and regional dialects with multi-pass translation.">
+<meta property="og:title" content="Arabic Subtitle Generator — AI-Powered | SubWhisper Pro">
+<meta property="og:description" content="Generate Arabic subtitles with proper RTL support and dialect handling. Multi-pass AI translation.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sub-whisper.com/og-image.png">
+<meta property="og:url" content="https://sub-whisper.com/tools/arabic-subtitle-generator.html">
+<link rel="canonical" href="https://sub-whisper.com/tools/arabic-subtitle-generator.html">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+[{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SubWhisper Pro — Arabic Subtitle Generator",
+  "description": "AI-powered Arabic subtitle generator with RTL support, dialect handling, and multi-pass translation accuracy.",
+  "url": "https://sub-whisper.com/tools/arabic-subtitle-generator.html",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "9", "priceCurrency": "EUR", "priceValidUntil": "2026-12-31"}
+},{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can SubWhisper Pro translate Arabic subtitles?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. SubWhisper Pro transcribes Arabic audio and translates between Arabic and 75+ languages. It handles RTL text direction, diacritical marks, and the significant differences between MSA and regional dialects."}},
+    {"@type": "Question", "name": "How accurate is AI Arabic subtitle translation?", "acceptedAnswer": {"@type": "Answer", "text": "SubWhisper Pro's multi-pass engine specifically addresses Arabic's root-based morphology, right-to-left rendering, and dialect variation, achieving significantly better results than single-pass tools."}},
+    {"@type": "Question", "name": "What subtitle formats can I export?", "acceptedAnswer": {"@type": "Answer", "text": "Export Arabic subtitles in SRT, VTT, ASS, TXT, and JSON. All formats preserve RTL text direction and Arabic character joining."}},
+    {"@type": "Question", "name": "How much does the Arabic subtitle generator cost?", "acceptedAnswer": {"@type": "Answer", "text": "€9/month with a 14-day free trial. No credit card required. Cancel anytime."}}
+  ]
+},{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "SubWhisper Pro", "item": "https://sub-whisper.com"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://sub-whisper.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Arabic Subtitle Generator", "item": "https://sub-whisper.com/tools/arabic-subtitle-generator.html"}
+  ]
+}]
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- v1.0.0 -->
+<style>
+:root{--bg:#080810;--surface:rgba(255,255,255,.04);--surface2:rgba(255,255,255,.08);--border:rgba(255,255,255,.08);--accent:#7c6aff;--accent2:#00d4aa;--text:#f0f0f8;--muted:#888;--mono:'Space Mono',monospace;--sans:'Inter',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 55% at 10% 10%,rgba(124,106,255,.12) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 90% 85%,rgba(0,212,170,.09) 0%,transparent 60%)}
+body>*{position:relative;z-index:1}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;border-bottom:1px solid var(--border);background:rgba(8,8,16,.85);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100}
+.logo{font-family:var(--mono);font-weight:700;font-size:18px;text-decoration:none;color:var(--text)}
+.logo span{color:var(--accent)}
+nav a.cta-nav{color:var(--text);text-decoration:none;font-size:14px;padding:8px 20px;border-radius:8px;border:1px solid var(--accent);transition:all .2s}
+nav a.cta-nav:hover{background:var(--accent)}
+.hero{text-align:center;padding:80px 24px 60px;max-width:800px;margin:0 auto}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:700;line-height:1.15;margin-bottom:20px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;color:var(--muted);max-width:600px;margin:0 auto 32px}
+.cta{display:inline-block;padding:14px 36px;background:linear-gradient(135deg,var(--accent),#6c5ce7);color:#fff;font-weight:600;font-size:16px;border-radius:10px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,106,255,.4)}
+.price-tag{display:inline-block;margin-left:12px;font-family:var(--mono);font-size:14px;color:var(--accent2);border:1px solid rgba(0,212,170,.3);padding:4px 12px;border-radius:20px}
+section.content{max-width:800px;margin:0 auto 60px;padding:0 24px}
+section.content h2{font-size:28px;margin-bottom:20px;text-align:center}
+section.content h3{font-size:20px;margin:28px 0 12px;color:var(--accent)}
+section.content p,section.content li{font-size:15px;color:var(--muted);line-height:1.8}
+section.content ul{list-style:none;padding:0}
+section.content ul li{padding:6px 0 6px 24px;position:relative}
+section.content ul li::before{content:'>';position:absolute;left:0;color:var(--accent);font-family:var(--mono);font-weight:700}
+.how{max-width:700px;margin:0 auto 60px;padding:0 24px;text-align:center}
+.how h2{font-size:28px;margin-bottom:32px}
+.steps{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+.step{flex:1;min-width:180px;max-width:200px;text-align:center}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-family:var(--mono);margin-bottom:12px}
+.step h4{font-size:14px;margin-bottom:6px}
+.step p{font-size:12px;color:var(--muted)}
+.compare{max-width:800px;margin:0 auto 60px;padding:0 24px}
+.compare h2{text-align:center;font-size:28px;margin-bottom:24px}
+.compare table{width:100%;border-collapse:collapse;font-size:14px}
+.compare th,.compare td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.compare th{color:var(--muted);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.compare .pro-col{color:var(--accent2);font-weight:600}
+.check{color:var(--accent2)}.cross{color:#ff4d6d;opacity:.6}
+.faq{max-width:700px;margin:0 auto 60px;padding:0 24px;text-align:center}
+.faq h2{font-size:28px;margin-bottom:32px}
+.faq-list{text-align:left}
+.faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;background:var(--surface);transition:border-color .2s}
+.faq-item:hover{border-color:rgba(124,106,255,.3)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;font-weight:600;font-size:15px;user-select:none;transition:color .2s}
+.faq-question:hover{color:var(--accent)}
+.faq-icon{font-size:18px;transition:transform .3s;flex-shrink:0;margin-left:12px;color:var(--muted)}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--accent)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-answer{max-height:300px}
+.faq-answer-inner{padding:0 20px 16px;font-size:14px;color:var(--muted);line-height:1.7}
+.final-cta{text-align:center;padding:60px 24px}
+.final-cta h2{font-size:28px;margin-bottom:16px}
+.final-cta p{color:var(--muted);margin-bottom:24px}
+footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+footer a{color:var(--accent);text-decoration:none}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:16px;font-size:12px}
+.footer-links a{color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+@media(max-width:600px){nav{padding:12px 16px}.hero{padding:48px 16px 40px}.steps{flex-direction:column;align-items:center}.compare th,.compare td{padding:8px;font-size:12px}}
+</style>
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageviewId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_xjwSr0DOxL83qRLQDZkFEOoZA8ex5yYRUKbVxHfqb2Q',{api_host:'https://posthog-proxy.quang101182.workers.dev',ui_host:'https://us.posthog.com',person_profiles:'identified_only'})
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="../landing.html" class="logo">SubWhisper <span>Pro</span></a>
+  <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e" class="cta-nav">Start Free Trial</a>
+</nav>
+
+<section class="hero">
+  <h1><em>Arabic Subtitle Generator</em> — AI-Powered Transcription & Translation</h1>
+  <p>Generate professional Arabic subtitles with full RTL support from any video or audio. SubWhisper Pro handles Modern Standard Arabic and regional dialects — Egyptian, Gulf, Levantine, Maghrebi — with multi-pass AI that preserves the natural flow of Arabic text.</p>
+  <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e" class="cta">Generate Arabic Subtitles Free</a>
+  <span class="price-tag">14 days free — then €9/mo</span>
+</section>
+
+<section class="how">
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h4>Drop Your File</h4><p>MP4, MKV, MOV, MP3, WAV — up to 5 GB</p></div>
+    <div class="step"><div class="step-num">2</div><h4>Select Arabic</h4><p>Choose Arabic as source or target language</p></div>
+    <div class="step"><div class="step-num">3</div><h4>Download SRT</h4><p>AI transcribes, translates, and cleans up automatically</p></div>
+  </div>
+</section>
+
+<section class="content">
+  <h2>Why SubWhisper Pro for Arabic Subtitles?</h2>
+  <p>Arabic is spoken by over 420 million people across 26 countries, stretching from Morocco to Iraq. It is the official language of the Arab League, a liturgical language for nearly two billion Muslims, and one of the six official languages of the United Nations. The Arabic-speaking digital audience is growing rapidly — MENA region internet penetration has surpassed 70% — making Arabic subtitles essential for any creator targeting this massive market.</p>
+
+  <h3>RTL Text Direction — The Fundamental Challenge</h3>
+  <p>Arabic is a right-to-left (RTL) language, and this single fact breaks most subtitle generators. RTL text in subtitle files requires proper Unicode bidirectional markers, correct line-break behavior, and accurate rendering when mixed with left-to-right elements like numbers, brand names, or English words. A subtitle line containing "iPhone 15" embedded in an Arabic sentence will render incorrectly without proper bidi handling. SubWhisper Pro generates subtitle files with correct directional markers, ensuring Arabic text displays properly on every player — from VLC to YouTube to broadcast systems.</p>
+
+  <h3>Dialect Diversity</h3>
+  <p>The gap between Modern Standard Arabic (MSA) and spoken dialects is enormous — comparable to the difference between Latin and modern Romance languages. Egyptian Arabic, spoken by over 100 million people, has distinct vocabulary and grammar from Gulf Arabic (UAE, Saudi Arabia, Qatar) or Levantine Arabic (Lebanon, Syria, Jordan). A creator producing content in Egyptian dialect needs subtitles that reflect Egyptian speech patterns, not MSA text that no one actually speaks in daily life. SubWhisper Pro's multi-pass engine can transcribe dialectal Arabic and translate it while preserving the register appropriate to your content.</p>
+
+  <h3>Root-Based Morphology</h3>
+  <p>Arabic's root-based word formation system means that a single three-letter root can generate dozens of related words with different meanings. The root k-t-b produces "kitab" (book), "kataba" (he wrote), "maktaba" (library), and "kaatib" (writer). Context is essential for correct translation, and single-pass tools frequently choose the wrong derivation. SubWhisper Pro's verification pass cross-checks word choices against sentence context, reducing these morphological errors significantly.</p>
+
+  <h3>Features Built for Arabic Content</h3>
+  <ul>
+    <li>Full RTL support with proper Unicode bidirectional markers</li>
+    <li>Correct mixed-direction handling (Arabic + numbers + English)</li>
+    <li>MSA and dialect-aware transcription (Egyptian, Gulf, Levantine, Maghrebi)</li>
+    <li>Diacritical mark (tashkeel) preservation when present in source</li>
+    <li>Translation between Arabic and 75+ languages</li>
+    <li>Export in SRT, VTT, ASS, TXT, and JSON with RTL encoding</li>
+  </ul>
+</section>
+
+<section class="compare">
+  <h2>Arabic Subtitles: SubWhisper Pro vs Alternatives</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>VEED</th><th>Manual Translation</th><th class="pro-col">SubWhisper Pro</th></tr></thead>
+    <tbody>
+      <tr><td>Price</td><td>$24/mo</td><td>$0.12–0.25/word</td><td class="pro-col">€9/mo</td></tr>
+      <tr><td>RTL Support</td><td>Partial</td><td><span class="check">&#10003;</span></td><td class="pro-col"><span class="check">&#10003;</span> Full bidi</td></tr>
+      <tr><td>Dialect Handling</td><td>MSA only</td><td><span class="check">&#10003;</span> Native</td><td class="pro-col"><span class="check">&#10003;</span> Multi-dialect</td></tr>
+      <tr><td>Translation Quality</td><td>Single pass</td><td>Human-level</td><td class="pro-col">Multi-pass AI</td></tr>
+      <tr><td>Turnaround Time</td><td>Minutes</td><td>Days</td><td class="pro-col">Minutes</td></tr>
+      <tr><td>ASS Export</td><td><span class="cross">&#10007;</span></td><td>N/A</td><td class="pro-col"><span class="check">&#10003;</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="faq" id="faq">
+  <h2>Arabic Subtitle Generator — FAQ</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question">Can SubWhisper Pro translate Arabic subtitles to English?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. Transcribe Arabic audio and translate to English or any of 75+ supported languages. The multi-pass engine handles the fundamental structural differences between Arabic (VSO word order, root-based morphology) and English, producing natural translations rather than awkward literal renderings.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How accurate is AI Arabic subtitle translation?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Arabic is challenging for AI due to its root-based morphology, dialect diversity, and RTL complexity. SubWhisper Pro's multi-pass approach runs a dedicated verification pass that checks contextual word choice, bidi rendering, and dialect consistency — significantly outperforming single-pass tools.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What subtitle formats are available for Arabic export?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Export in SRT, VTT, ASS, TXT, and JSON. All formats include proper RTL encoding and Unicode bidirectional markers so Arabic text renders correctly on any player or platform.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How much does the Arabic subtitle generator cost?<span class="faq-icon">+</span></div>
+      <div class="faq-answer"><div class="faq-answer-inner">€9/month with a 14-day free trial. No credit card required. Professional Arabic translation costs $0.12–0.25 per word, making manual subtitling prohibitively expensive for regular content. SubWhisper Pro offers unlimited use at a flat rate.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>Start Generating Arabic Subtitles Today</h2>
+  <p>14-day free trial. No credit card required.</p>
+  <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e" class="cta">Start Free Trial</a>
+</section>
+
+<footer>
+  <p>SubWhisper Pro &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
+  <div class="footer-links">
+    <a href="../landing.html">Home</a>
+    <a href="french-subtitle-generator.html">French Subtitles</a>
+    <a href="spanish-subtitle-generator.html">Spanish Subtitles</a>
+    <a href="japanese-subtitle-generator.html">Japanese Subtitles</a>
+    <a href="german-subtitle-generator.html">German Subtitles</a>
+    <a href="portuguese-subtitle-generator.html">Portuguese Subtitles</a>
+    <a href="chinese-subtitle-generator.html">Chinese Subtitles</a>
+    <a href="korean-subtitle-generator.html">Korean Subtitles</a>
+    <a href="italian-subtitle-generator.html">Italian Subtitles</a>
+    <a href="hindi-subtitle-generator.html">Hindi Subtitles</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(function(q){q.addEventListener('click',function(){var item=this.parentElement;var wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});if(!wasOpen)item.classList.add('open')})});
+posthog.capture('page_view',{product:'subwhisper-pro',page:'tools-arabic'});
+document.querySelectorAll('a[href*="lemonsqueezy"]').forEach(function(link){link.addEventListener('click',function(){posthog.capture('cta_click',{product:'subwhisper-pro',button_text:this.textContent.trim(),destination:'lemonsqueezy_checkout'})})});
+</script>
+</body>
+</html>
