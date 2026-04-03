@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found — SubWhisper Pro</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080810;
+  --surface: rgba(255,255,255,.04);
+  --surface2: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.08);
+  --accent: #7c6aff;
+  --accent2: #00d4aa;
+  --text: #f0f0f8;
+  --muted: #888;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 10% 10%, rgba(124,106,255,.12) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 90% 85%, rgba(0,212,170,.09) 0%, transparent 60%);
+}
+body > * { position: relative; z-index: 1; }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,8,16,.85);
+  backdrop-filter: blur(20px);
+}
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 18px;
+}
+nav .nav-links { display: flex; gap: 24px; }
+nav .nav-links a {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 14px;
+  opacity: .7;
+  transition: opacity .2s;
+}
+nav .nav-links a:hover { opacity: 1; }
+
+.error-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px;
+}
+.error-section h1 {
+  font-family: var(--mono);
+  font-size: 6rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+.error-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+.error-section p {
+  color: var(--muted);
+  max-width: 450px;
+  margin: 0 auto 32px;
+}
+.error-section .links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.error-section .cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform .2s, box-shadow .2s;
+}
+.error-section .cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124,106,255,.3);
+}
+.error-section .secondary-links {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.error-section .secondary-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+}
+.error-section .secondary-links a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 32px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--muted);
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/landing.html">SubWhisper Pro</a>
+  <div class="nav-links">
+    <a href="/landing.html">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="/landing.html#pricing">Pricing</a>
+    <a href="/landing.html#faq">FAQ</a>
+  </div>
+</nav>
+
+<section class="error-section">
+  <div>
+    <h1>404</h1>
+    <h2>Page not found</h2>
+    <p>The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+    <div class="links">
+      <a href="/landing.html" class="cta">Back to Home</a>
+      <div class="secondary-links">
+        <a href="/blog/">Browse the Blog</a>
+        <a href="/blog/how-to-add-subtitles-to-video.html">How to Add Subtitles to Video</a>
+        <a href="/blog/best-free-subtitle-generators-2026.html">Best Free Subtitle Generators 2026</a>
+        <a href="/tools/french-subtitle-generator.html">French Subtitle Generator</a>
+        <a href="/tools/spanish-subtitle-generator.html">Spanish Subtitle Generator</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>SubWhisper Pro &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
+  <p style="margin-top:8px">Questions? <a href="mailto:support@subwhisper.pro">support@subwhisper.pro</a></p>
+</footer>
+
+</body>
+</html>
