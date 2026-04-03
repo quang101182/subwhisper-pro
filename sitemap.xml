@@ -49,6 +49,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://sub-whisper.com/blog/whisper-ai-transcription-guide.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sub-whisper.com/blog/transcribe-youtube-video-to-text.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sub-whisper.com/blog/subtitle-translator-online.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Tools - Language Pages -->
   <url>
     <loc>https://sub-whisper.com/tools/french-subtitle-generator.html</loc>
