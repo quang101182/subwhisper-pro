@@ -241,75 +241,6 @@ footer {
 }
 footer a { color: var(--accent); text-decoration: none; }
 
-/* ── TESTIMONIALS ── */
-.testimonials {
-  max-width: 900px;
-  margin: 0 auto 60px;
-  padding: 0 24px;
-  text-align: center;
-}
-.testimonials h2 {
-  font-size: 28px;
-  margin-bottom: 32px;
-}
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-.testimonial-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px 24px;
-  text-align: left;
-  transition: transform .2s, border-color .2s;
-}
-.testimonial-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(124,106,255,.3);
-}
-.testimonial-stars {
-  color: #f5a623;
-  font-size: 16px;
-  margin-bottom: 12px;
-  letter-spacing: 2px;
-}
-.testimonial-quote {
-  font-size: 14px;
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 16px;
-  font-style: italic;
-  opacity: .9;
-}
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.testimonial-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 16px;
-  color: #fff;
-  flex-shrink: 0;
-}
-.testimonial-name {
-  font-weight: 600;
-  font-size: 14px;
-}
-.testimonial-role {
-  font-size: 12px;
-  color: var(--muted);
-}
-
 /* ── FAQ ── */
 .faq {
   max-width: 700px;
@@ -380,7 +311,6 @@ footer a { color: var(--accent); text-decoration: none; }
   .hero { padding: 48px 16px 40px; }
   .compare th, .compare td { padding: 8px; font-size: 12px; }
   .steps { flex-direction: column; align-items: center; }
-  .testimonials-grid { grid-template-columns: 1fr; }
   .faq-question { font-size: 14px; padding: 14px 16px; }
 }
 </style>
@@ -555,42 +485,21 @@ footer a { color: var(--accent); text-decoration: none; }
   <span class="price-tag">Then €9/mo</span>
 </section>
 
-<section class="testimonials">
-  <h2>Trusted by Content Creators</h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testimonial-quote">"I upload videos in English and need subtitles in French, Spanish, and Portuguese. SubWhisper Pro does all three in minutes with better accuracy than what I was getting from VEED. The multi-pass translation actually catches nuances that single-pass tools miss."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">M</div>
-        <div>
-          <div class="testimonial-name">Marco D.</div>
-          <div class="testimonial-role">YouTuber &mdash; 120K subscribers, tech reviews</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testimonial-quote">"As a freelance subtitle translator, this tool cut my turnaround time in half. I use SubWhisper Pro to generate the first draft, then I just review and polish. The AI cleanup feature saves me from fixing Whisper hallucinations manually. Game changer for my workflow."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">S</div>
-        <div>
-          <div class="testimonial-name">Sofia R.</div>
-          <div class="testimonial-role">Freelance subtitle translator &mdash; Fiverr Top Rated</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testimonial-quote">"I record a weekly podcast in English and needed transcripts for my international audience. SubWhisper Pro transcribes the full episode and translates it to Japanese and Korean with proper formatting. At &euro;9/month, it's a no-brainer compared to hiring a transcriptionist."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">J</div>
-        <div>
-          <div class="testimonial-name">James T.</div>
-          <div class="testimonial-role">Podcaster &mdash; "The Global Dev Show"</div>
-        </div>
-      </div>
-    </div>
+<section class="features" style="margin-top:0">
+  <div class="feat">
+    <div class="feat-icon">&#x1F3AF;</div>
+    <h3>Multi-Pass Translation</h3>
+    <p>Multiple AI passes with automatic quality checks. Foreign segments are detected and re-translated for maximum accuracy.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">&#x1F9F9;</div>
+    <h3>AI Hallucination Cleanup</h3>
+    <p>Automatically removes Whisper hallucinations, repeated phrases, and garbled artifacts that other tools leave in.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">&#x1F4C4;</div>
+    <h3>All Export Formats</h3>
+    <p>SRT, VTT, ASS, TXT, JSON. The only subtitle tool that exports ASS with customizable styling.</p>
   </div>
 </section>
 
