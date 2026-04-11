@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>SubWhisper Pro v1.1.9</title>
+<title>SubWhisper Pro v1.2.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1143,7 +1143,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 <header>
   <div class="logo">
     <div class="logo-text"><span class="logo-sub">Sub</span><span class="logo-whisper">Whisper</span></div>
-    <span class="ver-badge">Pro v1.1.9</span>
+    <span class="ver-badge">Pro v1.2.0</span>
   </div>
   <div class="hdr-r">
     <div id="apiBar" title="API keys configured" style="display:none">
@@ -1728,7 +1728,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 </div>
 
 <footer>
-  <span class="ft">SubWhisper Pro v1.1.9</span>
+  <span class="ft">SubWhisper Pro v1.2.0</span>
   <span class="ft">Universal-3-pro &middot; 99 languages</span>
 </footer>
 
@@ -2707,6 +2707,11 @@ async function transcribeCloud(workerUrl, srcLang, outLang, groqKey, gatewayKey,
 async function pollCloudJob(base, jobId, outLang) {
   var maxPolls = 600; // 30 min max
   var pollCount = 0;
+  // Passive stale detection (v1.2.0) — warning only, no auto reject
+  var lastActivityTs = Date.now();
+  var lastLogSeen = '';
+  var lastProgressSeen = -1;
+  var staleWarnLevel = 0;
   return new Promise(function(resolve, reject) {
     var timer = setInterval(async function() {
       if (pollCount++ > maxPolls) { clearInterval(timer); reject(new Error('Timeout 30min')); return; }
@@ -2714,6 +2719,20 @@ async function pollCloudJob(base, jobId, outLang) {
         var r = await fetch(base + '/job-status/' + jobId);
         if (!r.ok) return;
         var status = await r.json();
+        // Track real server activity (progress or log change)
+        if (status.progress !== undefined && status.progress !== lastProgressSeen) { lastProgressSeen = status.progress; lastActivityTs = Date.now(); }
+        if (status.log && status.log !== lastLogSeen) { lastLogSeen = status.log; lastActivityTs = Date.now(); }
+        // Passive warning on prolonged silence (180s then 360s), polling continues
+        if (status.status === 'processing') {
+          var silentSec = Math.round((Date.now() - lastActivityTs) / 1000);
+          if (staleWarnLevel === 0 && silentSec >= 180) {
+            staleWarnLevel = 1;
+            appendLog('WARNING: server silent for ' + silentSec + 's. Could be a long phase (FFmpeg extraction or Groq retry) or a Fly machine restart. Please wait a bit longer.');
+          } else if (staleWarnLevel === 1 && silentSec >= 360) {
+            staleWarnLevel = 2;
+            appendLog('WARNING: still no activity after ' + silentSec + 's. The server likely restarted and the job is lost. Close this page and start a new transcription.');
+          }
+        }
         if (status.progress) setPct(35 + Math.round(status.progress * 0.55), status.log || 'Processing...');
         if (status.log) setLog(status.log);
         if (status.status === 'done') {
@@ -4402,7 +4421,7 @@ async function exportDiag() {
   var engine = getAIEngine();
   var diag = {
     type: 'DIAG',
-    version: 'pro-v1.1.9',
+    version: 'pro-v1.2.0',
     date: new Date().toISOString(),
     file: origName || 'unknown',
     lang_source: src,
