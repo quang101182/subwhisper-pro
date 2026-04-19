@@ -142,6 +142,72 @@ nav a:hover { background: var(--accent); }
 }
 
 /* ── COMPARISON ── */
+/* ── Showcase (screenshots) ── */
+.showcase {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+.showcase h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.showcase .subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.showcase-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+.showcase-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 106, 255, .3);
+}
+.showcase-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top;
+  background: #000;
+}
+.showcase-caption {
+  padding: 14px 18px;
+}
+.showcase-caption .step {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent2);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.showcase-caption h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.showcase-caption p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+@media (max-width: 720px) {
+  .showcase-grid { grid-template-columns: 1fr; }
+}
+
 .compare {
   max-width: 900px;
   margin: 40px auto 60px;
@@ -336,6 +402,57 @@ footer a { color: var(--accent); text-decoration: none; }
   <p>Multi-pass AI translation. Drop a video, get professional subtitles. 3x cheaper than VEED or Kapwing. No credit card for 14 days.</p>
   <a href="https://se7en-tools.lemonsqueezy.com/checkout/buy/76168ec2-3f96-4522-84f7-11bcd81bb34e?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2F%3Factivated%3D1" class="cta">Start Free Trial</a>
   <span class="price-tag">€9/mo — 14 days free</span>
+</section>
+
+<section class="showcase">
+  <h2>See it in action</h2>
+  <p class="subtitle">Drop a file, get professional subtitles in 4 steps.</p>
+  <div class="showcase-grid">
+    <div class="showcase-card">
+      <picture>
+        <source srcset="assets/screenshots/01-drop.webp" type="image/webp">
+        <img src="assets/screenshots/01-drop.png" alt="Drop or select a video file — MP4, MKV, MOV, AVI, MP3, WAV up to 5 GB" loading="lazy">
+      </picture>
+      <div class="showcase-caption">
+        <span class="step">STEP 1</span>
+        <h3>Drop your file</h3>
+        <p>Any video or audio up to 5 GB. Or import an existing .SRT to translate.</p>
+      </div>
+    </div>
+    <div class="showcase-card">
+      <picture>
+        <source srcset="assets/screenshots/02-processing.webp" type="image/webp">
+        <img src="assets/screenshots/02-processing.png" alt="Transcription in progress with real-time chunk log" loading="lazy">
+      </picture>
+      <div class="showcase-caption">
+        <span class="step">STEP 2</span>
+        <h3>AI transcription</h3>
+        <p>Whisper + Universal-3 in parallel. Live chunk log, gap detection, done in seconds.</p>
+      </div>
+    </div>
+    <div class="showcase-card">
+      <picture>
+        <source srcset="assets/screenshots/03-translation.webp" type="image/webp">
+        <img src="assets/screenshots/03-translation.png" alt="SRT editor with translation tools, format and export options" loading="lazy">
+      </picture>
+      <div class="showcase-caption">
+        <span class="step">STEP 3</span>
+        <h3>Edit &amp; translate</h3>
+        <p>Multi-pass AI translation in 75+ languages. Diff view, format, validate, export SRT/VTT/TXT.</p>
+      </div>
+    </div>
+    <div class="showcase-card">
+      <picture>
+        <source srcset="assets/screenshots/04-preview.webp" type="image/webp">
+        <img src="assets/screenshots/04-preview.png" alt="Live subtitle preview over the original video" loading="lazy">
+      </picture>
+      <div class="showcase-caption">
+        <span class="step">STEP 4</span>
+        <h3>Preview &amp; burn in</h3>
+        <p>Real-time overlay preview. Hardcode subtitles into your video with one FFmpeg command.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="compare" id="pricing">
