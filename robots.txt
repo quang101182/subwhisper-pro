@@ -1,3 +1,40 @@
+# robots.txt — SubWhisper Pro
+# GEO hardening v1.2.2 (2026-05-29) — explicit AI bot policy
+
 User-agent: *
 Allow: /
+
+# AI search & retrieval crawlers
+# (citation source for ChatGPT Search, Perplexity, Claude, Gemini, Copilot)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# AI training crawlers (allowed — early-stage visibility prioritized)
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://sub-whisper.com/sitemap.xml
