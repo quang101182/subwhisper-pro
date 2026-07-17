@@ -2,7 +2,7 @@
   "name": "SubWhisper Pro",
   "short_name": "SW Pro",
   "description": "AI-powered subtitle transcription & translation in 75+ languages",
-  "start_url": ".",
+  "start_url": "/app.html",
   "display": "standalone",
   "background_color": "#080810",
   "theme_color": "#080810",
