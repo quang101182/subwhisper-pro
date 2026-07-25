@@ -3021,7 +3021,7 @@ async function callAIText(prompt, _retry) {
     var resp = await fetch(_dskUrl, {
       method: 'POST',
       headers: _dskHdr,
-      body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'user', content: prompt }], max_tokens: 8192, temperature: 0 })
+      body: JSON.stringify({ model: 'deepseek-v4-flash', thinking: { type: 'disabled' }, messages: [{ role: 'user', content: prompt }], max_tokens: 8192, temperature: 0 })
     });
     if (!resp.ok) {
       var err = await resp.json().catch(function() { return {}; });
