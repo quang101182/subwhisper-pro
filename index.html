@@ -26,7 +26,7 @@
   "url": "https://sub-whisper.com",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
-  "softwareVersion": "1.3.0",
+  "softwareVersion": "1.3.1",
   "inLanguage": ["en", "fr", "es", "de", "it", "pt", "ar", "zh", "ja", "ko", "hi"],
   "featureList": [
     "Automatic subtitle transcription via Whisper AI",
@@ -130,7 +130,7 @@
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- v1.3.0 — 2026-08-20 : migration du tunnel de paiement vers Polar (Lemon Squeezy a ferme le compte) — 90 liens de checkout morts remplaces sur la vente, l'app et les 10 pages du blog | v1.2.7 — 2026-07-17 : la RACINE sert la page de vente, l'app passe sur /app.html (Google n'indexait que l'app fermee) | v1.2.5 — 2026-07-15 funnel gateway (beacon clic sortant checkout, page=swp&btn=out:checkout) | v1.2.4 — 2026-05-29 GEO Phase 2.b (added Rev.com comparison page) | v1.2.3 VEED + Kapwing comparison pages | v1.2.2 GEO hardening JSON-LD -->
+<!-- v1.3.1 — 2026-08-20 : le suivi des clics d'achat ciblait encore l'ancien prestataire | v1.3.0 — 2026-08-20 : migration du tunnel de paiement vers Polar (Lemon Squeezy a ferme le compte) — 90 liens de checkout morts remplaces sur la vente, l'app et les 10 pages du blog | v1.2.7 — 2026-07-17 : la RACINE sert la page de vente, l'app passe sur /app.html (Google n'indexait que l'app fermee) | v1.2.5 — 2026-07-15 funnel gateway (beacon clic sortant checkout, page=swp&btn=out:checkout) | v1.2.4 — 2026-05-29 GEO Phase 2.b (added Rev.com comparison page) | v1.2.3 VEED + Kapwing comparison pages | v1.2.2 GEO hardening JSON-LD -->
 <style>
 :root {
   --bg: #080810;
@@ -794,7 +794,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <footer>
-  <p>SubWhisper Pro v1.3.0 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
+  <p>SubWhisper Pro v1.3.1 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
   <p style="margin-top:8px">Questions? <a href="mailto:quangapps.dev@gmail.com">quangapps.dev@gmail.com</a></p>
   <p style="margin-top:12px;font-size:13px;opacity:.7">Also try <a href="https://t.me/VoiceBoxTranscBot" style="color:#00D4AA">VoiceBox</a> &mdash; AI voice transcription bot for Telegram</p>
   <p style="margin-top:4px;font-size:13px;opacity:.7">And <a href="https://noteflowing.com" style="color:#7c6aff">NoteFlowing</a> &mdash; AI meeting notes from any audio</p>
@@ -835,7 +835,7 @@ document.querySelectorAll('.faq-question').forEach(function(q) {
     page: 'landing'
   });
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('a[href*="lemonsqueezy"]').forEach(function(link) {
+    document.querySelectorAll('a[href*="polar.sh"], a[href*="lemonsqueezy"]').forEach(function(link) {
       link.addEventListener('click', function() {
         // Funnel gateway maison (dashboard Se7en AI) : clic sortant checkout = étape argent.
         // En premier + try/catch : tracké même si PostHog échoue à charger.
@@ -843,7 +843,7 @@ document.querySelectorAll('.faq-question').forEach(function(q) {
         try{posthog.capture('cta_click', {
           product: 'subwhisper-pro',
           button_text: this.textContent.trim(),
-          destination: 'lemonsqueezy_checkout'
+          destination: 'polar_checkout'
         });}catch(e){}
       });
     });

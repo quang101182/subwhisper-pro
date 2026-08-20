@@ -978,13 +978,13 @@ document.querySelectorAll('.faq-question').forEach(function(q) {
     page: 'blog-whisper-ai-guide'
   });
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('a[href*="lemonsqueezy"]').forEach(function(link) {
+    document.querySelectorAll('a[href*="polar.sh"], a[href*="lemonsqueezy"]').forEach(function(link) {
       link.addEventListener('click', function() {
         posthog.capture('cta_click', {
           product: 'subwhisper-pro',
           button_text: this.textContent.trim(),
           page: 'blog-whisper-ai-guide',
-          destination: 'lemonsqueezy_checkout'
+          destination: 'polar_checkout'
         });
       });
     });

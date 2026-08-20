@@ -816,13 +816,13 @@ document.querySelectorAll('.faq-question').forEach(function(q) {
     page: 'blog-how-to-add-subtitles'
   });
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('a[href*="lemonsqueezy"]').forEach(function(link) {
+    document.querySelectorAll('a[href*="polar.sh"], a[href*="lemonsqueezy"]').forEach(function(link) {
       link.addEventListener('click', function() {
         posthog.capture('cta_click', {
           product: 'subwhisper-pro',
           button_text: this.textContent.trim(),
           page: 'blog-how-to-add-subtitles',
-          destination: 'lemonsqueezy_checkout'
+          destination: 'polar_checkout'
         });
       });
     });
