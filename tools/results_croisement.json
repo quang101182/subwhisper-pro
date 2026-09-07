@@ -1,0 +1,654 @@
+{
+  "timestamp": "2026-09-07T16:09:37",
+  "n_phrases": 60,
+  "n_hallucinations": 1,
+  "desaccord_hallucinations": [
+    1.9
+  ],
+  "desaccord_sains_max": 0.205,
+  "desaccord_sains_median": 0.027,
+  "seuils": {
+    "0.2": {
+      "bascules": 2,
+      "hallucinations_rattrapees": 1,
+      "hallucinations_restantes": 0,
+      "bascules_inutiles": 1,
+      "erreur_moyenne": 0.03734892748929746,
+      "erreur_mediane": 0.0
+    },
+    "0.3": {
+      "bascules": 1,
+      "hallucinations_rattrapees": 1,
+      "hallucinations_restantes": 0,
+      "bascules_inutiles": 0,
+      "erreur_moyenne": 0.03384015555947291,
+      "erreur_mediane": 0.0
+    },
+    "0.4": {
+      "bascules": 1,
+      "hallucinations_rattrapees": 1,
+      "hallucinations_restantes": 0,
+      "bascules_inutiles": 0,
+      "erreur_moyenne": 0.03384015555947291,
+      "erreur_mediane": 0.0
+    },
+    "0.5": {
+      "bascules": 1,
+      "hallucinations_rattrapees": 1,
+      "hallucinations_restantes": 0,
+      "bascules_inutiles": 0,
+      "erreur_moyenne": 0.03384015555947291,
+      "erreur_mediane": 0.0
+    },
+    "0.6": {
+      "bascules": 1,
+      "hallucinations_rattrapees": 1,
+      "hallucinations_restantes": 0,
+      "bascules_inutiles": 0,
+      "erreur_moyenne": 0.03384015555947291,
+      "erreur_mediane": 0.0
+    }
+  },
+  "lignes": [
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "l'accident a eu lieu en terrain montagneux et il semblerait que cela ait été causé par un incendie malveillant",
+      "groq": "L'accident a eu lieu en terrain montagneux et il semblerait que cela ait été causé par un incendie malveillant.",
+      "gemini": "L'accident a eu lieu en terrain montagneux et il semblerait que cela ait été causé par un incendie malveillant.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "nous sommes d'accord avec la déclaration de l'usoc comité olympique des états-unis selon laquelle les intérêts de nos athlètes et de nos clubs ainsi que de leur sport pourraient être mieux servis. cela peut être fait en allant de l'avant et en procédant plutôt à des changements significatifs au sein de notre organisation qu'à la révocation d'accréditation",
+      "groq": "Nous sommes d'accord avec la déclaration de l'USOC, Comité Olympique des Etats-Unis, selon laquelle les intérêts de nos athlètes et de nos clubs, ainsi que de leur sport, pourraient être mieux servis. Cela peut être fait en allant de l'avant et en procédant plutôt à des changements significatifs au sein de notre organisation qu'à la révocation d'accréditation.",
+      "gemini": "Nous sommes d'accord avec la déclaration de l'USOC (Comité olympique des États-Unis) selon laquelle les intérêts de nos athlètes et de nos clubs, ainsi que de leur sport, pourraient être mieux servis. Cela peut être fait en allant de l'avant et en procédant plutôt à des changements significatifs au sein de notre organisation qu'à la révocation d'accréditation.",
+      "err_groq": 0.017241379310344827,
+      "err_gemini": 0.0,
+      "desaccord": 0.017241379310344827
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "il a ajouté qu’« on ne devrait cependant pas leur demander d’assumer des obligations qui dépassent leur stade de développement leur responsabilité et leurs capacités. »",
+      "groq": "Il a ajouté qu'on ne devrait cependant pas leur demander d'assumer des obligations qui dépassent leur stade de développement, leurs responsabilités et leurs capacités.",
+      "gemini": "Il a ajouté qu'on ne devrait cependant pas leur demander d'assumer des obligations qui dépassent leur stade de développement, de responsabilité et leurs capacités.",
+      "err_groq": 0.23076923076923078,
+      "err_gemini": 0.19230769230769232,
+      "desaccord": 0.08333333333333333
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "le rugissement du tigre ne ressemble pas au rugissement ample du lion mais plutôt à une phrase dont les mots seraient des cris et des grondements",
+      "groq": "L'eurgissement du tigre ne ressemble pas au reurgissement en plus du lion, mais plutôt à une phrase dont les mots seraient des cris et des grondements.",
+      "gemini": "Le rugissement du tigre ne ressemble pas au rugissement ample du lion, mais plutôt à une phrase dont les mots seraient des cris et des grondements.",
+      "err_groq": 0.19230769230769232,
+      "err_gemini": 0.0,
+      "desaccord": 0.19230769230769232
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "le même mois un autre avion de ligne a fait une sortie de piste à mashhad et a heurté un mur tuant ainsi dix-sept personnes",
+      "groq": "Le même mois, un autre avion de ligne a fait une sortie de piste à Machad et heurté un mur, tuant ainsi 17 personnes.",
+      "gemini": "Le même mois, un autre avion de ligne a fait une sortie de piste à Mashhad et heurté un mur, tuant ainsi 17 personnes.",
+      "err_groq": 0.15384615384615385,
+      "err_gemini": 0.11538461538461539,
+      "desaccord": 0.041666666666666664
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "giancarlo fisichella a perdu le contrôle de sa voiture et a terminé la course peu après le démarrage",
+      "groq": "Jean-Carlo Ficciela a perdu le contrôle de sa voiture et a terminé la course peu après le démarrage.",
+      "gemini": "Jean-Carlo Fittipaldi a perdu le contrôle de sa voiture et a terminé la course peu après le démarrage.",
+      "err_groq": 0.16666666666666666,
+      "err_gemini": 0.16666666666666666,
+      "desaccord": 0.05263157894736842
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "malgré le net avantage de del potro pendant le deuxième set il a fallu passer par un tie-break une fois que le score a atteint 6-6",
+      "groq": "Malgré le net avantage de Delpotro pendant le deuxième set, il a fallu passer par un tie break une fois que le score atteint 6-6.",
+      "gemini": "Malgré le net avantage de Del Potro pendant le deuxième set, il a fallu passer par un tie-break une fois que le score a atteint 6-6.",
+      "err_groq": 0.10714285714285714,
+      "err_gemini": 0.0,
+      "desaccord": 0.11538461538461539
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "malheureusement il est difficile d'étudier le flux de circulation car le comportement des conducteurs ne peut être prédit avec cent pour cent de certitude",
+      "groq": "Malheureusement, il est difficile d'étudier le flux de circulation car les comportements des conducteurs ne peuvent être prédits avec 100% de certitude.",
+      "gemini": "Malheureusement, il est difficile d'étudier le flux de circulation car le comportement des conducteurs ne peut être prédit avec 100 % de certitude.",
+      "err_groq": 0.2916666666666667,
+      "err_gemini": 0.125,
+      "desaccord": 0.18181818181818182
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "les deux composés réagissent l'un avec l'autre pour former des cristaux qui peuvent bloquer la fonction rénale ont déclaré des chercheurs de l'université",
+      "groq": "Les deux composés réagissent l'un avec l'autre pour former des cristaux qui peuvent bloquer la fonction rénale, ont déclaré des chercheurs de l'université.",
+      "gemini": "Les deux composés réagissent l'un avec l'autre pour former des cristaux qui peuvent bloquer la fonction rénale, ont déclaré des chercheurs de l'université.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "fr_fr",
+      "cjk": false,
+      "ref": "par exemple des étudiants de l'école bennet en caroline du nord conçoivent chaque année un site web consacré à leur visite de la capitale de l'état chaque année le site est remis à jour mais les anciennes versions sont conservées en ligne pour servir d'album",
+      "groq": "Par exemple, des étudiants de l'école Béné en Caroline du Nord conçoivent chaque année un site web consacré à leur visite de la capitale de l'État. Chaque année, le site est remis à jour, mais les anciennes versions sont conservées en ligne pour servir d'albums.",
+      "gemini": "Par exemple, des étudiants de l'école Bennett en Caroline du Nord conçoivent chaque année un site web consacré à leur visite de la capitale de l'État. Chaque année, le site est remis à jour, mais les anciennes versions sont conservées en ligne pour servir d'album.",
+      "err_groq": 0.044444444444444446,
+      "err_gemini": 0.022222222222222223,
+      "desaccord": 0.044444444444444446
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "however due to the slow communication channels styles in the west could lag behind by 25 to 30 year",
+      "groq": "However, due to the slow communication channels, styles in the West could lag behind by 25-30 years.",
+      "gemini": "However, due to the slow communication channels, styles in the West could lag behind by 25 to 30 years.",
+      "err_groq": 0.10526315789473684,
+      "err_gemini": 0.05263157894736842,
+      "desaccord": 0.05555555555555555
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+      "groq": "All nouns alongside the words say for you always begin with a capital letter, even in the middle of a sentence.",
+      "gemini": "All nouns alongside the world safe for you always begin with a capital letter, even in the middle of a sentence.",
+      "err_groq": 0.09523809523809523,
+      "err_gemini": 0.09523809523809523,
+      "desaccord": 0.09523809523809523
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "to the north and within easy reach is the romantic and fascinating town of sintra and which was made famous to foreigners after a glowing account of its splendours recorded by lord byron",
+      "groq": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendorous recorded by Lord Byron.",
+      "gemini": "To the north and within easy reach is the romantic and fascinating town of Sintra, and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron.",
+      "err_groq": 0.030303030303030304,
+      "err_gemini": 0.0,
+      "desaccord": 0.030303030303030304
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "the cabbage juice changes color depending on how acidic or basic alkaline the chemical is",
+      "groq": "The cabbage juice changes color depending on how acidic, basic, alkaline the chemical is.",
+      "gemini": "The cabbage juice changes color depending on how acidic, basic, alkaline the chemical is.",
+      "err_groq": 0.06666666666666667,
+      "err_gemini": 0.06666666666666667,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "many people don't think about them as dinosaurs because they have feathers and can fly",
+      "groq": "Many people don't think about them as dinosaurs because they have feathers and can fly.",
+      "gemini": "Many people don't think about them as dinosaurs because they have feathers and can fly.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+      "groq": "The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+      "gemini": "The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "the northern marianas emergency management office said that there were no damages reported in the nation",
+      "groq": "The Northern Marianas Emergency Management Office said that there were no damages reported in the nation.",
+      "gemini": "The Northern Mariana's Emergency Management Office said that there were no damages reported in the nation.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0625,
+      "desaccord": 0.0625
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "twentieth century research has shown that there are two pools of genetic variation hidden and expressed",
+      "groq": "20th century research has shown that there are two pools of genetic variation hidden and expressed.",
+      "gemini": "Twentieth century research has shown that there are two pools of genetic variation, hidden and expressed.",
+      "err_groq": 0.0625,
+      "err_gemini": 0.0,
+      "desaccord": 0.0625
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "the aspect ratio of this format dividing by twelve to obtain the simplest whole-number ratio is therefore said to be 3:2",
+      "groq": "The aspect ratio of this format, dividing by 12 to obtain the simplest whole number ratio, is therefore said to be 3 to 2.",
+      "gemini": "The aspect ratio of this format, dividing by 12 to obtain the simplest whole number ratio, is therefore said to be 3:2.",
+      "err_groq": 0.08695652173913043,
+      "err_gemini": 0.043478260869565216,
+      "desaccord": 0.041666666666666664
+    },
+    {
+      "langue": "en_us",
+      "cjk": false,
+      "ref": "as light pollution in their heyday was not the kind of problem it is today they are usually located in cities or at campuses easier to reach than those built in modern times",
+      "groq": "As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses easier to reach than those built in modern times.",
+      "gemini": "As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses, easier to reach than those built in modern times.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "für die besten aussichten auf hongkong sollten sie die insel verlassen und zum gegenüberliegenden ufer von kowloon fahren",
+      "groq": "Für die besten Aussichten auf Hongkong sollten sie die Insel verlassen und zum gegenüberliegenden Ufer von Kowloon fahren.",
+      "gemini": "Für die besten Aussichten auf Hongkong sollten Sie die Insel verlassen und zum gegenüberliegenden Ufer von Kowloon fahren.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "er griff auch alles an was ins wasser kam selbst ein großer dinosaurier wie der t rex war ihm nicht gewachsen",
+      "groq": "Er griff auch alles an, was ins Wasser kam. Selbst ein großer Dinosaurier wie der T-Rex war ihm nicht gewachsen.",
+      "gemini": "Er griff auch alles an, was ins Wasser kam – selbst ein großer Dinosaurier wie der T-Rex war ihm nicht gewachsen.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "wenn sie den film das vermächtnis der tempelritter gesehen haben denken sie vielleicht dass auf die rückseite der unabhängigkeitserklärung eine schatzkarte gezeichnet wurde",
+      "groq": "Wenn Sie den Film Das Vermächtnis der Tempelritter gesehen haben, denken Sie vielleicht, dass auf der Rückseite der Unabhängigkeitserklärung eine Schatzkarte gezeichnet wurde.",
+      "gemini": "Wenn Sie den Film Das Vermächtnis der Tempelritter gesehen haben, denken Sie vielleicht, dass auf der Rückseite der Unabhängigkeitserklärung eine Schatzkarte gezeichnet wurde.",
+      "err_groq": 0.043478260869565216,
+      "err_gemini": 0.043478260869565216,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "es leben noch viele männer und frauen die ihre zeit hier überlebt haben und viele weitere mit angehörigen die dort ermordet wurden oder sich zu tode arbeiteten juden und nichtjuden gleichermaßen",
+      "groq": "Es leben noch viele Männer und Frauen, die ihre Zeit hier überlebt haben und viele weitere Mitangehörigen, die dort ermordet wurden oder sich zu Tode arbeiteten, Juden und Nichtjuden gleichermaßen.",
+      "gemini": "Es leben noch viele Männer und Frauen, die ihre Zeit dort überlebt haben, und viele weitere mit Angehörigen, die dort ermordet wurden oder sich zu Tode arbeiteten, Juden und Nichtjuden gleichermaßen.",
+      "err_groq": 0.06451612903225806,
+      "err_gemini": 0.03225806451612903,
+      "desaccord": 0.1
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "die höhle befindet sich auf der spitze eines der berge nördlich von mekka und ist vom rest der welt völlig isoliert",
+      "groq": "Die Höhle befindet sich auf der Spitze eines der Berge nördlich von Mekka und ist vom Rest der Welt völlig isoliert.",
+      "gemini": "Die Höhle befindet sich auf der Spitze eines der Berge nördlich von Mekka und ist vom Rest der Welt völlig isoliert.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "dieses sediment war nötig um sandbänke und strände zu bilden die als lebensräume für wildtiere dienten",
+      "groq": "Dieses Sediment war nötig, um Sandbänke und Strände zu bilden, die als Lebensräume für Wildtiere dienten.",
+      "gemini": "Dieses Sediment war nötig, um Sandbänke und Strände zu bilden, die als Lebensräume für Wildtiere dienten.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "blogs können auch dazu beitragen die schreibfertigkeiten von schülern zu verbessern zwar haben schüler am anfang ihrer blogerfahrung oft eine schlampige grammatik und rechtschreibung aber das ändert sich normalerweise wenn es ein publikum gibt",
+      "groq": "Blogs können auch dazu beitragen, die Schreibfertigkeiten von Schülern zu verbessern. Zwar haben Schüler am Anfang ihrer Blog-Erfahrung oft eine schlampige Grammatik- und Rechtschreibung, aber das ändert sich normalerweise, wenn es ein Publikum gibt.",
+      "gemini": "Blogs können auch dazu beitragen, die Schreibfertigkeiten von Schülern zu verbessern. Zwar haben Schüler am Anfang ihrer Blog-Erfahrung oft eine schlampige Grammatik und Rechtschreibung, aber das ändert sich normalerweise, wenn es ein Publikum gibt.",
+      "err_groq": 0.058823529411764705,
+      "err_gemini": 0.058823529411764705,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "nachdem der damm 1963 erbaut worden war kamen die jahreszeitlichen überflutungen die sedimente im fluss verteilen zum stillstand",
+      "groq": "nachdem der dam 1963 erbaut worden war kamen die jahreszeitlichen überflutungen die sedimente im fluss verteilen zum stillstand und",
+      "gemini": "Nachdem der Damm 1963 erbaut worden war, kamen die jahreszeitlichen Überflutungen, die Sedimente im Fluss verteilen, zum Stillstand.",
+      "err_groq": 0.1111111111111111,
+      "err_gemini": 0.0,
+      "desaccord": 0.10526315789473684
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "insbesondere wird behauptet dass man erkennen kann ob jemand lügt indem man minimale veränderungen des gesichtsausdrucks richtig deutet.x",
+      "groq": "Insbesondere wird behauptet, dass man erkennen kann, ob jemand lügt, indem man minimale Veränderungen des Gesichtsausdrucks richtig deutet.",
+      "gemini": "Insbesondere wird behauptet, dass man erkennen kann, ob jemand lügt, indem man minimale Veränderungen des Gesichtsausdrucks richtig deutet.",
+      "err_groq": 0.05263157894736842,
+      "err_gemini": 0.05263157894736842,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "de_de",
+      "cjk": false,
+      "ref": "die angemessene nutzung von blogs kann schülerinnen und schüler befähigen analytischer und kritischer zu werden; durch die aktive reaktion auf internetmaterialien können die schülerinnen und schüler ihre positionen im kontext der texte anderer definieren und ihre eigenen perspektiven zu bestimmten themen darlegen  oravec 2002",
+      "groq": "Die angemessene Nutzung von Blogs kann Schülerinnen und Schüler befähigen, analytischer und kritischer zu werden. Durch die aktive Reaktion auf Internetmaterialien können die Schülerinnen und Schüler ihre Positionen im Kontext der Texte anderer definieren und ihre eigenen Perspektiven zu bestimmten Themen darlegen. Orawetz 2002 Orawetz",
+      "gemini": "Die angemessene Nutzung von Blogs kann Schülerinnen und Schüler befähigen, analytischer und kritischer zu werden. Durch die aktive Reaktion auf Internetmaterialien können die Schülerinnen und Schüler ihre Positionen im Kontext der Texte anderer definieren und ihre eigenen Perspektiven zu bestimmten Themen darlegen (Oravec, 2002).",
+      "err_groq": 0.045454545454545456,
+      "err_gemini": 0.0,
+      "desaccord": 0.044444444444444446
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "这 并 不 是 告 别 这 是 一 个 篇 章 的 结 束 也 是 新 篇 章 的 开 始",
+      "groq": "这并不是告别,这是一个篇章的结束,也是新篇章的开始。",
+      "gemini": "这并不是告别，这是一个篇章的结束，也是新篇章的开始。",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "钙 钾 等 元 素 属 于 金 属 银 和 金 等 元 素 当 然 也 是 金 属",
+      "groq": "钙甲等元素属于金属银和金等元素当然也是金属",
+      "gemini": "钙、钾等元素属于金属。银和金等元素当然也是金属。",
+      "err_groq": 0.047619047619047616,
+      "err_gemini": 0.0,
+      "desaccord": 0.047619047619047616
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "桥 下 垂 直 净 空 15 米 该 项 目 于 2011 年 8 月 完 工 但 直 到 2017 年 3 月 才 开 始 通 车",
+      "groq": "桥下垂直近空15米该项目于2011年8月完工但直到2017年3月才开始通车",
+      "gemini": "桥下垂直净空15米，该项目于2011年8月完工，但直到2017年3月才开始通车。",
+      "err_groq": 0.02702702702702703,
+      "err_gemini": 0.0,
+      "desaccord": 0.02702702702702703
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "适 当 使 用 博 客 可 以 使 学 生 变 得 更 善 于 分 析 和 进 行 思 辨 通 过 积 极 回 应 网 络 材 料 学 生 们 可 以 在 他 人 文 章 的 上 下 文 语 境 中 找 到 自 己 的 立 场 并 能 够 针 对 特 定 问 题 提 出 自 己 的 观 点 oravec 2002",
+      "groq": "适当使用博客可以使学生变得更善于分析和进行思辨通过积极回忆网络材料学生们可以在他人的文章的上下文语经中找到自己的立场并能够针对特定问题提出自己的观点Work2002",
+      "gemini": "适当使用博客可以使学生变得更善于分析和进行思辨。通过积极回忆网络材料，学生们可以在他人的文章的上下文中找到自己的立场，并能够针对特定问题提出自己的观点 (Work, 2002)。",
+      "err_groq": 0.0963855421686747,
+      "err_gemini": 0.10843373493975904,
+      "desaccord": 0.024390243902439025
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "科 学 家 们 可 以 得 出 结 论 暗 物 质 对 其 他 暗 物 质 的 影 响 方 式 与 普 通 物 质 相 同",
+      "groq": "科学家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同",
+      "gemini": "科学家们可以得出结论，暗物质对其他暗物质的影响方式与普通物质相同。",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "大 多 数 现 代 科 研 望 远 镜 都 是 巨 型 设 施 位 于 大 气 条 件 优 良 的 偏 远 地 区",
+      "groq": "大多数现代科研望远镜都是巨型设施位于大梯条间优良的偏远地区",
+      "gemini": "大多数现代科研望远镜都是巨型设施，位于大体大气条件优良的偏远地区。",
+      "err_groq": 0.06896551724137931,
+      "err_gemini": 0.06896551724137931,
+      "desaccord": 0.13793103448275862
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "1963 年 大 坝 建 成 后 季 节 性 洪 水 被 控 制 住 了 沉 积 物 不 再 冲 散 到 河 流 里",
+      "groq": "1963年大坝建成后季节性洪水被控制住了沉积物不再冲散到河流里",
+      "gemini": "1963年大坝建成后，季节性洪水被控制住了，沉积物不再冲散到河流里。",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "它 的 长 下 颚 上 布 满 了 70 多 颗 剃 刀 般 锋 利 的 牙 齿 上 颚 上 还 有 一 排 这 意 味 着 任 何 与 它 相 遇 的 东 西 都 无 路 可 逃",
+      "groq": "他的肠下额上铺满了十多颗剃刀般锋利的牙齿上额上还有一排这意味着任何与他相遇的东西都无路可逃",
+      "gemini": "他的长下颚上布满了70多颗剃刀般锋利的牙齿，上颚上还有一排，这意味着任何与它相遇的东西都无路可逃。",
+      "err_groq": 0.17391304347826086,
+      "err_gemini": 0.021739130434782608,
+      "desaccord": 0.15555555555555556
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "scotturb 403 路 公 共 汽 车 定 期 发 车 前 往 辛 特 拉 sintra 在 罗 卡 角 停 靠",
+      "groq": "Skoturb403路公交汽车定期发车前往新特拉在罗卡角停靠",
+      "gemini": "Scottsbluff 403 路公交汽车定期发车前往斯科茨布拉夫国家纪念碑 (Scottsbluff National Monument) 的罗卡角 (Mitchell Pass) 停靠。",
+      "err_groq": 0.2702702702702703,
+      "err_gemini": 1.4054054054054055,
+      "desaccord": 1.9
+    },
+    {
+      "langue": "cmn_hans_cn",
+      "cjk": true,
+      "ref": "这 里 几 乎 都 是 沙 滩 游 泳 很 安 全 大 部 分 地 方 都 有 新 西 兰 圣 诞 树 的 树 荫",
+      "groq": "这里几乎都是沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫",
+      "gemini": "这里几乎都是沙滩，游泳很安全。大部分地方都有新西兰圣诞树的树荫。",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "インターネットで 敵対的環境コース について検索すると おそらく現地企業の住所が出てくるでしょう",
+      "groq": "インターネットで敵対的環境コースについて検索すると、おそらく現地企業の住所が出てくるでしょう。",
+      "gemini": "インターネットで「敵対的環境コース」について検索すると、おそらく現地企業の住所が出てくるでしょう。",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "また 北側に行くなら世界的に有名なマリア像の聖地であるファティマの聖母の聖域神社を訪れましょう",
+      "groq": "また北側に行くなら世界的に有名なマリア像の聖地であるファティマの聖母の聖域神社を訪れましょう",
+      "gemini": "また、北側に行くなら、世界的に有名なマリア像の聖地であるファティマの聖母の聖域（神社）を訪れましょう。",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "バルセロナの公用語はカタルーニャ語とスペイン語です 約半数がカタルーニャ語を好み 大多数がカタルーニャ語を理解し ほぼ全員がスペイン語を知っています",
+      "groq": "バルセアナの公用語はカタルーネ語とスペイン語です約半数がカタルーネ語を好み大多数がカタルーネ語を理解しほぼ全員がスペイン語を知っています",
+      "gemini": "バルセロナの公用語はカタルーニャ語とスペイン語です。約半数がカタルーニャ語を好み、大半がカタルーニャ語を理解し、ほぼ全員がスペイン語を知っています。",
+      "err_groq": 0.09859154929577464,
+      "err_gemini": 0.028169014084507043,
+      "desaccord": 0.1323529411764706
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "その長い顎には70本以上の鋭い歯が並び 口蓋には別の歯列があり つまりここを通ったら逃げ道はないということになります",
+      "groq": "その長い顎には70本以上の鋭い歯が並び口外には別の子律がありつまりここを通ったらねぎめちゃわないということになります",
+      "gemini": "その長い顎には70本以上の鋭い歯が並び、口蓋には別の歯列があり、つまりここを通ったら逃げ道はないということになります。",
+      "err_groq": 0.16071428571428573,
+      "err_gemini": 0.0,
+      "desaccord": 0.15517241379310345
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "ロスビー数が小さいほど磁気反転に関して星の活性が低下するわけです",
+      "groq": "ロスビー数が小さいほど時期判定に関して星の活性が低下するわけです",
+      "gemini": "ロスビー数が小さいほど、磁気反転に関して星の活性が低下するわけです。",
+      "err_groq": 0.125,
+      "err_gemini": 0.0,
+      "desaccord": 0.125
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "群島や湖では 必ずしもヨットは必要ありません",
+      "groq": "群島や湖では必ずしもヨットは必要ありません。",
+      "gemini": "湾内や湖沼では、必ずしもヨットは必要ありません。",
+      "err_groq": 0.0,
+      "err_gemini": 0.14285714285714285,
+      "desaccord": 0.14285714285714285
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "パリジャンは 自己中心的で横柄で失礼な人が多いと言われています",
+      "groq": "パリジャンは自己中心的な王兵で失礼な人が多いと言われています",
+      "gemini": "パリジャンは自己中心的で横柄で失礼な人が多いと言われています。",
+      "err_groq": 0.1,
+      "err_gemini": 0.0,
+      "desaccord": 0.1
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "メインステージの音楽が終わっても フェスティバルには夜遅くまで演奏を流し続けるセクションがあるかもしれないことを覚えておいてください",
+      "groq": "メインステージの音楽が終わってもフェスティバルには喜ぶそくまで演奏を流し続けるセクションがあるかもしれないことを覚えておいてください",
+      "gemini": "メインステージの音楽が終わっても、フェスティバルには夜遅くまで演奏を流し続けるセクションがあるかもしれないことを覚えておいてください。",
+      "err_groq": 0.046153846153846156,
+      "err_gemini": 0.0,
+      "desaccord": 0.045454545454545456
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "参列者の数が多すぎて 全員がサンピエトロ広場での葬儀に参加することは不可能でした",
+      "groq": "参列者の数が多すぎて全員がサンピエトル広場での葬儀に参加することは不可能でした",
+      "gemini": "参列者の数が多すぎて、全員がサンピエトロ広場での葬儀に参加することは不可能でした。",
+      "err_groq": 0.02564102564102564,
+      "err_gemini": 0.0,
+      "desaccord": 0.02564102564102564
+    },
+    {
+      "langue": "ja_jp",
+      "cjk": true,
+      "ref": "香港の最高の景色を見るには 島から出て九龍のウォーターフロントに向かいましょう",
+      "groq": "香港の最高の景色を見るには、島から出て、クーロンのウォーターフロントに向かいましょう。",
+      "gemini": "香港の最高の景色を見るには、島から出て、九龍のウォーターフロントに向かいましょう。",
+      "err_groq": 0.10526315789473684,
+      "err_gemini": 0.0,
+      "desaccord": 0.1
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "다리 밑 수직 간격은 15미터이며 공사는 2011년 8월에 마무리되었으며 해당 다리의 통행금지는 2017년 3월까지이다",
+      "groq": "다리 및 수직 간격은 15m이며 공사는 2011년 8월에 마무리되었으며 해당 다리의 통행금지는 2017년 3월까지이다.",
+      "gemini": "다리의 수직 간격은 15m이며 공사는 2011년 8월에 마무리되었으며 해당 다리의 통행 금지는 2017년 3월까지이다.",
+      "err_groq": 0.05660377358490566,
+      "err_gemini": 0.05660377358490566,
+      "desaccord": 0.019230769230769232
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "델 포트로가 2세트에서 먼저 어드밴티지를 얻었지만 6 대 6이 된 후 다시 타이 브레이크가 필요했다",
+      "groq": "델포트로가 2세트에서 먼저 어드벤티즈를 얻었지만 6대6이 된 후 다시 타이 브레이크가 필요했다.",
+      "gemini": "델포트로가 이 세트에서 먼저 어드밴티지를 얻었지만 6-6이 된 후 다시 타이브레이크가 필요했다.",
+      "err_groq": 0.04878048780487805,
+      "err_gemini": 0.04878048780487805,
+      "desaccord": 0.0975609756097561
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "염소 사육은 대략 일만 년 전에 이란의 자그로스산맥에서 시작한 것으로 보입니다",
+      "groq": "염소사육은 대략 1만 년 전에 이란의 자그로스 산맥에서 시작한 것으로 보입니다.",
+      "gemini": "염소 사육은 대략 1만 년 전에 이란의 자그로스 산맥에서 시작한 것으로 보입니다.",
+      "err_groq": 0.030303030303030304,
+      "err_gemini": 0.030303030303030304,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "겨울에 북발트해를 건널 경우에는 빙판을 통과하면서 꽤 끔찍한 소음이 발생하기 때문에 객실의 위치를 확인하는 것이 좋다",
+      "groq": "겨울에 북바이트해를 건널 경우에는 빙판을 통과하면서 꽤 끔찍한 소음이 발생하기 때문에 객실의 위치를 확인하는 것이 좋다",
+      "gemini": "겨울에 북 파타고니아를 건널 경우에는 빙판을 통과하면서 꽤 끔찍한 소음이 발생하기 때문에 객실의 위치를 확인하는 것이 좋다.",
+      "err_groq": 0.04,
+      "err_gemini": 0.1,
+      "desaccord": 0.09803921568627451
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "홍콩의 스카이라인을 이루는 빌딩 행렬은 빅토리아 항구의 수면에 선명히 비치는 모습 때문에 반짝이는 막대그래프에 비유된다",
+      "groq": "홍콩의 스카이라인을 이루는 빌딩 행렬은 빅토리아 항구의 수면에 선명히 비치는 모습 때문에 반짝이는 막대 그래프에 비유된다.",
+      "gemini": "홍콩의 스카이라인을 이루는 빌딩 행렬은 빅토리아 항구의 수면에 선명히 비치는 모습 때문에 반짝이는 막대 그래프에 비유된다.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "합금은 기본적으로 금속 두 개 이상의 혼합물이다 주기율표 상에 원소가 많이 있다는 것을 잊지 마라",
+      "groq": "합금은 기본적으로 금속 두 개 이상의 혼합물이다. 주기율 표상의 원소가 많이 있다는 것을 잊지 마라.",
+      "gemini": "합금은 기본적으로 금속 두 개 이상의 혼합물이다. 주기율표상의 원소가 많이 있다는 것을 잊지 마라.",
+      "err_groq": 0.025,
+      "err_gemini": 0.025,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "\"1940년 8월 15일 연합군은 프랑스 남부를 침략했고 이 침략은 \"드래군 작전\"\"이라 불렸다.",
+      "groq": "천구백사십년 팔월 십오일 연합군은 프랑스 남부를 침략했고 이 침략은 드래군 작전이라 불렸다",
+      "gemini": "1940년 8월 15일, 연합군은 프랑스 남부를 침략했고 이 침략은 드래군 작전이라 불렸다.",
+      "err_groq": 0.21052631578947367,
+      "err_gemini": 0.0,
+      "desaccord": 0.20512820512820512
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "그래도 관계자의 조언을 듣고 모든 표지판을 지키고 안전 경고에 세심한 주의를 기울여야 합니다",
+      "groq": "그래도 관계자의 조언을 듣고 모든 표지판을 지키고 안전 경고에 세심한 주의를 기울여야 합니다",
+      "gemini": "그래도 관계자의 조언을 듣고 모든 표지판을 지키고 안전 경고에 세심한 주의를 기울여야 합니다.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "지하철의 정규 안내 방송은 카탈로니아어로만 제공되나 계획에 없던 운행 중단 시에는 자동 시스템을 통해 스페인어 영어 프랑스어 아라비아어 일본어를 포함한 다양한 언어로 방송됩니다",
+      "groq": "지하철의 정규 안내방송은 카탈로니아어로만 제공되나 계획이 없던 운행 중단 시에는 자동 시스템을 통해 스페인어 영어 프랑스어 아라비아어 일본어를 포함한 다양한 언어로 방송됩니다",
+      "gemini": "지하철의 정규 안내 방송은 카탈로니아어로만 제공되나, 계획에 없던 운행 중단 시에는 자동 시스템을 통해 스페인어, 영어, 프랑스어, 아라비아어, 일본어를 포함한 다양한 언어로 방송됩니다.",
+      "err_groq": 0.013157894736842105,
+      "err_gemini": 0.0,
+      "desaccord": 0.013157894736842105
+    },
+    {
+      "langue": "ko_kr",
+      "cjk": true,
+      "ref": "교전이 발발한 직후 영국은 독일에 대한 해상 봉쇄를 시작한다",
+      "groq": "교전이 발발한 직후 영국은 독일에 대한 해상봉쇄를 시작한다",
+      "gemini": "교전이 발발한 직후 영국은 독일에 대한 해상 봉쇄를 시작한다.",
+      "err_groq": 0.0,
+      "err_gemini": 0.0,
+      "desaccord": 0.0
+    }
+  ]
+}
