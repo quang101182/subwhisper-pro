@@ -1,0 +1,210 @@
+{
+  "timestamp": "2026-09-07T12:16:50",
+  "samples_par_langue": 10,
+  "by_lang": {
+    "fr_fr": {
+      "label": "Francais",
+      "metrique": "WER",
+      "agg": {
+        "groq_whisper_turbo": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": 0.12040850911540568,
+          "ncer": 0.04362022568240871,
+          "median": 0.1304945054945055,
+          "n_hallucination": 0,
+          "pire": 0.2916666666666667,
+          "latence_s": 0.641825819015503,
+          "duree_moy_s": 11.016,
+          "ratio_temps_reel": 0.05826305546618581,
+          "usd_par_heure": 0.04,
+          "erreurs": []
+        },
+        "gemini_35_transcribe": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": 0.06215811965811966,
+          "ncer": 0.0306760719535236,
+          "median": 0.011111111111111112,
+          "n_hallucination": 0,
+          "pire": 0.19230769230769232,
+          "latence_s": 3.129477548599243,
+          "duree_moy_s": 11.016,
+          "ratio_temps_reel": 0.28408474478932855,
+          "usd_par_heure": 0.3,
+          "erreurs": []
+        }
+      }
+    },
+    "en_us": {
+      "label": "Anglais",
+      "metrique": "WER",
+      "agg": {
+        "groq_whisper_turbo": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": 0.04469274718416595,
+          "ncer": 0.02609798806569657,
+          "median": 0.04640151515151515,
+          "n_hallucination": 0,
+          "pire": 0.10526315789473684,
+          "latence_s": 0.6420342445373535,
+          "duree_moy_s": 9.097999999999999,
+          "ratio_temps_reel": 0.07056872329493884,
+          "usd_par_heure": 0.04,
+          "erreurs": []
+        },
+        "gemini_35_transcribe": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": 0.03205146017216955,
+          "ncer": 0.013120203766271182,
+          "median": 0.021739130434782608,
+          "n_hallucination": 0,
+          "pire": 0.09523809523809523,
+          "latence_s": 3.058774471282959,
+          "duree_moy_s": 9.097999999999999,
+          "ratio_temps_reel": 0.3362029535373664,
+          "usd_par_heure": 0.3,
+          "erreurs": []
+        }
+      }
+    },
+    "de_de": {
+      "label": "Allemand",
+      "metrique": "WER",
+      "agg": {
+        "groq_whisper_turbo": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": 0.037601515482661295,
+          "ncer": 0.010840496648158972,
+          "median": 0.044466403162055336,
+          "n_hallucination": 0,
+          "pire": 0.1111111111111111,
+          "latence_s": 0.7312338352203369,
+          "duree_moy_s": 15.756,
+          "ratio_temps_reel": 0.04640986514472816,
+          "usd_par_heure": 0.04,
+          "erreurs": []
+        },
+        "gemini_35_transcribe": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": 0.018719143374482737,
+          "ncer": 0.005096023016120908,
+          "median": 0.0,
+          "n_hallucination": 0,
+          "pire": 0.058823529411764705,
+          "latence_s": 3.336928153038025,
+          "duree_moy_s": 15.756,
+          "ratio_temps_reel": 0.21178777310472358,
+          "usd_par_heure": 0.3,
+          "erreurs": []
+        }
+      }
+    },
+    "cmn_hans_cn": {
+      "label": "Chinois",
+      "metrique": "CER",
+      "agg": {
+        "groq_whisper_turbo": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": null,
+          "ncer": 0.06841804478046598,
+          "median": 0.03732303732303732,
+          "n_hallucination": 0,
+          "pire": 0.2702702702702703,
+          "latence_s": 0.6709136247634888,
+          "duree_moy_s": 11.968,
+          "ratio_temps_reel": 0.05605895928839311,
+          "usd_par_heure": 0.04,
+          "erreurs": []
+        },
+        "gemini_35_transcribe": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": null,
+          "ncer": 0.16045437880213265,
+          "median": 0.0,
+          "n_hallucination": 1,
+          "pire": 1.4054054054054055,
+          "latence_s": 3.120164632797241,
+          "duree_moy_s": 11.968,
+          "ratio_temps_reel": 0.2607089432484326,
+          "usd_par_heure": 0.3,
+          "erreurs": []
+        }
+      }
+    },
+    "ja_jp": {
+      "label": "Japonais",
+      "metrique": "CER",
+      "agg": {
+        "groq_whisper_turbo": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": null,
+          "ncer": 0.06613638646996692,
+          "median": 0.07237269772481039,
+          "n_hallucination": 0,
+          "pire": 0.16071428571428573,
+          "latence_s": 0.6099142789840698,
+          "duree_moy_s": 11.004000000000001,
+          "ratio_temps_reel": 0.05542659750854868,
+          "usd_par_heure": 0.04,
+          "erreurs": []
+        },
+        "gemini_35_transcribe": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": null,
+          "ncer": 0.017102615694164987,
+          "median": 0.0,
+          "n_hallucination": 0,
+          "pire": 0.14285714285714285,
+          "latence_s": 3.0917133331298827,
+          "duree_moy_s": 11.004000000000001,
+          "ratio_temps_reel": 0.28096268021900056,
+          "usd_par_heure": 0.3,
+          "erreurs": []
+        }
+      }
+    },
+    "ko_kr": {
+      "label": "Coreen",
+      "metrique": "CER",
+      "agg": {
+        "groq_whisper_turbo": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": null,
+          "ncer": 0.04243715022191298,
+          "median": 0.027651515151515153,
+          "n_hallucination": 0,
+          "pire": 0.21052631578947367,
+          "latence_s": 0.6027527809143066,
+          "duree_moy_s": 11.111999999999998,
+          "ratio_temps_reel": 0.05424341080942285,
+          "usd_par_heure": 0.04,
+          "erreurs": []
+        },
+        "gemini_35_transcribe": {
+          "n_ok": 10,
+          "n_err": 0,
+          "nwer": null,
+          "ncer": 0.0260687291692814,
+          "median": 0.0125,
+          "n_hallucination": 0,
+          "pire": 0.1,
+          "latence_s": 3.491235089302063,
+          "duree_moy_s": 11.111999999999998,
+          "ratio_temps_reel": 0.3141860231553333,
+          "usd_par_heure": 0.3,
+          "erreurs": []
+        }
+      }
+    }
+  }
+}

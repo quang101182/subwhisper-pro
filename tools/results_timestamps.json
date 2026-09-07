@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-09-07T12:29:46",
+  "langue": "fr_fr",
+  "phrases": 6,
+  "silence_s": 0.8,
+  "duree_s": 71.62,
+  "bornes": [
+    0.16,
+    14.04,
+    35.68,
+    44.4,
+    55.4,
+    65.62
+  ],
+  "moteurs": {
+    "groq_whisper_turbo": {
+      "unite": "segment",
+      "n_unites": 12,
+      "latence_s": 1.57,
+      "ecarts_s": [
+        0.16,
+        0.38,
+        0.02,
+        0.1,
+        0.34,
+        0.02
+      ],
+      "n": 6,
+      "moyenne_ms": 170,
+      "mediane_ms": 130,
+      "pire_ms": 380,
+      "sous_200ms": 4,
+      "sous_500ms": 6
+    },
+    "gemini_35_transcribe": {
+      "unite": "mot",
+      "n_unites": 170,
+      "latence_s": 6.36,
+      "ecarts_s": [
+        2.04,
+        0.04,
+        0.42,
+        0.0,
+        0.0,
+        0.02
+      ],
+      "n": 6,
+      "moyenne_ms": 420,
+      "mediane_ms": 30,
+      "pire_ms": 2040,
+      "sous_200ms": 4,
+      "sous_500ms": 5
+    }
+  }
+}
