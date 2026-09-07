@@ -3036,8 +3036,8 @@ async function callAIText(prompt, _retry) {
     var _gwKeyGEM = getGatewayKey();
     if (!key && !_gwKeyGEM) throw new Error('Cl\u00e9 Gemini manquante');
     var _gemUrl = _gwKeyGEM
-      ? GATEWAY_URL + '/api/gemini/v1beta/models/gemini-2.0-flash:generateContent'
-      : 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + key;
+      ? GATEWAY_URL + '/api/gemini/v1beta/models/gemini-3.6-flash:generateContent'
+      : 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + key;
     var _gemHdr = _gwKeyGEM
       ? { 'Content-Type': 'application/json', 'X-Pro-Key': _gwKeyGEM }
       : { 'Content-Type': 'application/json' };
