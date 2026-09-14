@@ -13,7 +13,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>SubWhisper Pro v1.3.1 — App</title>
+<title>SubWhisper Pro v1.3.2 — App</title>
 <meta name="description" content="AI-powered subtitle generator with multi-pass translation in 75+ languages. Drop a video, get accurate SRT/VTT in minutes. €9/mo, 14-day free trial.">
 <link rel="canonical" href="https://sub-whisper.com/">
 <meta property="og:title" content="SubWhisper Pro — AI Subtitle Generator & Translator">
@@ -1152,7 +1152,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 <header>
   <div class="logo">
     <div class="logo-text"><span class="logo-sub">Sub</span><span class="logo-whisper">Whisper</span></div>
-    <span class="ver-badge">Pro v1.2.1</span>
+    <span class="ver-badge">Pro v1.3.2</span>
   </div>
   <div class="hdr-r">
     <div id="apiBar" title="API keys configured" style="display:none">
@@ -1737,7 +1737,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 </div>
 
 <footer>
-  <span class="ft">SubWhisper Pro v1.3.1</span>
+  <span class="ft">SubWhisper Pro v1.3.2</span>
   <span class="ft">Universal-3-pro &middot; 99 languages</span>
 </footer>
 
@@ -3008,52 +3008,166 @@ async function deeplxTranslate(text, srcLang, tgtLang, deeplxUrl) {
 }
 
 // ── DISPATCH IA (Gemini ou DeepSeek selon sélection) ──────
+// v1.3.2 (14/09/2026) \u2014 A PROVIDER OUTAGE NO LONGER HANGS, AND NO LONGER GOES UNNOTICED.
+// Measured on 14/09 evening: DeepSeek Flash, saturated, put every request IN A QUEUE with no error \u2014
+// in streaming mode it only sends \u00ab : keep-alive \u00bb every 12 s, and its docs (quick_start/rate_limit)
+// close the connection after 10 min without inference. callAIText had NO timeout: every batch waited
+// forever, and a failed batch silently kept the source text. Same fix as SubWhisper v9.59:
+//  1. DeepSeek is read AS A STREAM: a keep-alive is not an answer. No content after `premier` ms \u21d2
+//     queued \u21d2 provider unavailable. An active generation is never cut, except after `silence` ms.
+//  2. Gemini (non-stream): total timeout `total`.
+//  3. The error carries `.fournisseur = true` and records the outage: following calls fail at once for
+//     `memoire` ms (not N \u00d7 2 min), and a persistent message tells the user what happened.
+// \u26d4 NO automatic switch to the other engine: the user keeps control of their choice.
+function _aiEtat() {
+  if (!_aiEtat.s) _aiEtat.s = { delais: { premier: 120000, silence: 90000, total: 600000, memoire: 90000 }, panne: null };
+  return _aiEtat.s;
+}
+function _aiErreurFournisseur(moteur, message) {
+  var e = new Error(moteur + ' unavailable \u2014 ' + message);
+  e.fournisseur = true;
+  _aiEtat().panne = { moteur: moteur, message: message, t: Date.now() };
+  try { toastPersist('\u26a0 ' + moteur + ' is not responding (' + message + ') \u2014 processing incomplete. Try again later, or pick the other AI engine.'); } catch (_) {}
+  return e;
+}
+// Reads a DeepSeek SSE stream. `ctrl`: the request's AbortController.
+async function _aiLireFluxDeepSeek(resp, ctrl) {
+  if (!resp.body || typeof resp.body.getReader !== 'function') {
+    var d = await resp.json();
+    return ((d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content) || '').trim();
+  }
+  var D = _aiEtat().delais, lecteur = resp.body.getReader(), dec = new TextDecoder();
+  var tampon = '', texte = '', debut = Date.now(), dernier = 0, fini = false, vuFin = false;
+  return await new Promise(function(ok, ko) {
+    function finir(err, val) {
+      if (fini) return; fini = true; clearInterval(veille);
+      if (err) { try { ctrl.abort(); } catch (_) {} ko(err); } else ok(val);
+    }
+    var veille = setInterval(function() {
+      var now = Date.now();
+      if (!dernier && now - debut > D.premier) finir(_aiErreurFournisseur('DeepSeek', 'request queued for ' + Math.round((now - debut) / 1000) + ' s without starting'));
+      else if (dernier && now - dernier > D.silence) finir(_aiErreurFournisseur('DeepSeek', 'generation stopped (' + Math.round((now - dernier) / 1000) + ' s without content)'));
+      else if (now - debut > D.total) finir(_aiErreurFournisseur('DeepSeek', 'answer too long (over ' + Math.round(D.total / 1000) + ' s)'));
+    }, 1000);
+    (async function() {
+      try {
+        for (;;) {
+          var r = await lecteur.read();
+          if (r.done) break;
+          tampon += dec.decode(r.value, { stream: true });
+          var lignes = tampon.split('\n'); tampon = lignes.pop();
+          for (var i = 0; i < lignes.length; i++) {
+            var l = lignes[i].trim();
+            if (!l || l.charAt(0) === ':' || l.indexOf('data:') !== 0) continue;   // \u00ab : keep-alive \u00bb = queued, not an answer
+            var p = l.slice(5).trim();
+            // [DONE] = end of answer, even if a proxy keeps the connection open (otherwise the full text
+            // would be thrown away after `silence` ms — defect found by the Codex Terra review, 15/09).
+            if (p === '[DONE]') {
+              try { lecteur.cancel().catch(function() {}); } catch (_) {}
+              if (!dernier) finir(_aiErreurFournisseur('DeepSeek', 'stream closed without any answer'));
+              else finir(null, texte.trim());
+              return;
+            }
+            var j; try { j = JSON.parse(p); } catch (_) { continue; }
+            if (j.error) throw new Error('DeepSeek: ' + (j.error.message || 'error in stream'));
+            if (j.choices && j.choices[0]) {
+              dernier = Date.now();
+              var delta = j.choices[0].delta || {};
+              if (delta.content) texte += delta.content;
+              if (j.choices[0].finish_reason) vuFin = true;
+            }
+          }
+        }
+        if (!dernier) finir(_aiErreurFournisseur('DeepSeek', 'stream closed without any answer'));
+        // Closed cleanly BEFORE the end (no [DONE], no finish_reason) = TRUNCATED answer: never a success,
+        // never billed (the old JSON call failed on a cut answer) — Codex Terra review, 15/09.
+        else if (!vuFin) finir(_aiErreurFournisseur('DeepSeek', 'stream interrupted before the end of the answer'));
+        else finir(null, texte.trim());
+      } catch (e) {
+        finir(e && e.fournisseur ? e : (fini ? null : _aiErreurFournisseur('DeepSeek', 'stream interrupted: ' + (e && e.message || e))));
+      }
+    })();
+  });
+}
 async function callAIText(prompt, _retry) {
   var engine = getAIEngine();
+  var moteurNom = engine === 'deepseek' ? 'DeepSeek' : 'Gemini';
+  var etat = _aiEtat(), D = etat.delais;
+  if (etat.panne && etat.panne.moteur === moteurNom && Date.now() - etat.panne.t < D.memoire) {
+    var eRapide = new Error(moteurNom + ' unavailable \u2014 ' + etat.panne.message);
+    eRapide.fournisseur = true;
+    throw eRapide;
+  }
+  var ctrl = new AbortController();
+  var filet = setTimeout(function() { try { ctrl.abort(); } catch (_) {} }, engine === 'deepseek' ? D.premier : D.total);
   if (engine === 'deepseek') {
     var key = getDeepSeekKey();
     var _gwKeyDSK = getGatewayKey();
-    if (!key && !_gwKeyDSK) throw new Error('Cl\u00e9 DeepSeek manquante');
+    if (!key && !_gwKeyDSK) { clearTimeout(filet); throw new Error('Cl\u00e9 DeepSeek manquante'); }
     var _dskUrl = _gwKeyDSK ? GATEWAY_URL + '/api/deepseek' : 'https://api.deepseek.com/v1/chat/completions';
     var _dskHdr = _gwKeyDSK
       ? { 'Content-Type': 'application/json', 'X-Pro-Key': _gwKeyDSK }
       : { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key };
-    var resp = await fetch(_dskUrl, {
-      method: 'POST',
-      headers: _dskHdr,
-      body: JSON.stringify({ model: 'deepseek-v4-flash', thinking: { type: 'disabled' }, messages: [{ role: 'user', content: prompt }], max_tokens: 8192, temperature: 0 })
-    });
-    if (!resp.ok) {
-      var err = await resp.json().catch(function() { return {}; });
-      if (!_retry && (resp.status === 429 || resp.status >= 500)) { await new Promise(function(r) { setTimeout(r, 2000); }); return callAIText(prompt, true); }
-      throw new Error('DeepSeek ' + resp.status + ' : ' + (err.error ? err.error.message : resp.statusText));
+    var resp;
+    try {
+      resp = await fetch(_dskUrl, {
+        method: 'POST', signal: ctrl.signal,
+        headers: _dskHdr,
+        // `deepseek-flash`: official name of V4.1 Flash since 10/09/2026 (`deepseek-v4-flash` is only an alias).
+        body: JSON.stringify({ model: 'deepseek-flash', stream: true, thinking: { type: 'disabled' }, messages: [{ role: 'user', content: prompt }], max_tokens: 8192, temperature: 0 })
+      });
+    } catch (eRes) {
+      clearTimeout(filet);
+      throw _aiErreurFournisseur('DeepSeek', ctrl.signal.aborted ? 'no answer in ' + Math.round(D.premier / 1000) + ' s' : 'network: ' + eRes.message);
     }
-    var data = await resp.json();
+    if (!resp.ok) {
+      // Error body read UNDER the timer: a 429/503 whose body never ends used to hang here
+      // (Codex Terra review, 15/09). The timer aborts the read; the error stays named.
+      var err = await resp.json().catch(function() { return {}; });
+      clearTimeout(filet);
+      if (!_retry && (resp.status === 429 || resp.status >= 500)) { await new Promise(function(r) { setTimeout(r, 2000); }); return callAIText(prompt, true); }
+      var msgD = 'HTTP ' + resp.status + ' : ' + (err.error ? err.error.message : resp.statusText);
+      if (resp.status === 429 || resp.status >= 500) throw _aiErreurFournisseur('DeepSeek', msgD);
+      throw new Error('DeepSeek ' + msgD);
+    }
+    clearTimeout(filet);
+    var texteDSK = await _aiLireFluxDeepSeek(resp, ctrl);
     if (_gwKeyDSK) bumpUsage('translation');
-    return (data.choices[0].message.content || '').trim();
+    return texteDSK;
   } else {
     var key = getGeminiKey();
     var _gwKeyGEM = getGatewayKey();
-    if (!key && !_gwKeyGEM) throw new Error('Cl\u00e9 Gemini manquante');
+    if (!key && !_gwKeyGEM) { clearTimeout(filet); throw new Error('Cl\u00e9 Gemini manquante'); }
     var _gemUrl = _gwKeyGEM
       ? GATEWAY_URL + '/api/gemini/v1beta/models/gemini-3.6-flash:generateContent'
       : 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + key;
     var _gemHdr = _gwKeyGEM
       ? { 'Content-Type': 'application/json', 'X-Pro-Key': _gwKeyGEM }
       : { 'Content-Type': 'application/json' };
-    var resp = await fetch(_gemUrl, {
-      method: 'POST',
-      headers: _gemHdr,
-      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 8192, temperature: 0 } })
-    });
-    if (!resp.ok) {
-      var err = await resp.json().catch(function() { return {}; });
-      if (!_retry && (resp.status === 429 || resp.status >= 500)) { await new Promise(function(r) { setTimeout(r, 2000); }); return callAIText(prompt, true); }
-      throw new Error('Gemini ' + resp.status + ' : ' + (err.error ? err.error.message : resp.statusText));
+    try {
+      var resp = await fetch(_gemUrl, {
+        method: 'POST', signal: ctrl.signal,
+        headers: _gemHdr,
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 8192, temperature: 0 } })
+      });
+      if (!resp.ok) {
+        var err = await resp.json().catch(function() { return {}; });
+        if (!_retry && (resp.status === 429 || resp.status >= 500)) { clearTimeout(filet); await new Promise(function(r) { setTimeout(r, 2000); }); return callAIText(prompt, true); }
+        var msgG = 'HTTP ' + resp.status + ' : ' + (err.error ? err.error.message : resp.statusText);
+        if (resp.status === 429 || resp.status >= 500) throw _aiErreurFournisseur('Gemini', msgG);
+        throw new Error('Gemini ' + msgG);
+      }
+      var data = await resp.json();
+      if (_gwKeyGEM) bumpUsage('translation');
+      return ((data.candidates[0].content.parts[0].text) || '').replace(/^```[a-z]*\r?\n?/im, '').replace(/```\s*$/m, '').trim();
+    } catch (eG) {
+      if (eG && eG.fournisseur) throw eG;
+      if (ctrl.signal.aborted) throw _aiErreurFournisseur('Gemini', 'no answer in ' + Math.round(D.total / 1000) + ' s');
+      if (eG instanceof TypeError && /fetch|network/i.test(eG.message)) throw _aiErreurFournisseur('Gemini', 'network: ' + eG.message);
+      throw eG;
+    } finally {
+      clearTimeout(filet);
     }
-    var data = await resp.json();
-    if (_gwKeyGEM) bumpUsage('translation');
-    return ((data.candidates[0].content.parts[0].text) || '').replace(/^```[a-z]*\r?\n?/im, '').replace(/```\s*$/m, '').trim();
   }
 }
 
@@ -4430,7 +4544,7 @@ async function exportDiag() {
   var engine = getAIEngine();
   var diag = {
     type: 'DIAG',
-    version: 'pro-v1.2.1',
+    version: 'pro-v1.3.2',
     date: new Date().toISOString(),
     file: origName || 'unknown',
     lang_source: src,
