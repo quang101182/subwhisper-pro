@@ -26,7 +26,7 @@
   "url": "https://sub-whisper.com",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
-  "softwareVersion": "1.3.1",
+  "softwareVersion": "1.3.2",
   "inLanguage": ["en", "fr", "es", "de", "it", "pt", "ar", "zh", "ja", "ko", "hi"],
   "featureList": [
     "Automatic subtitle transcription via Whisper AI",
@@ -34,7 +34,7 @@
     "Burn captions into video (subtitle hardcoding)",
     "Multi-pass AI translation for professional quality",
     "Export SRT, VTT, ASS, TXT",
-    "14-day free trial, no credit card required"
+    "14-day free trial, card required, nothing charged before day 14"
   ],
   "offers": {
     "@type": "Offer",
@@ -91,7 +91,7 @@
       "name": "Is there a free trial?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. SubWhisper Pro offers a 14-day free trial with no credit card required. The trial includes 10 transcriptions and 100 translations to fully test the product before subscribing."
+        "text": "Yes. SubWhisper Pro offers a 14-day free trial (card required, nothing charged before day 14). The trial includes 10 transcriptions and 100 translations to fully test the product before subscribing."
       }
     },
     {
@@ -130,7 +130,7 @@
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- v1.3.1 — 2026-08-20 : le suivi des clics d'achat ciblait encore l'ancien prestataire | v1.3.0 — 2026-08-20 : migration du tunnel de paiement vers Polar (Lemon Squeezy a ferme le compte) — 90 liens de checkout morts remplaces sur la vente, l'app et les 10 pages du blog | v1.2.7 — 2026-07-17 : la RACINE sert la page de vente, l'app passe sur /app.html (Google n'indexait que l'app fermee) | v1.2.5 — 2026-07-15 funnel gateway (beacon clic sortant checkout, page=swp&btn=out:checkout) | v1.2.4 — 2026-05-29 GEO Phase 2.b (added Rev.com comparison page) | v1.2.3 VEED + Kapwing comparison pages | v1.2.2 GEO hardening JSON-LD -->
+<!-- v1.3.2 — 2026-09-21 : fin de la promesse « no credit card » (heritee de Lemon Squeezy) — le checkout Polar demande la carte ; 63 mentions corrigees sur 21 pages | v1.3.1 — 2026-08-20 : le suivi des clics d'achat ciblait encore l'ancien prestataire | v1.3.0 — 2026-08-20 : migration du tunnel de paiement vers Polar (Lemon Squeezy a ferme le compte) — 90 liens de checkout morts remplaces sur la vente, l'app et les 10 pages du blog | v1.2.7 — 2026-07-17 : la RACINE sert la page de vente, l'app passe sur /app.html (Google n'indexait que l'app fermee) | v1.2.5 — 2026-07-15 funnel gateway (beacon clic sortant checkout, page=swp&btn=out:checkout) | v1.2.4 — 2026-05-29 GEO Phase 2.b (added Rev.com comparison page) | v1.2.3 VEED + Kapwing comparison pages | v1.2.2 GEO hardening JSON-LD -->
 <style>
 :root {
   --bg: #080810;
@@ -508,7 +508,7 @@ footer a { color: var(--accent); text-decoration: none; }
 
 <section class="hero">
   <h1>Translate Your Subtitles in <em>75+ Languages</em> — for €9/mo</h1>
-  <p>Multi-pass AI translation. Drop a video, get professional subtitles. 3x cheaper than VEED or Kapwing. No credit card for 14 days.</p>
+  <p>Multi-pass AI translation. Drop a video, get professional subtitles. 3x cheaper than VEED or Kapwing. Card required, nothing charged for 14 days.</p>
   <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="cta">Start Free Trial</a>
   <span class="price-tag">€9/mo — 14 days free</span>
 </section>
@@ -646,7 +646,7 @@ footer a { color: var(--accent); text-decoration: none; }
   </table>
   <div style="text-align:center;margin-top:32px">
     <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="cta">Start Free Trial — Save €180/year</a>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">No credit card required for 14 days</p>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px">Card required, nothing charged for 14 days</p>
   </div>
 </section>
 
@@ -794,7 +794,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <footer>
-  <p>SubWhisper Pro v1.3.1 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
+  <p>SubWhisper Pro v1.3.2 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
   <p style="margin-top:8px">Questions? <a href="mailto:quangapps.dev@gmail.com">quangapps.dev@gmail.com</a></p>
   <p style="margin-top:12px;font-size:13px;opacity:.7">Also try <a href="https://t.me/VoiceBoxTranscBot" style="color:#00D4AA">VoiceBox</a> &mdash; AI voice transcription bot for Telegram</p>
   <p style="margin-top:4px;font-size:13px;opacity:.7">And <a href="https://noteflowing.com" style="color:#7c6aff">NoteFlowing</a> &mdash; AI meeting notes from any audio</p>
