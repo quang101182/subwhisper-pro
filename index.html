@@ -26,7 +26,7 @@
   "url": "https://sub-whisper.com",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web",
-  "softwareVersion": "1.3.3",
+  "softwareVersion": "1.3.4",
   "inLanguage": ["en", "fr", "es", "de", "it", "pt", "ar", "zh", "ja", "ko", "hi"],
   "featureList": [
     "Automatic subtitle transcription via Whisper AI",
@@ -130,7 +130,7 @@
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- v1.3.3 — 2026-09-21 : FAQ essai — plus de « no limitations » (10 transcriptions + 100 traductions, code gateway) | v1.3.2 — 2026-09-21 : fin de la promesse « no credit card » (heritee de Lemon Squeezy) — le checkout Polar demande la carte ; 63 mentions corrigees sur 21 pages | v1.3.1 — 2026-08-20 : le suivi des clics d'achat ciblait encore l'ancien prestataire | v1.3.0 — 2026-08-20 : migration du tunnel de paiement vers Polar (Lemon Squeezy a ferme le compte) — 90 liens de checkout morts remplaces sur la vente, l'app et les 10 pages du blog | v1.2.7 — 2026-07-17 : la RACINE sert la page de vente, l'app passe sur /app.html (Google n'indexait que l'app fermee) | v1.2.5 — 2026-07-15 funnel gateway (beacon clic sortant checkout, page=swp&btn=out:checkout) | v1.2.4 — 2026-05-29 GEO Phase 2.b (added Rev.com comparison page) | v1.2.3 VEED + Kapwing comparison pages | v1.2.2 GEO hardening JSON-LD -->
+<!-- v1.3.4 — 2026-09-23 : provenance des visites et des clics paiement (`src`, `co:<src>`), cote site seulement | v1.3.3 — 2026-09-21 : FAQ essai — plus de « no limitations » (10 transcriptions + 100 traductions, code gateway) | v1.3.2 — 2026-09-21 : fin de la promesse « no credit card » (heritee de Lemon Squeezy) — le checkout Polar demande la carte ; 63 mentions corrigees sur 21 pages | v1.3.1 — 2026-08-20 : le suivi des clics d'achat ciblait encore l'ancien prestataire | v1.3.0 — 2026-08-20 : migration du tunnel de paiement vers Polar (Lemon Squeezy a ferme le compte) — 90 liens de checkout morts remplaces sur la vente, l'app et les 10 pages du blog | v1.2.7 — 2026-07-17 : la RACINE sert la page de vente, l'app passe sur /app.html (Google n'indexait que l'app fermee) | v1.2.5 — 2026-07-15 funnel gateway (beacon clic sortant checkout, page=swp&btn=out:checkout) | v1.2.4 — 2026-05-29 GEO Phase 2.b (added Rev.com comparison page) | v1.2.3 VEED + Kapwing comparison pages | v1.2.2 GEO hardening JSON-LD -->
 <style>
 :root {
   --bg: #080810;
@@ -794,7 +794,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </section>
 
 <footer>
-  <p>SubWhisper Pro v1.3.3 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
+  <p>SubWhisper Pro v1.3.4 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
   <p style="margin-top:8px">Questions? <a href="mailto:quangapps.dev@gmail.com">quangapps.dev@gmail.com</a></p>
   <p style="margin-top:12px;font-size:13px;opacity:.7">Also try <a href="https://t.me/VoiceBoxTranscBot" style="color:#00D4AA">VoiceBox</a> &mdash; AI voice transcription bot for Telegram</p>
   <p style="margin-top:4px;font-size:13px;opacity:.7">And <a href="https://noteflowing.com" style="color:#7c6aff">NoteFlowing</a> &mdash; AI meeting notes from any audio</p>
@@ -802,13 +802,39 @@ footer a { color: var(--accent); text-decoration: none; }
 </footer>
 
 <script>
+/* v1.3.4 (23/09/2026) — D'OU viennent les clics vers le paiement ? 41 -> 47 clics apres
+   l'alignement offre/checkout du 21/09, et 0 essai : impossible de savoir si ce sont des
+   visiteurs TikTok, Google ou du bruit. La provenance est figee au 1er chargement de la
+   session (?src= sinon domaine du referrer, normalise comme sur le hub), puis envoyee avec
+   la visite ET avec le clic paiement (`co:<src>`), en PLUS du compteur `out:checkout`. */
+var SWP_SRC_HOSTS=[[/(^|\.)facebook\.com$/,'facebook'],[/(^|\.)fb\.(com|me)$/,'facebook'],
+  [/(^|\.)instagram\.com$/,'instagram'],[/(^|\.)tiktok\.com$/,'tiktok'],
+  [/(^|\.)youtube\.com$/,'youtube'],[/(^|\.)youtu\.be$/,'youtube'],
+  [/(^|\.)google\./,'google'],[/(^|\.)bing\.com$/,'bing'],
+  [/(^|\.)t\.co$/,'x'],[/(^|\.)x\.com$/,'x'],[/(^|\.)linkedin\.com$/,'linkedin'],
+  [/(^|\.)reddit\.com$/,'reddit'],[/(^|\.)github\.com$/,'github'],[/(^|\.)se7enai\.com$/,'hub']];
+function swpSrc(){
+  try{
+    var saved=sessionStorage.getItem('swp_src'); if(saved) return saved;
+    var q=(new URLSearchParams(location.search).get('src')||'').toLowerCase();
+    if(!q&&document.referrer){
+      var h=new URL(document.referrer).hostname.toLowerCase().replace(/^www\./,'');
+      if(h&&h!==location.hostname) q=h;
+    }
+    for(var i=0;i<SWP_SRC_HOSTS.length;i++){ if(SWP_SRC_HOSTS[i][0].test(q)){ q=SWP_SRC_HOSTS[i][1]; break; } }
+    q=q.replace(/[^a-z0-9.-]/g,'').slice(0,24)||'direct';
+    sessionStorage.setItem('swp_src',q); return q;
+  }catch(e){return 'direct';}
+}
 (async()=>{
   const GW='https://api-gateway-pro.quang101182.workers.dev';
   const k='swp_visited';
   try{
     const method=sessionStorage.getItem(k)?'GET':'POST';
     if(method==='POST') sessionStorage.setItem(k,'1');
-    const r=await fetch(GW+'/api/visit?page=swp',{method});
+    // v1.3.4 : provenance de la visite (meme logique que le hub se7enai.com), `src` accepte
+    // par la gateway depuis sa v1.15.0 — aucune modif serveur. N'est envoyee qu'au POST.
+    const r=await fetch(GW+'/api/visit?page=swp'+(method==='POST'?'&src='+encodeURIComponent(swpSrc()):''),{method});
     const d=await r.json();
     if(d.total) document.getElementById('visitCounter').textContent=
       d.total.toLocaleString()+' visitors';
@@ -840,6 +866,7 @@ document.querySelectorAll('.faq-question').forEach(function(q) {
         // Funnel gateway maison (dashboard Se7en AI) : clic sortant checkout = étape argent.
         // En premier + try/catch : tracké même si PostHog échoue à charger.
         try{navigator.sendBeacon('https://api-gateway-pro.quang101182.workers.dev/api/click?page=swp&btn=out:checkout');}catch(e){}
+        try{navigator.sendBeacon('https://api-gateway-pro.quang101182.workers.dev/api/click?page=swp&btn='+encodeURIComponent('co:'+swpSrc()));}catch(e){}
         try{posthog.capture('cta_click', {
           product: 'subwhisper-pro',
           button_text: this.textContent.trim(),
