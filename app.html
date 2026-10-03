@@ -13,7 +13,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>SubWhisper Pro v1.3.2 — App</title>
+<title>SubWhisper Pro v1.4.0 — App</title>
 <meta name="description" content="AI-powered subtitle generator with multi-pass translation in 75+ languages. Drop a video, get accurate SRT/VTT in minutes. €9/mo, 14-day free trial.">
 <link rel="canonical" href="https://sub-whisper.com/">
 <meta property="og:title" content="SubWhisper Pro — AI Subtitle Generator & Translator">
@@ -1152,7 +1152,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 <header>
   <div class="logo">
     <div class="logo-text"><span class="logo-sub">Sub</span><span class="logo-whisper">Whisper</span></div>
-    <span class="ver-badge">Pro v1.3.2</span>
+    <span class="ver-badge">Pro v1.4.0</span>
   </div>
   <div class="hdr-r">
     <div id="apiBar" title="API keys configured" style="display:none">
@@ -1737,7 +1737,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 </div>
 
 <footer>
-  <span class="ft">SubWhisper Pro v1.3.2</span>
+  <span class="ft">SubWhisper Pro v1.4.0</span>
   <span class="ft">Universal-3-pro &middot; 99 languages</span>
 </footer>
 
@@ -2502,11 +2502,13 @@ async function transcribeGroq() {
     var outLang = document.getElementById('outLang').value;
     var MAX_BYTES = 24 * 1024 * 1024; // 24MB safety margin
     var srt;
+    _moteurSwp = await lireMoteurSwp();   // v1.4.0 : moteur choisi au dashboard (defaut Groq)
+    appendLog('🎙 Moteur STT : ' + (_moteurSwp === 'mai2' ? 'MAI-Transcribe-2' : 'Groq Whisper'));
 
     if (selFile.size <= MAX_BYTES) {
       // ── Fichier unique ───────────────────────────────────
-      setPct(10, 'Sending Groq'); setLog('Sending to Groq Whisper large-v3-turbo...');
-      var res = await transcribeChunkGroq(selFile, srcLang, key, 1, 1, 0);
+      setPct(10, 'Sending ' + (_moteurSwp === 'mai2' ? 'MAI' : 'Groq')); setLog(_moteurSwp === 'mai2' ? 'Sending to MAI-Transcribe-2...' : 'Sending to Groq Whisper large-v3-turbo...');
+      var res = await transcribeChunkSwp(selFile, srcLang, key, 1, 1, 0);
       detectedLang = res.lang;
       srt = res.srt;
       setPct(80, 'Transcription OK');
@@ -2548,7 +2550,7 @@ async function transcribeGroq() {
           var blob = new Blob([hdr, pcm], {type:'audio/wav'});
           var chunkFile = new File([blob], 'slice_'+ci+'.wav', {type:'audio/wav'});
           var actualChunkDurSec = pcmLen / wavMeta.bytesPerSec;
-          var res = await transcribeChunkGroq(chunkFile, srcLang, key, ci+1, totalWavChunks, offsetSec, actualChunkDurSec);
+          var res = await transcribeChunkSwp(chunkFile, srcLang, key, ci+1, totalWavChunks, offsetSec, actualChunkDurSec);
           if (ci === 0) detectedLang = res.lang || detectedLang;
           logChunkReport(ci+1, totalWavChunks, res.segments, offsetSec, actualChunkDurSec, res.rawSegments);
           allSegments = allSegments.concat(res.segments);
@@ -2587,7 +2589,7 @@ async function transcribeGroq() {
           var resampled = await offCtx.startRendering();
           var wavBuf = encodeWav(resampled);
           var chunkFile = new File([new Blob([wavBuf], {type:'audio/wav'})], 'chunk_'+ci+'.wav', {type:'audio/wav'});
-          var res = await transcribeChunkGroq(chunkFile, srcLang, key, ci+1, totalChunks, chunkStartSec, chunkActualDur);
+          var res = await transcribeChunkSwp(chunkFile, srcLang, key, ci+1, totalChunks, chunkStartSec, chunkActualDur);
           if (ci === 0) detectedLang = res.lang || detectedLang;
           logChunkReport(ci+1, totalChunks, res.segments, chunkStartSec, chunkActualDur, res.rawSegments);
           allSegments = allSegments.concat(res.segments);
@@ -2860,6 +2862,148 @@ async function transcribeChunkGroq(file, srcLang, key, chunkNum, totalChunks, of
     return (i+1)+'\n'+secToSrtTime(seg.start)+' --> '+secToSrtTime(seg.end)+'\n'+seg.text.trim();
   }).join('\n\n') + '\n';
   return { srt: srt, lang: lang, segments: segments, rawSegments: rawSegmentsForLog };
+}
+
+// ── v1.4.0 (03/10/2026) — MAI-Transcribe-2, PORTE de SubWhisper v9.64 (code valide en reel, pas une reecriture).
+// Les fonctions ci-dessous sont COPIEES depuis App/subwhisper/index.html (_RX_CJK, _jointureCjk, _longueurCjk,
+// motsVersBlocs, _fichierPourMai, _maiSansBoucle). Seul transcribeChunkMai differe : cle Pro (X-Pro-Key), decompte
+// d'usage local, pas de route OpenRouter. Le moteur est choisi au dashboard (onglet Moteurs, defaut Groq) et lu UNE
+// fois par transcription (lireMoteurSwp). Panne MAI : l'erreur remonte, AUCUNE bascule silencieuse (decision Quang).
+var _RX_CJK = /[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af\uf900-\ufaff\uff00-\uffef\u3000-\u303f]/;
+var _RX_PONCT = /^[\s。，、．.,!?！？…:;：；)\]）】」』”’~～-]/;
+function _jointureCjk(mots) {
+  var t = '';
+  for (var i = 0; i < mots.length; i++) {
+    var m = mots[i] || '';
+    if (!m) continue;
+    var a = t.slice(-1), b = m.charAt(0);
+    var espace = t && !_RX_PONCT.test(b) && !_RX_CJK.test(a) && !_RX_CJK.test(b);
+    t += (espace ? ' ' : '') + m;
+  }
+  return t;
+}
+function _longueurCjk(t) { var n = 0; for (var i = 0; i < t.length; i++) n += _RX_CJK.test(t.charAt(i)) ? 2 : 1; return n; }
+
+function motsVersBlocs(mots, maxRelEnd, cjk) {
+  var PAUSE = 0.6, MAX_CH = 84;
+  var joindre = cjk ? _jointureCjk : function(c) { return c.join(' '); };
+  var longueur = cjk ? _longueurCjk : function(t) { return t.length; };
+  var blocs = [], cur = [], t0 = null, prevFin = null;
+  for (var i = 0; i < mots.length; i++) {
+    var w = mots[i];
+    var coupe = (prevFin !== null && w.start - prevFin > PAUSE) ||
+                (cur.length && (longueur(joindre(cur)) + 1 + longueur(w.text)) > MAX_CH);
+    if (coupe && cur.length) {
+      blocs.push({ start: t0, end: prevFin, text: joindre(cur) });
+      cur = []; t0 = null;
+    }
+    if (t0 === null) t0 = w.start;
+    cur.push(w.text);
+    prevFin = w.end;
+  }
+  if (cur.length) blocs.push({ start: t0, end: prevFin, text: joindre(cur) });
+  // Meme garde-fou anti-hallucination que le chemin Groq : un bloc ne peut ni
+  // depasser 30 s ni sortir de la duree du chunk.
+  var cap = maxRelEnd || Infinity;
+  return blocs.map(function(b) {
+    return { start: b.start, end: Math.min(b.end, b.start + 30, cap), text: b.text };
+  });
+}
+
+var MAI_BOUCLE_MAX = 8;
+var MAI_FORMATS = /^audio\/(wav|x-wav|wave|vnd\.wave|mpeg|mp3|flac|x-flac)$/i;
+
+async function _fichierPourMai(file) {
+  if (MAI_FORMATS.test(file.type || '') || /\.(wav|mp3|flac)$/i.test(file.name || '')) return file;
+  var ctx = new (window.AudioContext || window.webkitAudioContext)();
+  var decoded;
+  try { decoded = await ctx.decodeAudioData(await file.arrayBuffer()); }
+  catch (e) { throw new Error('Format non decodable pour MAI : extrayez l’audio (WAV) d’abord'); }
+  finally { try { ctx.close(); } catch (e2) {} }
+  var off = new OfflineAudioContext(1, Math.ceil(decoded.duration * 16000), 16000);
+  var src = off.createBufferSource();
+  src.buffer = decoded; src.connect(off.destination); src.start(0);
+  var wav = encodeWav(await off.startRendering());
+  return new File([new Blob([wav], { type: 'audio/wav' })], 'mai.wav', { type: 'audio/wav' });
+}
+
+// Reduit les boucles : au-dela de MAI_BOUCLE_MAX mots identiques d'affilee, les suivants (et la ponctuation
+// qui les accompagne) sont ignores. La ponctuation seule (« 。 ») ne compte pas comme un mot.
+function _maiSansBoucle(mots) {
+  var out = [], dernier = null, suite = 0, garde = true, retires = 0;
+  for (var i = 0; i < mots.length; i++) {
+    var cle = (mots[i].text || '').replace(/[\s。，、．.,!?！？…~～]/g, '');
+    if (!cle) { if (garde) out.push(mots[i]); continue; }
+    suite = (cle === dernier) ? suite + 1 : 1;
+    dernier = cle;
+    garde = suite <= MAI_BOUCLE_MAX;
+    if (garde) out.push(mots[i]); else retires++;
+  }
+  return { mots: out, retires: retires };
+}
+
+async function transcribeChunkMai(file, srcLang, key, chunkNum, totalChunks, offsetSec, chunkDurSec) {
+  var f = await _fichierPourMai(file);
+  var _gwKey = getGatewayKey();
+  var def = { enhancedMode: { enabled: true, model: 'MAI-Transcribe-2',
+                              modelOptions: { timestamps: 'word', transcribeStyle: 'verbatim' } } };
+  if (srcLang) def.locales = [srcLang];
+  var fd = new FormData();
+  fd.append('audio', f, f.name || 'audio.wav');
+  fd.append('definition', JSON.stringify(def));
+  var resp = await fetch(GATEWAY_URL + '/api/mai', {
+    method: 'POST', headers: { 'X-Pro-Key': _gwKey },
+    body: fd, signal: _abortCtrl ? _abortCtrl.signal : undefined
+  });
+  if (!resp.ok) {
+    var t = await resp.text().catch(function() { return ''; });
+    throw new Error('MAI chunk ' + chunkNum + '/' + totalChunks + ' : HTTP ' + resp.status + ' ' + t.slice(0, 160));
+  }
+  var data = await resp.json();
+  bumpUsage('transcription');
+  var mots = [];
+  (data.phrases || []).forEach(function(p) {
+    (p.words || []).forEach(function(w) {
+      var s0 = (w.offsetMilliseconds || 0) / 1000;
+      mots.push({ start: s0, end: s0 + (w.durationMilliseconds || 0) / 1000, text: w.text || '' });
+    });
+  });
+  var nb = _maiSansBoucle(mots);
+  if (nb.retires) appendLog('🔁 MAI ' + chunkNum + '/' + totalChunks + ' : boucle reduite (' + nb.retires + ' mots repetes retires)');
+  mots = nb.mots;
+  // Langue : la langue CHOISIE ou rien (les etiquettes MAI sont bruitees sur les interjections) -- comme SubWhisper v9.64.
+  var langue = srcLang || '';
+  var segments = motsVersBlocs(mots, chunkDurSec, true).map(function(b) {
+    return { start: b.start + offsetSec, end: b.end + offsetSec, text: b.text };
+  }).filter(function(sg) { return sg.text.trim(); });
+  mots.forEach(function(w) { wordData.push({ start: w.start + offsetSec, end: w.end + offsetSec, text: w.text }); });
+  var srt = segments.map(function(seg, i) {
+    return (i + 1) + '\n' + secToSrtTime(seg.start) + ' --> ' + secToSrtTime(seg.end) + '\n' + seg.text.trim();
+  }).join('\n\n') + '\n';
+  return { srt: srt, lang: langue, segments: segments,
+           rawSegments: mots.map(function(w) { return { start: w.start, end: w.end }; }) };
+}
+
+// Moteur choisi au dashboard, lu une fois par transcription. Sans cle Pro (mode cle Groq perso) ou si la lecture
+// echoue : Groq, qui est AUSSI le defaut de la gateway -- jamais un moteur que personne n'a choisi.
+var _moteurSwp = 'groq';
+async function lireMoteurSwp() {
+  var k = getGatewayKey();
+  if (!k) return 'groq';
+  // 5 s max pour TOUTE la lecture (en-tetes ET corps) : une reponse qui pend ne doit jamais bloquer la
+  // transcription -> Groq, le defaut (revues Groq + Codex 03/10 : le minuteur couvre aussi r.json()).
+  var ctl = new AbortController(), minuteur = setTimeout(function() { ctl.abort(); }, 5000);
+  try {
+    var r = await fetch(GATEWAY_URL + '/api/stt-engine?app=swp', { headers: { 'X-Pro-Key': k }, cache: 'no-store', signal: ctl.signal });
+    if (!r.ok) { appendLog('⚠ Moteur STT illisible (HTTP ' + r.status + ') : Groq'); return 'groq'; }
+    var j = await r.json();
+    return j.engine === 'mai2' ? 'mai2' : 'groq';
+  } catch (e) { appendLog('⚠ Moteur STT illisible (' + (e.name === 'AbortError' ? 'delai 5 s depasse' : (e.message || e)) + ') : Groq'); return 'groq'; }
+  finally { clearTimeout(minuteur); }
+}
+function transcribeChunkSwp(file, srcLang, key, chunkNum, totalChunks, offsetSec, chunkDurSec) {
+  if (_moteurSwp === 'mai2') return transcribeChunkMai(file, srcLang, key, chunkNum, totalChunks, offsetSec, chunkDurSec);
+  return transcribeChunkGroq(file, srcLang, key, chunkNum, totalChunks, offsetSec, chunkDurSec);
 }
 
 function encodeWavFromSamples(samples, sampleRate) {
@@ -4544,7 +4688,7 @@ async function exportDiag() {
   var engine = getAIEngine();
   var diag = {
     type: 'DIAG',
-    version: 'pro-v1.3.2',
+    version: 'pro-v1.4.0',
     date: new Date().toISOString(),
     file: origName || 'unknown',
     lang_source: src,
