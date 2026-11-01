@@ -13,7 +13,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>SubWhisper Pro v1.4.2 — App</title>
+<title>SubWhisper Pro v1.5.0 — App</title>
 <meta name="description" content="AI-powered subtitle generator with multi-pass translation in 75+ languages. Drop a video, get accurate SRT/VTT in minutes. €9/mo, 14-day free trial.">
 <link rel="canonical" href="https://sub-whisper.com/">
 <meta property="og:title" content="SubWhisper Pro — AI Subtitle Generator & Translator">
@@ -1152,7 +1152,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 <header>
   <div class="logo">
     <div class="logo-text"><span class="logo-sub">Sub</span><span class="logo-whisper">Whisper</span></div>
-    <span class="ver-badge">Pro v1.4.2</span>
+    <span class="ver-badge">Pro v1.5.0</span>
   </div>
   <div class="hdr-r">
     <div id="apiBar" title="API keys configured" style="display:none">
@@ -1173,6 +1173,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
     <div id="usageMeter" style="display:none;font-size:11px;font-family:var(--mono);color:var(--fg);opacity:.85;text-align:right;line-height:1.3;padding:2px 8px;border:1px solid var(--bdr);border-radius:8px;background:var(--card)">
       <div><span id="usageTx">0</span>/<span id="usageTxMax">50</span> transcriptions</div>
       <div><span id="usageTr">0</span>/<span id="usageTrMax">500</span> translations</div>
+      <div id="usageHours" style="display:none;color:#eab308;font-weight:600"></div>
     </div>
     <button class="icon-btn" id="cfgBtn" onclick="toggleConfig()" title="Settings" style="display:none">&#9881;&#65039;</button>
     <button class="icon-btn" id="thmBtn" onclick="toggleTheme()" title="Theme">&#127769;</button>
@@ -1737,7 +1738,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 </div>
 
 <footer>
-  <span class="ft">SubWhisper Pro v1.4.2</span>
+  <span class="ft">SubWhisper Pro v1.5.0</span>
   <span class="ft">Universal-3-pro &middot; 99 languages</span>
 </footer>
 
@@ -2070,6 +2071,7 @@ async function _fetchGatewayConfig() {
       // Global usage tracker for live counter (v1.4.2 : DANS le if -- hors du if, `mu` indefini faisait planter la suite)
       window._proUsage = { tx: mu.transcriptions || 0, tr: mu.translations || 0, txMax: li.transcriptions || 50, trMax: li.translations || 500 };
     }
+    afficherHeures(cfg.hours);
     // Allumer les dots individuels selon les APIs actives dans le gateway
     var GW_DOT_MAP = { GROQ:'GRQ', OPENAI:'OAI', GEMINI:'GEM', DEEPSEEK:'DSK', ASSEMBLYAI:'AAI', AZURE:'AZR' };
     Object.keys(GW_DOT_MAP).forEach(function(api) {
@@ -2093,10 +2095,29 @@ async function _fetchGatewayConfig() {
   } finally { clearTimeout(minuteur); }
 }
 
+// v1.5.0 : pre-alerte du plafond mensuel en heures, visible a partir de 80 %. Information seule : le serveur decide.
+function afficherHeures(h) {
+  var el = document.getElementById('usageHours');
+  if (!el) return;
+  el.style.display = h ? '' : 'none';
+  if (h) el.textContent = h.used_hours + ' h of ' + h.limit_hours + ' h used this month. Resets on the 1st.';
+}
+var _heuresVuesA = 0;
+function rafraichirHeures() {
+  var cle = getGatewayKey(), maintenant = Date.now();
+  if (!cle || maintenant - _heuresVuesA < 60000) return;
+  _heuresVuesA = maintenant;
+  fetch(GATEWAY_URL + '/config', { headers: { 'X-Pro-Key': cle } })
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(c) { if (c) afficherHeures(c.hours); })
+    .catch(function() {});
+}
+
 // Bump usage counter live (called after each successful API call)
 function bumpUsage(type) {
   if (!window._proUsage) return;
   if (type === 'transcription') {
+    rafraichirHeures();
     window._proUsage.tx++;
     var el = document.getElementById('usageTx');
     if (el) el.textContent = window._proUsage.tx;
@@ -2998,6 +3019,7 @@ async function transcribeChunkMai(file, srcLang, key, chunkNum, totalChunks, off
   }, chunkNum, totalChunks);
   if (!resp.ok) {
     var t = await resp.text().catch(function() { return ''; });
+    if (resp.status === 402) { try { throw new Error(JSON.parse(t).error.message); } catch (e2) { throw new Error(e2.message || t.slice(0, 160)); } }
     throw new Error('MAI chunk ' + chunkNum + '/' + totalChunks + ' : HTTP ' + resp.status + ' ' + t.slice(0, 160));
   }
   var data = await resp.json();
@@ -4729,7 +4751,7 @@ async function exportDiag() {
   var engine = getAIEngine();
   var diag = {
     type: 'DIAG',
-    version: 'pro-v1.4.2',
+    version: 'pro-v1.5.0',
     date: new Date().toISOString(),
     file: origName || 'unknown',
     lang_source: src,
