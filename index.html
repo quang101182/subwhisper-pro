@@ -129,352 +129,235 @@
   ]
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- v1.5.0 — 2026-11-01 : app : pre-alerte du plafond mensuel et message de refus | v1.4.2 — 2026-10-05 : app : voyant de connexion fiable (seule la verification la plus recente compte) | v1.4.1 — 2026-10-05 : app : 3 essais sur panne MAI (5xx/429/reseau) avant d'afficher l'erreur | v1.4.0 — 2026-10-03 : app : MAI-Transcribe-2 selectionnable au dashboard (Groq par defaut) | v1.3.4 — 2026-09-23 : provenance des visites et des clics paiement (`src`, `co:<src>`), cote site seulement | v1.3.3 — 2026-09-21 : FAQ essai — plus de « no limitations » (10 transcriptions + 100 traductions, code gateway) | v1.3.2 — 2026-09-21 : fin de la promesse « no credit card » (heritee de Lemon Squeezy) — le checkout Polar demande la carte ; 63 mentions corrigees sur 21 pages | v1.3.1 — 2026-08-20 : le suivi des clics d'achat ciblait encore l'ancien prestataire | v1.3.0 — 2026-08-20 : migration du tunnel de paiement vers Polar (Lemon Squeezy a ferme le compte) — 90 liens de checkout morts remplaces sur la vente, l'app et les 10 pages du blog | v1.2.7 — 2026-07-17 : la RACINE sert la page de vente, l'app passe sur /app.html (Google n'indexait que l'app fermee) | v1.2.5 — 2026-07-15 funnel gateway (beacon clic sortant checkout, page=swp&btn=out:checkout) | v1.2.4 — 2026-05-29 GEO Phase 2.b (added Rev.com comparison page) | v1.2.3 VEED + Kapwing comparison pages | v1.2.2 GEO hardening JSON-LD -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- page v2.0.0 — 2026-11-07 : refonte visuelle de l'accueil (methode unslop de Damir Sokolovsky, @heydamir, CC BY 4.0) : salle de projection, jaune sous-titre, Geist ; contenu, liens, suivi et SEO inchanges | v1.5.0 — 2026-11-01 : app : pre-alerte du plafond mensuel et message de refus | v1.4.2 — 2026-10-05 : app : voyant de connexion fiable (seule la verification la plus recente compte) | v1.4.1 — 2026-10-05 : app : 3 essais sur panne MAI (5xx/429/reseau) avant d'afficher l'erreur | v1.4.0 — 2026-10-03 : app : MAI-Transcribe-2 selectionnable au dashboard (Groq par defaut) | v1.3.4 — 2026-09-23 : provenance des visites et des clics paiement (`src`, `co:<src>`), cote site seulement | v1.3.3 — 2026-09-21 : FAQ essai — plus de « no limitations » (10 transcriptions + 100 traductions, code gateway) | v1.3.2 — 2026-09-21 : fin de la promesse « no credit card » (heritee de Lemon Squeezy) — le checkout Polar demande la carte ; 63 mentions corrigees sur 21 pages | v1.3.1 — 2026-08-20 : le suivi des clics d'achat ciblait encore l'ancien prestataire | v1.3.0 — 2026-08-20 : migration du tunnel de paiement vers Polar (Lemon Squeezy a ferme le compte) — 90 liens de checkout morts remplaces sur la vente, l'app et les 10 pages du blog | v1.2.7 — 2026-07-17 : la RACINE sert la page de vente, l'app passe sur /app.html (Google n'indexait que l'app fermee) | v1.2.5 — 2026-07-15 funnel gateway (beacon clic sortant checkout, page=swp&btn=out:checkout) | v1.2.4 — 2026-05-29 GEO Phase 2.b (added Rev.com comparison page) | v1.2.3 VEED + Kapwing comparison pages | v1.2.2 GEO hardening JSON-LD -->
 <style>
+/* SubWhisper Pro — accueil, page v2.0.0 (07/11/2026)
+   Direction : exact, rapide, cinematographique sans emphase · monde : la salle de projection et la ligne
+   de sous-titre au bas de l'image · rampe chaude (noir de salle), un seul accent jaune sous-titre,
+   Geist + Geist Mono · signature : la notation SRT (#cue + minutage). Grille 4 px.
+   Methode unslop de Damir Sokolovsky (@heydamir), CC BY 4.0. */
 :root {
-  --bg: #080810;
-  --surface: rgba(255,255,255,.04);
-  --surface2: rgba(255,255,255,.08);
-  --border: rgba(255,255,255,.08);
-  --accent: #7c6aff;
-  --accent2: #00d4aa;
-  --text: #f0f0f8;
-  --muted: #888;
-  --mono: 'Space Mono', monospace;
-  --sans: 'Inter', sans-serif;
+  --deep: #12110f;
+  --bg: #161513;
+  --card: #1c1a18;
+  --raised: #262421;
+  --line: rgba(239,233,222,.08);
+  --line-2: rgba(239,233,222,.14);
+  --text: #efe9de;
+  --text-2: #aaa398;
+  --muted: #8a847a;
+  --accent: #f2c94c;          /* jaune des sous-titres de cinema */
+  --on-accent: #1a1608;
+  --pos: #4cc38a;
+  --sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --wrap: 1120px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse 70% 55% at 10% 10%, rgba(124,106,255,.12) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 90% 85%, rgba(0,212,170,.09) 0%, transparent 60%);
-}
-body > * { position: relative; z-index: 1; }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { max-width: 100%; }
+.ico { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.ico-s { width: 16px; height: 16px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
 /* ── NAV ── */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 32px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8,8,16,.85);
-  backdrop-filter: blur(20px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.logo { font-family: var(--mono); font-weight: 700; font-size: 18px; }
-.logo span { color: var(--accent); }
-nav a {
-  color: var(--text);
-  text-decoration: none;
-  font-size: 14px;
-  padding: 8px 20px;
-  border-radius: 8px;
-  border: 1px solid var(--accent);
-  transition: all .2s;
-}
-nav a:hover { background: var(--accent); }
+nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 24px; height: 64px; padding: 0 32px; background: rgba(22,21,19,.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.logo { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+.logo .mark { width: 20px; height: 14px; border-radius: 3px; border: 1.5px solid var(--text-2); position: relative; }
+.logo .mark::after { content: ''; position: absolute; left: 3px; right: 3px; bottom: 2px; height: 2px; border-radius: 1px; background: var(--accent); }
+.logo span { color: var(--text-2); font-weight: 400; }
+.nav-app { margin-left: auto; white-space: nowrap; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color .15s var(--ease); }
+.nav-app:hover { color: var(--text); }
+.nav-cta { display: inline-flex; white-space: nowrap; align-items: center; height: 36px; padding: 0 16px; border-radius: 8px; background: var(--accent); color: var(--on-accent); font-size: 14px; font-weight: 500; text-decoration: none; transition: background-color .15s var(--ease), transform .15s var(--ease); }
+.nav-cta:hover { background: #f5d46b; }
+.nav-cta:active, .cta:active { transform: scale(.98); }
 
-/* ── HERO ── */
-.hero {
-  text-align: center;
-  padding: 80px 24px 60px;
-  max-width: 800px;
-  margin: 0 auto;
+/* ── HERO : scene + vue produit qui monte du bas ── */
+.hero { position: relative; overflow: hidden; }
+.hero-scene { position: absolute; inset: 0 0 auto 0; height: 760px; pointer-events: none; }
+.hero-scene img { position: absolute; right: 0; top: 0; height: 100%; width: auto; max-width: none; aspect-ratio: 16 / 9; object-fit: cover; }
+.hero-scene::after { content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, var(--bg) 0%, var(--bg) 22%, rgba(22,21,19,.55) 44%, rgba(22,21,19,0) 62%),
+    linear-gradient(180deg, rgba(22,21,19,0) 55%, var(--bg) 96%); }
+.hero-inner { position: relative; padding-top: 120px; }
+.hero-text { max-width: 560px; }
+.hero h1 { font-size: 60px; line-height: 1.04; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 24px; text-wrap: balance; }
+.hero h1 .soft { color: var(--text-2); }
+.hero-sub { font-size: 18px; line-height: 30px; color: var(--text-2); max-width: 32rem; margin-bottom: 32px; }
+.hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cta { display: inline-flex; align-items: center; height: 48px; padding: 0 24px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-size: 16px; font-weight: 500; text-decoration: none; transition: background-color .15s var(--ease), transform .15s var(--ease); }
+.cta:hover { background: #f5d46b; }
+.price-tag { font-family: var(--mono); font-size: 13px; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.hero-mobile-scene { display: none; }
+
+.stage { position: relative; margin-top: 96px; padding-left: 168px; }
+.window { position: relative; border-radius: 16px; background: var(--deep); border: 1px solid var(--line-2); overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.45); }
+.window-bar { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.window-bar .dots { display: flex; gap: 6px; margin-right: 8px; }
+.window-bar .dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--raised); }
+.window img { display: block; width: 100%; height: auto; aspect-ratio: 1062 / 682; }
+/* le moment : un bloc SRT, la meme replique en 4 langues */
+.cue { position: absolute; left: 0; bottom: 48px; width: 344px; padding: 20px; border-radius: 14px; background: rgba(28,26,24,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--line-2); box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+.cue-head { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; margin-bottom: 12px; }
+.cue-head b { color: var(--accent); font-weight: 500; }
+.cue ol { list-style: none; display: grid; gap: 10px; }
+.cue li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; font-size: 14px; line-height: 20px; color: var(--text); }
+.cue li span { font-family: var(--mono); font-size: 12px; line-height: 20px; color: var(--muted); }
+.cue li.src { color: var(--text-2); }
+
+/* ── SECTIONS ── */
+section.block { padding: 96px 0; }
+.label { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.label b { color: var(--accent); font-weight: 500; }
+h2 { font-size: 36px; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 12px; }
+.lead { color: var(--text-2); font-size: 16px; max-width: 36rem; }
+.head { margin-bottom: 40px; }
+
+/* showcase */
+.showcase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.showcase-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.showcase-card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; background: var(--deep); border-bottom: 1px solid var(--line); }
+.showcase-caption { padding: 20px 24px 24px; }
+.showcase-caption .step { display: block; font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.showcase-caption .step b { color: var(--accent); font-weight: 500; }
+.showcase-caption h3 { font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.showcase-caption p { font-size: 14px; line-height: 22px; color: var(--text-2); }
+
+/* compare */
+.compare-box { border: 1px solid var(--line); border-radius: 16px; background: var(--card); overflow-x: auto; }
+.compare table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+.compare th, .compare td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.compare tbody tr:last-child td { border-bottom: 0; }
+.compare th { color: var(--muted); font-weight: 400; font-size: 13px; font-family: var(--mono); }
+.compare td { color: var(--text-2); }
+.compare td:first-child { color: var(--text); font-weight: 500; }
+.compare .pro-col { color: var(--text); background: rgba(242,201,76,.05); }
+.compare th.pro-col { color: var(--accent); }
+.compare .price-row td { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 15px; }
+.compare .price-row .pro-col { color: var(--accent); font-size: 17px; font-weight: 500; }
+.compare td .check, .compare td .cross { display: inline-flex; vertical-align: -3px; margin-right: 4px; }
+.check { color: var(--pos); }
+.cross { color: var(--muted); }
+.compare-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 32px; }
+.fine { font-size: 13px; color: var(--muted); }
+
+/* features */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.feat { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.feat .ico { color: var(--text-2); margin-bottom: 16px; }
+.feat h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+.feat p { font-size: 14px; line-height: 22px; color: var(--text-2); }
+.features.second { margin-top: 0; }
+
+/* how */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.step-item { border-top: 1px solid var(--line-2); padding-top: 20px; }
+.step-num { display: block; font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 12px; font-variant-numeric: tabular-nums; }
+.step-item h4 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.step-item p { font-size: 14px; line-height: 22px; color: var(--text-2); }
+
+/* final call */
+.ready { border: 1px solid var(--line); border-radius: 20px; background: var(--card); padding: 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.ready h2 { margin-bottom: 4px; }
+.ready p { color: var(--text-2); }
+
+/* faq */
+.faq-list { max-width: 760px; border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-question { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 56px; padding: 16px 0; cursor: pointer; font-size: 16px; font-weight: 500; user-select: none; transition: color .15s var(--ease); }
+.faq-question:hover { color: var(--accent); }
+.faq-icon { display: inline-flex; color: var(--muted); transition: transform .2s var(--ease), color .15s var(--ease); }
+.faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent); }
+.faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .22s var(--ease); }
+.faq-item.open .faq-answer { grid-template-rows: 1fr; }
+.faq-answer-inner { overflow: hidden; font-size: 15px; line-height: 24px; color: var(--text-2); }
+.faq-item.open .faq-answer-inner { padding-bottom: 20px; }
+
+/* langues + guides */
+.link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+.link-grid.wide { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.link-grid a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 12px 16px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); color: var(--text); text-decoration: none; font-size: 14px; transition: border-color .15s var(--ease), background-color .15s var(--ease); }
+.link-grid a .ico { color: var(--muted); transition: color .15s var(--ease); }
+.link-grid a:hover { border-color: var(--line-2); background: var(--raised); }
+.link-grid a:hover .ico { color: var(--accent); }
+.more { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; color: var(--accent); text-decoration: none; font-size: 14px; }
+
+/* footer */
+footer { border-top: 1px solid var(--line); padding: 40px 32px 48px; color: var(--muted); font-size: 13px; line-height: 22px; }
+footer .wrap { padding: 0; }
+footer p + p { margin-top: 4px; }
+footer a { color: var(--text-2); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+footer a:hover { color: var(--text); }
+footer .ver { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+#visitCounter { margin-top: 12px; font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+/* une seule entree au chargement */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-text, .stage { animation: rise .5s var(--ease) both; }
+  .stage { animation-delay: .06s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
-.hero h1 {
-  font-size: clamp(32px, 5vw, 56px);
-  font-weight: 700;
-  line-height: 1.15;
-  margin-bottom: 20px;
-}
-.hero h1 em {
-  font-style: normal;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.hero p {
-  font-size: 18px;
-  color: var(--muted);
-  max-width: 560px;
-  margin: 0 auto 32px;
-}
-.cta {
-  display: inline-block;
-  padding: 14px 36px;
-  background: linear-gradient(135deg, var(--accent), #6c5ce7);
-  color: #fff;
-  font-weight: 600;
-  font-size: 16px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: transform .2s, box-shadow .2s;
-}
-.cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,106,255,.4); }
-.price-tag {
-  display: inline-block;
-  margin-left: 12px;
-  font-family: var(--mono);
-  font-size: 14px;
-  color: var(--accent2);
-  border: 1px solid rgba(0,212,170,.3);
-  padding: 4px 12px;
-  border-radius: 20px;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0s !important; animation: none !important; }
 }
 
-/* ── COMPARISON ── */
-/* ── Showcase (screenshots) ── */
-.showcase {
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 24px;
+@media (max-width: 1040px) {
+  .hero h1 { font-size: 52px; }
+  .stage { padding-left: 0; padding-bottom: 0; }
+  .cue { position: relative; left: auto; bottom: auto; width: auto; max-width: 520px; margin: 16px 0 0; box-shadow: none; }
+  .features { grid-template-columns: repeat(2, 1fr); }
+  /* tablette : derriere le texte, le projecteur gene la lecture -> bandeau sous les actions, comme sur mobile */
+  .hero-scene { display: none; }
+  .hero-inner { padding-top: 80px; }
+  .hero-text { max-width: 640px; }
+  .hero-mobile-scene { display: block; margin-top: 40px; height: 320px; border-radius: 16px; overflow: hidden; position: relative; }
+  .hero-mobile-scene img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; display: block; }
+  .hero-mobile-scene::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px var(--line); border-radius: 16px; }
+  .stage { margin-top: 32px; }
 }
-.showcase h2 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 8px;
+@media (max-width: 340px) {
+  .nav-app .opt { display: none; }
+  .logo { font-size: 14px; }
 }
-.showcase .subtitle {
-  text-align: center;
-  color: var(--muted);
-  margin-bottom: 32px;
-  font-size: 15px;
-}
-.showcase-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-.showcase-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform .2s, border-color .2s;
-}
-.showcase-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(124, 106, 255, .3);
-}
-.showcase-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: top;
-  background: #000;
-}
-.showcase-caption {
-  padding: 14px 18px;
-}
-.showcase-caption .step {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--accent2);
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-.showcase-caption h3 {
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-.showcase-caption p {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.45;
+@media (max-width: 380px) {
+  .logo .mark { display: none; }
+  nav { gap: 10px; }
+  .nav-cta { padding: 0 10px; }
 }
 @media (max-width: 720px) {
-  .showcase-grid { grid-template-columns: 1fr; }
-}
-
-.compare {
-  max-width: 900px;
-  margin: 40px auto 60px;
-  padding: 0 24px;
-}
-.compare h2 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 32px;
-}
-.compare table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-.compare th, .compare td {
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-}
-.compare th {
-  color: var(--muted);
-  font-weight: 500;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.compare td:first-child { font-weight: 600; }
-.compare .pro-col { color: var(--accent2); font-weight: 600; }
-.compare .price-row td { font-family: var(--mono); font-size: 16px; }
-.compare .price-row .pro-col { color: var(--accent2); font-size: 20px; }
-.check { color: var(--accent2); }
-.cross { color: #ff4d6d; opacity: .6; }
-
-/* ── FEATURES ── */
-.features {
-  max-width: 900px;
-  margin: 0 auto 60px;
-  padding: 0 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-.feat {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-}
-.feat-icon { font-size: 28px; margin-bottom: 12px; }
-.feat h3 { font-size: 16px; margin-bottom: 8px; }
-.feat p { font-size: 13px; color: var(--muted); }
-
-/* ── HOW IT WORKS ── */
-.how {
-  max-width: 700px;
-  margin: 0 auto 60px;
-  padding: 0 24px;
-  text-align: center;
-}
-.how h2 { font-size: 28px; margin-bottom: 32px; }
-.steps {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.step {
-  flex: 1;
-  min-width: 180px;
-  max-width: 200px;
-  text-align: center;
-}
-.step-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 700;
-  font-family: var(--mono);
-  margin-bottom: 12px;
-}
-.step h4 { font-size: 14px; margin-bottom: 6px; }
-.step p { font-size: 12px; color: var(--muted); }
-
-/* ── FOOTER ── */
-footer {
-  text-align: center;
-  padding: 32px;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 12px;
-}
-footer a { color: var(--accent); text-decoration: none; }
-
-/* ── FAQ ── */
-.faq {
-  max-width: 700px;
-  margin: 0 auto 60px;
-  padding: 0 24px;
-  text-align: center;
-}
-.faq h2 {
-  font-size: 28px;
-  margin-bottom: 32px;
-}
-.faq-list {
-  text-align: left;
-}
-.faq-item {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  background: var(--surface);
-  transition: border-color .2s;
-}
-.faq-item:hover {
-  border-color: rgba(124,106,255,.3);
-}
-.faq-question {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 15px;
-  user-select: none;
-  transition: color .2s;
-}
-.faq-question:hover {
-  color: var(--accent);
-}
-.faq-icon {
-  font-size: 18px;
-  transition: transform .3s;
-  flex-shrink: 0;
-  margin-left: 12px;
-  color: var(--muted);
-}
-.faq-item.open .faq-icon {
-  transform: rotate(45deg);
-  color: var(--accent);
-}
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .3s ease, padding .3s ease;
-}
-.faq-item.open .faq-answer {
-  max-height: 300px;
-}
-.faq-answer-inner {
-  padding: 0 20px 16px;
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-@media (max-width: 600px) {
-  nav { padding: 12px 16px; }
-  .hero { padding: 48px 16px 40px; }
-  .compare th, .compare td { padding: 8px; font-size: 12px; }
-  .steps { flex-direction: column; align-items: center; }
-  .faq-question { font-size: 14px; padding: 14px 16px; }
+  nav { padding: 0 16px; gap: 12px; height: 56px; }
+  .logo { font-size: 15px; gap: 6px; }
+  .nav-app { font-size: 13px; }
+  .nav-cta { height: 36px; padding: 0 12px; font-size: 13px; }
+  .wrap { padding: 0 16px; }
+  .hero-scene { display: none; }
+  .hero-inner { padding-top: 48px; }
+  .hero h1 { font-size: 38px; line-height: 1.06; margin-bottom: 16px; }
+  .hero-sub { font-size: 16px; line-height: 26px; margin-bottom: 24px; }
+  .hero-actions { gap: 12px; }
+  .hero-mobile-scene { margin-top: 32px; height: 200px; border-radius: 14px; }
+  .hero-mobile-scene img { object-position: 66% 50%; }
+  .hero-mobile-scene::after { border-radius: 14px; }
+  .stage { margin-top: 24px; }
+  .window-bar { height: 32px; font-size: 11px; }
+  .cue { margin: 12px 0 0; padding: 16px; }
+  section.block { padding: 64px 0; }
+  h2 { font-size: 28px; }
+  .head { margin-bottom: 28px; }
+  .showcase-grid, .features, .steps { grid-template-columns: 1fr; }
+  .compare th, .compare td { padding: 12px 14px; font-size: 13px; }
+  .ready { padding: 28px 20px; }
+  .faq-question { font-size: 15px; }
+  footer { padding: 32px 16px 40px; }
 }
 </style>
 <!-- PostHog Analytics -->
@@ -501,306 +384,377 @@ footer a { color: var(--accent); text-decoration: none; }
 <body>
 
 <nav>
-  <div class="logo">SubWhisper <span>Pro</span></div>
-  <a href="/app.html" style="margin-left:auto;margin-right:18px;opacity:.75">Open the app</a>
-  <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1">Start Free Trial</a>
+  <div class="logo"><i class="mark" aria-hidden="true"></i>SubWhisper <span>Pro</span></div>
+  <a href="/app.html" class="nav-app">Open<span class="opt"> the</span> app</a>
+  <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="nav-cta">Start free trial</a>
 </nav>
 
 <section class="hero">
-  <h1>Translate Your Subtitles in <em>75+ Languages</em> — for €9/mo</h1>
-  <p>Multi-pass AI translation. Drop a video, get professional subtitles. 3x cheaper than VEED or Kapwing. Card required, nothing charged for 14 days.</p>
-  <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="cta">Start Free Trial</a>
-  <span class="price-tag">€9/mo — 14 days free</span>
-</section>
-
-<section class="showcase">
-  <h2>See it in action</h2>
-  <p class="subtitle">Drop a file, get professional subtitles in 4 steps.</p>
-  <div class="showcase-grid">
-    <div class="showcase-card">
-      <picture>
-        <source srcset="assets/screenshots/01-drop.webp" type="image/webp">
-        <img src="assets/screenshots/01-drop.png" alt="Drop or select a video file — MP4, MKV, MOV, AVI, MP3, WAV up to 5 GB" loading="lazy">
-      </picture>
-      <div class="showcase-caption">
-        <span class="step">STEP 1</span>
-        <h3>Drop your file</h3>
-        <p>Any video or audio up to 5 GB. Or import an existing .SRT to translate.</p>
+  <div class="hero-scene"><img src="assets/hero/projector.webp" alt="" width="1536" height="864" fetchpriority="high" decoding="async"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <h1>Translate your subtitles in 75+ languages <span class="soft">for €9/mo</span></h1>
+      <p class="hero-sub">Multi-pass AI translation. Drop a video, get professional subtitles. 3x cheaper than VEED or Kapwing. Card required, nothing charged for 14 days.</p>
+      <div class="hero-actions">
+        <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="cta">Start free trial</a>
+        <span class="price-tag">€9/mo · 14 days free</span>
       </div>
     </div>
-    <div class="showcase-card">
-      <picture>
-        <source srcset="assets/screenshots/02-processing.webp" type="image/webp">
-        <img src="assets/screenshots/02-processing.png" alt="Transcription in progress with real-time chunk log" loading="lazy">
-      </picture>
-      <div class="showcase-caption">
-        <span class="step">STEP 2</span>
-        <h3>AI transcription</h3>
-        <p>Whisper + Universal-3 in parallel. Live chunk log, gap detection, done in seconds.</p>
-      </div>
-    </div>
-    <div class="showcase-card">
-      <picture>
-        <source srcset="assets/screenshots/03-translation.webp" type="image/webp">
-        <img src="assets/screenshots/03-translation.png" alt="SRT editor with translation tools, format and export options" loading="lazy">
-      </picture>
-      <div class="showcase-caption">
-        <span class="step">STEP 3</span>
-        <h3>Edit &amp; translate</h3>
-        <p>Multi-pass AI translation in 75+ languages. Diff view, format, validate, export SRT/VTT/TXT.</p>
-      </div>
-    </div>
-    <div class="showcase-card">
-      <picture>
-        <source srcset="assets/screenshots/04-preview.webp" type="image/webp">
-        <img src="assets/screenshots/04-preview.png" alt="Live subtitle preview over the original video" loading="lazy">
-      </picture>
-      <div class="showcase-caption">
-        <span class="step">STEP 4</span>
-        <h3>Preview &amp; burn in</h3>
-        <p>Real-time overlay preview. Hardcode subtitles into your video with one FFmpeg command.</p>
+    <div class="hero-mobile-scene"><img src="assets/hero/projector.webp" alt="" width="1536" height="864" decoding="async"></div>
+    <div class="stage">
+      <figure class="window">
+        <div class="window-bar"><span class="dots"><i></i><i></i><i></i></span>Preview · subtitles · FR → EN</div>
+        <img src="assets/hero/preview-window.webp" alt="SubWhisper Pro preview: the translated subtitle “Raise your elbow, yes, let the blade weigh itself down.” over the original video" width="1062" height="682" decoding="async">
+      </figure>
+      <div class="cue" aria-label="One subtitle cue translated into four languages">
+        <div class="cue-head"><b>#1</b><span>00:00:09,000 → 00:00:16,000</span></div>
+        <ol>
+          <li class="src"><span>FR</span>Lève le coude, oui, laisse la lame peser d’elle-même.</li>
+          <li><span>EN</span>Raise your elbow, yes, let the blade weigh itself down.</li>
+          <li><span>ES</span>Levanta el codo, sí, deja que la hoja pese por sí sola.</li>
+          <li><span>JA</span>肘を上げて、そう、刃の重みに任せて。</li>
+        </ol>
       </div>
     </div>
   </div>
 </section>
 
-<section class="compare" id="pricing">
-  <h2>Why SubWhisper Pro?</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th>VEED</th>
-        <th>Kapwing</th>
-        <th class="pro-col">SubWhisper Pro</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="price-row">
-        <td>Price</td>
-        <td>$24/mo</td>
-        <td>$24/mo</td>
-        <td class="pro-col">€9/mo</td>
-      </tr>
-      <tr>
-        <td>Languages</td>
-        <td>125+</td>
-        <td>100+</td>
-        <td class="pro-col">75+</td>
-      </tr>
-      <tr>
-        <td>AI Transcription</td>
-        <td><span class="check">&#10003;</span></td>
-        <td><span class="check">&#10003;</span></td>
-        <td><span class="check">&#10003;</span> Whisper + Universal-3</td>
-      </tr>
-      <tr>
-        <td>AI Translation</td>
-        <td><span class="check">&#10003;</span> Single pass</td>
-        <td><span class="check">&#10003;</span> Single pass</td>
-        <td><span class="check">&#10003;</span> <strong>Multi-pass</strong></td>
-      </tr>
-      <tr>
-        <td>AI Cleanup</td>
-        <td><span class="cross">&#10007;</span></td>
-        <td><span class="cross">&#10007;</span></td>
-        <td><span class="check">&#10003;</span> Fix hallucinations</td>
-      </tr>
-      <tr>
-        <td>Foreign Detection</td>
-        <td><span class="cross">&#10007;</span></td>
-        <td><span class="cross">&#10007;</span></td>
-        <td><span class="check">&#10003;</span> Auto-detect & translate</td>
-      </tr>
-      <tr>
-        <td>Export SRT</td>
-        <td><span class="check">&#10003;</span></td>
-        <td><span class="check">&#10003;</span></td>
-        <td><span class="check">&#10003;</span></td>
-      </tr>
-      <tr>
-        <td>Export ASS</td>
-        <td><span class="cross">&#10007;</span></td>
-        <td><span class="cross">&#10007;</span></td>
-        <td><span class="check">&#10003;</span></td>
-      </tr>
-      <tr>
-        <td>Export VTT / TXT / JSON</td>
-        <td><span class="check">&#10003;</span> Partial</td>
-        <td><span class="check">&#10003;</span> Partial</td>
-        <td><span class="check">&#10003;</span> All formats</td>
-      </tr>
-      <tr>
-        <td>Works Offline (PWA)</td>
-        <td><span class="cross">&#10007;</span></td>
-        <td><span class="cross">&#10007;</span></td>
-        <td><span class="check">&#10003;</span></td>
-      </tr>
-      <tr>
-        <td>Video Editor</td>
-        <td><span class="check">&#10003;</span></td>
-        <td><span class="check">&#10003;</span></td>
-        <td><span class="cross">&#10007;</span> Subtitles only</td>
-      </tr>
-    </tbody>
-  </table>
-  <div style="text-align:center;margin-top:32px">
-    <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="cta">Start Free Trial — Save €180/year</a>
-    <p style="font-size:12px;color:var(--muted);margin-top:8px">Card required, nothing charged for 14 days</p>
+<section class="showcase block">
+  <div class="wrap">
+    <div class="head">
+      <h2>See it in action</h2>
+      <p class="lead subtitle">Drop a file, get professional subtitles in 4 steps.</p>
+    </div>
+    <div class="showcase-grid">
+      <div class="showcase-card">
+        <picture>
+          <source srcset="assets/screenshots/01-drop.webp" type="image/webp">
+          <img src="assets/screenshots/01-drop.png" alt="Drop or select a video file — MP4, MKV, MOV, AVI, MP3, WAV up to 5 GB" loading="lazy">
+        </picture>
+        <div class="showcase-caption">
+          <span class="step">Step 1</span>
+          <h3>Drop your file</h3>
+          <p>Any video or audio up to 5 GB. Or import an existing .SRT to translate.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <picture>
+          <source srcset="assets/screenshots/02-processing.webp" type="image/webp">
+          <img src="assets/screenshots/02-processing.png" alt="Transcription in progress with real-time chunk log" loading="lazy">
+        </picture>
+        <div class="showcase-caption">
+          <span class="step">Step 2</span>
+          <h3>AI transcription</h3>
+          <p>Whisper + Universal-3 in parallel. Live chunk log, gap detection, done in seconds.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <picture>
+          <source srcset="assets/screenshots/03-translation.webp" type="image/webp">
+          <img src="assets/screenshots/03-translation.png" alt="SRT editor with translation tools, format and export options" loading="lazy">
+        </picture>
+        <div class="showcase-caption">
+          <span class="step">Step 3</span>
+          <h3>Edit and translate</h3>
+          <p>Multi-pass AI translation in 75+ languages. Diff view, format, validate, export SRT/VTT/TXT.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <picture>
+          <source srcset="assets/screenshots/04-preview.webp" type="image/webp">
+          <img src="assets/screenshots/04-preview.png" alt="Live subtitle preview over the original video" loading="lazy">
+        </picture>
+        <div class="showcase-caption">
+          <span class="step">Step 4</span>
+          <h3>Preview and burn in</h3>
+          <p>Real-time overlay preview. Hardcode subtitles into your video with one FFmpeg command.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="features">
+<section class="compare block" id="pricing">
+  <div class="wrap">
+    <div class="head">
+      <h2>Why SubWhisper Pro?</h2>
+    </div>
+    <div class="compare-box">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>VEED</th>
+          <th>Kapwing</th>
+          <th class="pro-col">SubWhisper Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="price-row">
+          <td>Price</td>
+          <td>$24/mo</td>
+          <td>$24/mo</td>
+          <td class="pro-col">€9/mo</td>
+        </tr>
+        <tr>
+          <td>Languages</td>
+          <td>125+</td>
+          <td>100+</td>
+          <td class="pro-col">75+</td>
+        </tr>
+        <tr>
+          <td>AI transcription</td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+          <td class="pro-col"><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Whisper + Universal-3</td>
+        </tr>
+        <tr>
+          <td>AI translation</td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Single pass</td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Single pass</td>
+          <td class="pro-col"><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Multi-pass</td>
+        </tr>
+        <tr>
+          <td>AI cleanup</td>
+          <td><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td>
+          <td><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td>
+          <td class="pro-col"><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Fix hallucinations</td>
+        </tr>
+        <tr>
+          <td>Foreign detection</td>
+          <td><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td>
+          <td><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td>
+          <td class="pro-col"><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Auto-detect and translate</td>
+        </tr>
+        <tr>
+          <td>Export SRT</td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+          <td class="pro-col"><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+        </tr>
+        <tr>
+          <td>Export ASS</td>
+          <td><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td>
+          <td><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td>
+          <td class="pro-col"><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+        </tr>
+        <tr>
+          <td>Export VTT / TXT / JSON</td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Partial</td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Partial</td>
+          <td class="pro-col"><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> All formats</td>
+        </tr>
+        <tr>
+          <td>Works offline (PWA)</td>
+          <td><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td>
+          <td><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td>
+          <td class="pro-col"><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+        </tr>
+        <tr>
+          <td>Video editor</td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+          <td><span class="check"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td>
+          <td class="pro-col"><span class="cross"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span> Subtitles only</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="compare-cta">
+      <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="cta">Start free trial · save €180/year</a>
+      <p class="fine">Card required, nothing charged for 14 days</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+<div class="features">
   <div class="feat">
-    <div class="feat-icon">&#x1F9E0;</div>
-    <h3>Multi-Pass AI Translation</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+    <h3>Multi-pass AI translation</h3>
     <p>Unlike competitors, SubWhisper Pro runs multiple translation passes with automatic quality checks. Foreign language segments are detected and re-translated for accuracy.</p>
   </div>
   <div class="feat">
-    <div class="feat-icon">&#x2728;</div>
-    <h3>AI Cleanup</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+    <h3>AI cleanup</h3>
     <p>Automatically fixes Whisper hallucinations, spelling errors, and garbled transcription artifacts. No manual editing needed.</p>
   </div>
   <div class="feat">
-    <div class="feat-icon">&#x1F310;</div>
-    <h3>75+ Languages</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+    <h3>75+ languages</h3>
     <p>From Arabic to Vietnamese. Specialized rules for CJK languages (Chinese, Japanese, Korean) with proper handling of honorifics and writing systems.</p>
   </div>
   <div class="feat">
-    <div class="feat-icon">&#x1F4E6;</div>
-    <h3>All Export Formats</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+    <h3>All export formats</h3>
     <p>SRT, VTT, ASS, TXT, JSON. SubWhisper Pro is the only tool that exports ASS format with customizable subtitle styling.</p>
   </div>
   <div class="feat">
-    <div class="feat-icon">&#x26A1;</div>
-    <h3>Fast & Private</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+    <h3>Fast and private</h3>
     <p>Your files are processed client-side. Only audio is sent to AI APIs for transcription. No video upload, no storage, no tracking.</p>
   </div>
   <div class="feat">
-    <div class="feat-icon">&#x1F4B0;</div>
-    <h3>3x Cheaper</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+    <h3>3x cheaper</h3>
     <p>€9/month vs $24/month at VEED or Kapwing. Same quality, better AI translation, fraction of the price.</p>
   </div>
+</div>
+  </div>
 </section>
 
-<section class="how">
-  <h2>How It Works</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h4>Drop Your File</h4>
-      <p>MP4, MKV, MOV, MP3, WAV — up to 5 GB</p>
+<section class="how block" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <h2>How it works</h2>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h4>Choose Language</h4>
-      <p>Select target language from 75+ options</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h4>Download SRT</h4>
-      <p>AI transcribes, translates, and cleans up automatically</p>
+    <div class="steps">
+      <div class="step-item">
+        <span class="step-num">#1</span>
+        <h4>Drop your file</h4>
+        <p>MP4, MKV, MOV, MP3, WAV — up to 5 GB</p>
+      </div>
+      <div class="step-item">
+        <span class="step-num">#2</span>
+        <h4>Choose language</h4>
+        <p>Select target language from 75+ options</p>
+      </div>
+      <div class="step-item">
+        <span class="step-num">#3</span>
+        <h4>Download SRT</h4>
+        <p>AI transcribes, translates, and cleans up automatically</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="hero" style="padding:40px 24px 60px">
-  <h2 style="font-size:28px;margin-bottom:16px">Ready to translate?</h2>
-  <p style="margin-bottom:24px">Start with a 14-day free trial.</p>
-  <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="cta" id="buyBtn">Start Free Trial</a>
-  <span class="price-tag">Then €9/mo</span>
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="ready">
+      <div>
+        <h2>Ready to translate?</h2>
+        <p>Start with a 14-day free trial.</p>
+      </div>
+      <div class="hero-actions">
+        <a href="https://buy.polar.sh/polar_cl_ISvNmYqnooCwY9eHqcqILy5lboRnmKLvhUm7o36nucw?checkout[success_url]=https%3A%2F%2Fsub-whisper.com%2Fapp.html%3Factivated%3D1" class="cta" id="buyBtn">Start free trial</a>
+        <span class="price-tag">Then €9/mo</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="features" style="margin-top:0">
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+<div class="features second">
   <div class="feat">
-    <div class="feat-icon">&#x1F3AF;</div>
-    <h3>Multi-Pass Translation</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+    <h3>Multi-pass translation</h3>
     <p>Multiple AI passes with automatic quality checks. Foreign segments are detected and re-translated for maximum accuracy.</p>
   </div>
   <div class="feat">
-    <div class="feat-icon">&#x1F9F9;</div>
-    <h3>AI Hallucination Cleanup</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+    <h3>AI hallucination cleanup</h3>
     <p>Automatically removes Whisper hallucinations, repeated phrases, and garbled artifacts that other tools leave in.</p>
   </div>
   <div class="feat">
-    <div class="feat-icon">&#x1F4C4;</div>
-    <h3>All Export Formats</h3>
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+    <h3>All export formats</h3>
     <p>SRT, VTT, ASS, TXT, JSON. The only subtitle tool that exports ASS with customizable styling.</p>
+  </div>
+</div>
   </div>
 </section>
 
-<section class="faq" id="faq">
-  <h2>Frequently Asked Questions</h2>
+<section class="faq block" id="faq" style="padding-top:0">
+  <div class="wrap">
+  <div class="head">
+    <h2>Frequently asked questions</h2>
+  </div>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-question">What audio and video formats are supported?<span class="faq-icon">+</span></div>
+      <div class="faq-question">What audio and video formats are supported?<span class="faq-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></div>
       <div class="faq-answer"><div class="faq-answer-inner">SubWhisper Pro supports all major formats: MP4, MKV, MOV, AVI, WEBM for video, and MP3, WAV, FLAC, OGG, M4A for audio. Files up to 5 GB are supported. The audio is extracted client-side before being sent to the AI engine.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question">How many languages are available for translation?<span class="faq-icon">+</span></div>
+      <div class="faq-question">How many languages are available for translation?<span class="faq-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></div>
       <div class="faq-answer"><div class="faq-answer-inner">SubWhisper Pro supports 75+ languages for translation, including specialized handling for CJK languages (Chinese, Japanese, Korean) with proper honorifics, writing systems, and cultural context. Transcription is available in 100+ languages via Whisper and Universal-3 engines.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question">How does the 14-day free trial work?<span class="faq-icon">+</span></div>
+      <div class="faq-question">How does the 14-day free trial work?<span class="faq-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></div>
       <div class="faq-answer"><div class="faq-answer-inner">When you sign up, you get 14 days of access to all Pro features, including 2 hours of transcription, 10 transcriptions and 100 translations. A card is required at checkout, but it is charged only after the trial ends. You can cancel anytime during the trial period and you won't be charged at all.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question">Are my files secure and private?<span class="faq-icon">+</span></div>
+      <div class="faq-question">Are my files secure and private?<span class="faq-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></div>
       <div class="faq-answer"><div class="faq-answer-inner">Yes. Your video and audio files are processed entirely in your browser. Only the extracted audio is sent to the AI transcription API, and it is not stored after processing. No video is ever uploaded to our servers. SubWhisper Pro is a privacy-first tool.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question">Can I cancel my subscription at any time?<span class="faq-icon">+</span></div>
+      <div class="faq-question">Can I cancel my subscription at any time?<span class="faq-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></div>
       <div class="faq-answer"><div class="faq-answer-inner">Absolutely. You can cancel your subscription at any time from your Polar customer portal. There are no cancellation fees and no long-term commitments. If you cancel, you retain access until the end of your current billing period.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-question">What's the difference with the free version of SubWhisper?<span class="faq-icon">+</span></div>
+      <div class="faq-question">What's the difference with the free version of SubWhisper?<span class="faq-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></div>
       <div class="faq-answer"><div class="faq-answer-inner">The free version supports 12 translation languages and basic transcription. SubWhisper Pro adds 75+ languages, multi-pass AI translation for higher accuracy, AI cleanup to fix hallucinations, ASS export format, foreign language detection, and priority processing. It's built for professionals who need reliable, production-ready subtitles.</div></div>
     </div>
   </div>
-</section>
-
-<section class="languages" style="max-width:1000px;margin:0 auto 60px;padding:0 24px;text-align:center">
-  <h2 style="font-size:28px;margin-bottom:12px">Generate Subtitles & Captions in Every Major Language</h2>
-  <p style="color:#888;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto">Dedicated subtitle and captioning tools, each tuned for the linguistic specifics of the target language.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;text-align:left">
-    <a href="tools/french-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">French Subtitle Generator</a>
-    <a href="tools/spanish-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">Spanish Subtitle Generator</a>
-    <a href="tools/japanese-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">Japanese Subtitle Generator</a>
-    <a href="tools/arabic-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">Arabic Subtitle Generator</a>
-    <a href="tools/german-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">German Subtitle Generator</a>
-    <a href="tools/portuguese-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">Portuguese Subtitle Generator</a>
-    <a href="tools/chinese-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">Chinese Subtitle Generator</a>
-    <a href="tools/korean-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">Korean Subtitle Generator</a>
-    <a href="tools/italian-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">Italian Subtitle Generator</a>
-    <a href="tools/hindi-subtitle-generator.html" style="display:block;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none;transition:all .2s">Hindi Subtitle Generator</a>
   </div>
 </section>
 
-<section class="resources" style="max-width:1000px;margin:0 auto 60px;padding:0 24px;text-align:center">
-  <h2 style="font-size:28px;margin-bottom:12px">Subtitle & Captioning Guides</h2>
-  <p style="color:#888;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto">In-depth resources on AI subtitling, transcription, and translation.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;text-align:left">
-    <a href="blog/how-to-add-subtitles-to-video.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">How to Add Subtitles to Any Video</a>
-    <a href="blog/best-free-subtitle-generators-2026.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">Best Free Subtitle Generators 2026</a>
-    <a href="blog/automatic-captions-instagram-reels-tiktok.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">Automatic Captions for Reels & TikTok</a>
-    <a href="blog/whisper-ai-transcription-guide.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">Whisper AI Transcription — Complete Guide</a>
-    <a href="blog/subtitle-translator-online.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">Best Online Subtitle Translator</a>
-    <a href="blog/rev-com-alternative.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">Rev.com Alternative — 90% Cheaper for Video</a>
-    <a href="blog/veed-alternative.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">VEED.io Alternative — 3x Cheaper Subtitles</a>
-    <a href="blog/kapwing-alternative.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">Kapwing Alternative — Better Subtitle Quality</a>
-    <a href="blog/happyscribe-alternative.html" style="display:block;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f0f0f8;text-decoration:none">HappyScribe Alternative — Cheaper AI Subtitles</a>
+<section class="languages block" style="padding-top:0">
+  <div class="wrap">
+  <div class="head">
+    <h2>Generate subtitles and captions in every major language</h2>
+    <p class="lead">Dedicated subtitle and captioning tools, each tuned for the linguistic specifics of the target language.</p>
   </div>
-  <p style="margin-top:18px"><a href="blog/" style="color:#7c6aff">See all guides on the blog &rarr;</a></p>
+  <div class="link-grid">
+    <a href="tools/french-subtitle-generator.html">French Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/spanish-subtitle-generator.html">Spanish Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/japanese-subtitle-generator.html">Japanese Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/arabic-subtitle-generator.html">Arabic Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/german-subtitle-generator.html">German Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/portuguese-subtitle-generator.html">Portuguese Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/chinese-subtitle-generator.html">Chinese Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/korean-subtitle-generator.html">Korean Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/italian-subtitle-generator.html">Italian Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="tools/hindi-subtitle-generator.html">Hindi Subtitle Generator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+  </div>
+</section>
+
+<section class="resources block" style="padding-top:0">
+  <div class="wrap">
+  <div class="head">
+    <h2>Subtitle and captioning guides</h2>
+    <p class="lead">In-depth resources on AI subtitling, transcription, and translation.</p>
+  </div>
+  <div class="link-grid wide">
+    <a href="blog/how-to-add-subtitles-to-video.html">How to Add Subtitles to Any Video<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="blog/best-free-subtitle-generators-2026.html">Best Free Subtitle Generators 2026<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="blog/automatic-captions-instagram-reels-tiktok.html">Automatic Captions for Reels & TikTok<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="blog/whisper-ai-transcription-guide.html">Whisper AI Transcription — Complete Guide<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="blog/subtitle-translator-online.html">Best Online Subtitle Translator<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="blog/rev-com-alternative.html">Rev.com Alternative — 90% Cheaper for Video<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="blog/veed-alternative.html">VEED.io Alternative — 3x Cheaper Subtitles<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="blog/kapwing-alternative.html">Kapwing Alternative — Better Subtitle Quality<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="blog/happyscribe-alternative.html">HappyScribe Alternative — Cheaper AI Subtitles<svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+  <a href="blog/" class="more">See all guides on the blog <svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
 </section>
 
 <footer>
-  <p>SubWhisper Pro v1.5.0 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a></p>
-  <p style="margin-top:8px">Questions? <a href="mailto:quangapps.dev@gmail.com">quangapps.dev@gmail.com</a> &middot; <a href="terms.html">Terms</a></p>
-  <p style="margin-top:12px;font-size:13px;opacity:.7">Also try <a href="https://t.me/VoiceBoxTranscBot" style="color:#00D4AA">VoiceBox</a> &mdash; AI voice transcription bot for Telegram</p>
-  <p style="margin-top:4px;font-size:13px;opacity:.7">And <a href="https://noteflowing.com" style="color:#7c6aff">NoteFlowing</a> &mdash; AI meeting notes from any audio</p>
-  <p id="visitCounter" style="margin-top:12px;font-size:12px;opacity:.5"></p>
+  <div class="wrap">
+  <p>SubWhisper Pro v1.5.0 &mdash; Built by <a href="https://nocode-flow.com">NoCodeFlow</a> · <span class="ver">page v<span id="siteVersion">2.0.0</span></span></p>
+  <p>Questions? <a href="mailto:quangapps.dev@gmail.com">quangapps.dev@gmail.com</a> &middot; <a href="terms.html">Terms</a></p>
+  <p style="margin-top:12px">Also try <a href="https://t.me/VoiceBoxTranscBot">VoiceBox</a> &mdash; AI voice transcription bot for Telegram</p>
+  <p>And <a href="https://noteflowing.com">NoteFlowing</a> &mdash; AI meeting notes from any audio</p>
+  <p id="visitCounter"></p>
+  </div>
 </footer>
 
+<script>
+  const SITE_VERSION = "2.0.0"; // version de la page d'accueil, affichee en pied de page (#siteVersion)
+  document.getElementById("siteVersion").textContent = SITE_VERSION;
+</script>
 <script>
 /* v1.3.4 (23/09/2026) — D'OU viennent les clics vers le paiement ? 41 -> 47 clics apres
    l'alignement offre/checkout du 21/09, et 0 essai : impossible de savoir si ce sont des
