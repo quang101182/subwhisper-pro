@@ -1,4 +1,4 @@
-var CACHE = 'subwhisper-pro-v1.5.0';
+var CACHE = 'subwhisper-pro-v1.6.0';
 var FILES = ['./app.html', './prompts.js'];
 
 self.addEventListener('install', function(e) {

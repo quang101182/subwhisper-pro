@@ -13,7 +13,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>SubWhisper Pro v1.5.0 — App</title>
+<title>SubWhisper Pro v1.6.0 — App</title>
 <meta name="description" content="AI-powered subtitle generator with multi-pass translation in 75+ languages. Drop a video, get accurate SRT/VTT in minutes. €9/mo, 14-day free trial.">
 <link rel="canonical" href="https://sub-whisper.com/">
 <meta property="og:title" content="SubWhisper Pro — AI Subtitle Generator & Translator">
@@ -21,23 +21,24 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sub-whisper.com/">
 <meta property="og:image" content="https://sub-whisper.com/og-image.png">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#080810;
-  --surface:rgba(255,255,255,.04);
-  --surface2:rgba(255,255,255,.08);
-  --border:rgba(255,255,255,.08);
-  --border2:rgba(255,255,255,.15);
-  --accent:#7c6aff;
+  --bg:#12110f;
+  --surface:rgba(239,233,222,.04);
+  --surface2:rgba(239,233,222,.08);
+  --border:rgba(239,233,222,.08);
+  --border2:rgba(239,233,222,.15);
+  --accent:#f2c94c;
   --accent2:#ff4d6d;
   --accent3:#00d4aa;
-  --text:#f0f0f8;
-  --muted:#606070;
+  --text:#efe9de;
+  --muted:#8a847a;
   --success:#00d4aa;
-  --sbtn-fg:#fff;
-  --mono:'Space Mono',monospace;
-  --sans:'Inter',sans-serif;
+  --sbtn-fg:#1a1608;
+  --card:#1c1a18;
+  --mono:'Geist Mono',ui-monospace,Consolas,monospace;
+  --sans:'Geist',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
   --glass:blur(24px) saturate(180%);
 }
 body.light{
@@ -46,13 +47,14 @@ body.light{
   --surface2:#ffffff;
   --border:rgba(80,80,160,.10);
   --border2:rgba(80,80,160,.18);
-  --accent:#5b47e8;
+  --accent:#8a6400;
   --accent2:#e8334a;
   --accent3:#009e7a;
   --text:#1a1b30;
   --muted:#6c6d90;
   --success:#009e7a;
   --sbtn-fg:#fff;
+  --card:#ffffff;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -74,12 +76,7 @@ body::before{
   inset:0;
   pointer-events:none;
   z-index:0;
-  background:
-    radial-gradient(ellipse 70% 55% at 10% 10%, rgba(124,106,255,.12) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 90% 85%, rgba(0,212,170,.09) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 65% at 75% 5%,  rgba(255,77,109,.07) 0%, transparent 55%);
-  animation:meshPulse 18s ease-in-out infinite alternate;
-  will-change:opacity,transform;
+  background:radial-gradient(ellipse 70% 55% at 50% 0%, rgba(242,201,76,.05) 0%, transparent 65%);
 }
 @media (prefers-reduced-motion:reduce){body::before{animation:none}}
 @keyframes meshPulse{
@@ -96,7 +93,7 @@ header{
   justify-content:space-between;
   border-bottom:1px solid var(--border);
   position:sticky;top:0;z-index:100;
-  background:rgba(8,8,16,.88);
+  background:rgba(18,17,15,.88);
   backdrop-filter:var(--glass);
   -webkit-backdrop-filter:var(--glass);
 }
@@ -104,9 +101,9 @@ body.light header{background:rgba(234,236,247,.94)}
 body.light::before{opacity:.12}
 
 .logo{
-  font-family:var(--mono);
+  font-family:var(--sans);
   font-size:19px;
-  font-weight:700;
+  font-weight:600;
   letter-spacing:-.5px;
   display:flex;
   flex-direction:column;
@@ -116,12 +113,7 @@ body.light::before{opacity:.12}
 .logo-text{display:flex;align-items:baseline;gap:1px}
 .logo-sub{color:var(--text)}
 .logo-whisper{
-  background:linear-gradient(135deg,var(--accent) 0%,#a78bff 40%,var(--accent3) 80%);
-  background-size:200% auto;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:gradFlow 5s linear infinite;
+  color:var(--accent);
 }
 @keyframes gradFlow{to{background-position:200% center}}
 
@@ -154,7 +146,7 @@ body.light::before{opacity:.12}
 .icon-btn:hover,.icon-btn.active{
   border-color:var(--accent);
   color:var(--accent);
-  background:rgba(124,106,255,.12);
+  background:rgba(242,201,76,.12);
 }
 .sdot{
   width:8px;height:8px;
@@ -228,8 +220,8 @@ input[type=text],input[type=password]{
 body.light input[type=text],body.light input[type=password]{background:#ffffff;border-color:rgba(80,80,160,.16)}
 input[type=text]:focus,input[type=password]:focus{
   border-color:var(--accent);
-  background:rgba(124,106,255,.05);
-  box-shadow:0 0 0 3px rgba(124,106,255,.12);
+  background:rgba(242,201,76,.05);
+  box-shadow:0 0 0 3px rgba(242,201,76,.12);
 }
 select{
   flex:1;
@@ -255,10 +247,10 @@ body.light select{
   border-color:rgba(80,80,160,.16);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c6d90' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
-body.light select:focus{border-color:#5b47e8}
+body.light select:focus{border-color:#8a6400}
 body.light .ab{background:#f0f2fb;border-color:rgba(80,80,160,.15);color:#1a1b30}
-body.light .ab:hover{background:#e2e6f7;border-color:rgba(91,71,232,.4);color:#5b47e8}
-body.light .ab.pri{background:linear-gradient(135deg,#5b47e8,#9b7aff);color:#fff;border-color:transparent}
+body.light .ab:hover{background:#e2e6f7;border-color:rgba(138,100,0,.4);color:#8a6400}
+body.light .ab.pri{background:var(--accent);color:var(--sbtn-fg);border-color:transparent}
 body.light .ab.sec{border-color:rgba(0,158,122,.4);color:#009e7a}
 select:focus{border-color:var(--accent)}
 select option{background:var(--bg);color:var(--text)}
@@ -296,40 +288,31 @@ body.light select option{background:#fff;color:#111}
   text-align:center;
   cursor:pointer;
   position:relative;
+  border:1px solid var(--border2);
   background:var(--surface);
   backdrop-filter:var(--glass);
   -webkit-backdrop-filter:var(--glass);
   transition:transform .3s,background .3s;
   /* No overflow:hidden — needed for the animated border ::before to show */
 }
-/* Animated gradient border */
-.dz::before{
-  content:'';
-  position:absolute;
-  inset:-2px;
-  border-radius:26px;
-  background:conic-gradient(from 0deg,var(--accent),var(--accent3),var(--accent2),var(--accent));
-  z-index:-1;
-  opacity:.28;
-  animation:spinBorder 6s linear infinite;
-  transition:opacity .35s;
-}
+/* v1.6.0 : l'ancien cadre conique tournant debordait de l'ecran sur mobile (rotation) -> bordure fixe sur .dz */
+.dz::before{content:none}
 @keyframes spinBorder{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
 }
-.dz:hover::before,.dz.over::before{opacity:.85}
+.dz:hover,.dz.over{border-color:var(--accent)}
 .dz:hover,.dz.over{
   transform:translateY(-3px);
-  background:rgba(124,106,255,.06);
+  background:rgba(242,201,76,.06);
 }
-body.light .dz:hover,body.light .dz.over{background:rgba(124,106,255,.04)}
+body.light .dz:hover,body.light .dz.over{background:rgba(242,201,76,.04)}
 
 .dz-icon{
   font-size:60px;
   display:block;
   margin-bottom:18px;
-  filter:drop-shadow(0 0 24px rgba(124,106,255,.35));
+  filter:drop-shadow(0 0 24px rgba(242,201,76,.35));
   transition:transform .3s;
 }
 .dz:hover .dz-icon{transform:translateY(-4px) scale(1.05)}
@@ -374,7 +357,7 @@ body.light .dz:hover,body.light .dz.over{background:rgba(124,106,255,.04)}
 .offset-hdr-row{display:flex;justify-content:flex-end;align-items:center;gap:6px;margin-bottom:4px}
 .offset-btns-row{display:flex;gap:4px;justify-content:center;margin-top:6px}
 .ob{font-family:var(--mono);font-size:10px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:4px 8px;cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
-.ob:hover{border-color:var(--accent);color:var(--accent);background:rgba(124,106,255,.08)}
+.ob:hover{border-color:var(--accent);color:var(--accent);background:rgba(242,201,76,.08)}
 .ob.neg{color:rgba(248,113,113,.7)}
 .ob.neg:hover{border-color:#f87171;color:#f87171;background:rgba(248,113,113,.08)}
 .offset-track{flex:1;height:4px;background:rgba(255,255,255,.07);border-radius:2px;position:relative}
@@ -396,7 +379,7 @@ body.light .dz:hover,body.light .dz.over{background:rgba(124,106,255,.04)}
 @media(max-width:520px){.offset-btns-row{flex-wrap:wrap;justify-content:center}}
 @media(max-width:600px){.btn-sep{display:none}.btn-grp{flex-wrap:wrap}.btn-grp-lbl{display:none}.btn-grp-wrap{flex-direction:row;align-items:center}}
 /* Hints contextuels sur boutons outils */
-.ab.hint-format{border-color:var(--accent)!important;box-shadow:0 0 0 2px rgba(124,106,255,.25)}
+.ab.hint-format{border-color:var(--accent)!important;box-shadow:0 0 0 2px rgba(242,201,76,.25)}
 .ab.hint-ai{border-color:var(--accent3)!important;box-shadow:0 0 0 2px rgba(0,212,170,.25)}
 .ab.hint-repair{border-color:#f59e0b!important;box-shadow:0 0 0 2px rgba(245,158,11,.25)}
 .ab.hint-trad{border-color:#f97316!important;box-shadow:0 0 0 2px rgba(249,115,22,.28);animation:btnSuggPulse 1.2s ease-in-out infinite}
@@ -413,10 +396,10 @@ body.light .dz:hover,body.light .dz.over{background:rgba(124,106,255,.04)}
 #valPanel .val-ts{color:var(--muted);font-family:var(--mono);flex-shrink:0}
 #valPanel .val-txt{color:var(--text)}
 /* Undo banner cleanAI */
-#undoBanner{display:none;align-items:center;gap:10px;padding:8px 12px;margin-top:8px;background:rgba(124,106,255,.1);border:1px solid rgba(124,106,255,.3);border-radius:10px;font-size:12px}
+#undoBanner{display:none;align-items:center;gap:10px;padding:8px 12px;margin-top:8px;background:rgba(242,201,76,.1);border:1px solid rgba(242,201,76,.3);border-radius:10px;font-size:12px}
 #undoBanner span{flex:1;color:var(--muted)}
-#undoBanner button{background:rgba(124,106,255,.2);border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:4px 12px;cursor:pointer;font-size:11px;font-family:var(--mono);transition:background .15s}
-#undoBanner button:hover{background:rgba(124,106,255,.35)}
+#undoBanner button{background:rgba(242,201,76,.2);border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:4px 12px;cursor:pointer;font-size:11px;font-family:var(--mono);transition:background .15s}
+#undoBanner button:hover{background:rgba(242,201,76,.35)}
 #langNotice{display:none;align-items:center;gap:10px;padding:8px 12px;margin-top:8px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:10px;font-size:12px}
 #langNotice span{flex:1;color:var(--muted)}
 #langNotice button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px}
@@ -606,11 +589,10 @@ body.light .dz:hover,body.light .dz.over{background:rgba(124,106,255,.04)}
   width:calc(100% - 56px);
   margin:8px 28px;
   padding:18px;
-  background:linear-gradient(135deg,var(--accent) 0%,#9b7aff 50%,var(--accent) 100%);
-  background-size:200% auto;
+  background:var(--accent);
   border:none;
   border-radius:16px;
-  color:#fff;
+  color:var(--sbtn-fg);
   font-family:var(--mono);
   font-size:14px;
   font-weight:700;
@@ -633,7 +615,7 @@ body.light .dz:hover,body.light .dz.over{background:rgba(124,106,255,.04)}
 .sbtn:hover:not(:disabled){
   background-position:right center;
   transform:translateY(-2px);
-  box-shadow:0 12px 40px rgba(124,106,255,.45);
+  box-shadow:0 12px 40px rgba(242,201,76,.45);
 }
 .sbtn:active:not(:disabled){transform:translateY(0)}
 .sbtn:disabled{
@@ -721,12 +703,12 @@ body.light .dz:hover,body.light .dz.over{background:rgba(124,106,255,.04)}
   transition:all .2s;
   letter-spacing:.3px;
 }
-.ab:hover{border-color:var(--accent);color:var(--accent);background:rgba(124,106,255,.08)}
+.ab:hover{border-color:var(--accent);color:var(--accent);background:rgba(242,201,76,.08)}
 .ab.pri{
-  background:linear-gradient(135deg,var(--accent),#9b7aff);
-  color:#fff;border-color:transparent;
+  background:var(--accent);
+  color:var(--sbtn-fg);border-color:transparent;
 }
-.ab.pri:hover{filter:brightness(1.12);transform:translateY(-1px);box-shadow:0 4px 18px rgba(124,106,255,.38)}
+.ab.pri:hover{filter:brightness(1.12);transform:translateY(-1px);box-shadow:0 4px 18px rgba(242,201,76,.38)}
 .exp-ok{background:rgba(0,212,170,.2)!important;border-color:var(--success)!important;color:var(--success)!important;transition:all .15s}
 .exp-fail{background:rgba(255,80,80,.2)!important;border-color:var(--danger)!important;color:var(--danger)!important;transition:all .15s}
 .ab.sec{border-color:rgba(0,212,170,.3);color:var(--success)}
@@ -751,7 +733,7 @@ body.light .dz:hover,body.light .dz.over{background:rgba(124,106,255,.04)}
   transition:border-color .2s,box-shadow .2s;
 }
 body.light .sp{background:#f6f7fe;border-color:rgba(80,80,160,.12)}
-.sp:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,106,255,.1)}
+.sp:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(242,201,76,.1)}
 .sp::-webkit-scrollbar{width:4px}
 .sp::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 .ld{
@@ -765,8 +747,8 @@ body.light .sp{background:#f6f7fe;border-color:rgba(80,80,160,.12)}
   flex-wrap:wrap;
 }
 .lb{
-  background:rgba(124,106,255,.12);
-  border:1px solid rgba(124,106,255,.25);
+  background:rgba(242,201,76,.12);
+  border:1px solid rgba(242,201,76,.25);
   border-radius:5px;
   padding:2px 8px;
   color:var(--accent);
@@ -907,7 +889,7 @@ body.light .ffmpeg-wrap{background:rgba(80,80,160,.04);border-color:rgba(80,80,1
   letter-spacing:.3px;
   transition:all .2s;
 }
-.dz-srt-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(124,106,255,.07)}
+.dz-srt-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(242,201,76,.07)}
 
 /* ── FIND & REPLACE MODAL ───────────────────────────────── */
 #frModal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center}
@@ -941,7 +923,7 @@ body.light .ffmpeg-wrap{background:rgba(80,80,160,.04);border-color:rgba(80,80,1
   transition:all .2s;
   border-radius:8px;
 }
-.hitem:hover{background:rgba(124,106,255,.05);padding-left:8px;padding-right:8px;margin:0 -8px}
+.hitem:hover{background:rgba(242,201,76,.05);padding-left:8px;padding-right:8px;margin:0 -8px}
 .hitem:last-child{border-bottom:none}
 .hico{font-size:18px;flex-shrink:0}
 .hinfo{flex:1;overflow:hidden}
@@ -957,7 +939,7 @@ footer{
   padding:14px 28px;
   border-top:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;
-  background:rgba(8,8,16,.6);
+  background:rgba(18,17,15,.6);
   backdrop-filter:var(--glass);
   -webkit-backdrop-filter:var(--glass);
 }
@@ -987,7 +969,7 @@ body.light footer{background:rgba(234,236,247,.8)}
 /* ── TOAST ── */
 #toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:2000;background:var(--surface2);border:1px solid var(--border2);backdrop-filter:var(--glass);-webkit-backdrop-filter:var(--glass);padding:9px 22px;border-radius:40px;font-family:var(--mono);font-size:11px;letter-spacing:.4px;opacity:0;pointer-events:none;transition:opacity .3s;white-space:normal;max-width:calc(100vw - 32px);text-align:center;word-break:break-word}
 #toast.toast-vis{opacity:1;animation:toastPulse 1.8s ease-in-out infinite}
-@keyframes toastPulse    {0%,100%{border-color:rgba(124,106,255,.3);box-shadow:none}50%{border-color:#7c6aff;box-shadow:0 0 10px rgba(124,106,255,.4)}}
+@keyframes toastPulse    {0%,100%{border-color:rgba(242,201,76,.3);box-shadow:none}50%{border-color:#f2c94c;box-shadow:0 0 10px rgba(242,201,76,.4)}}
 @keyframes toastPulseTeal{0%,100%{border-color:rgba(0,212,170,.3);box-shadow:none}50%{border-color:#00d4aa;box-shadow:0 0 10px rgba(0,212,170,.4)}}
 @keyframes toastPulseOra {0%,100%{border-color:rgba(245,158,11,.3);box-shadow:none}50%{border-color:#f59e0b;box-shadow:0 0 10px rgba(245,158,11,.4)}}
 @keyframes toastPulseRed {0%,100%{border-color:rgba(255,77,109,.3);box-shadow:none}50%{border-color:#ff4d6d;box-shadow:0 0 10px rgba(255,77,109,.4)}}
@@ -1015,7 +997,7 @@ body.light footer{background:rgba(234,236,247,.8)}
 #richTx{line-height:2;font-size:14px;padding:14px 0;max-height:240px;overflow-y:auto;word-break:break-word}
 .wt{display:inline;cursor:pointer;padding:2px 3px;border-radius:4px;transition:background .12s;margin-right:1px}
 .wt:hover{background:rgba(255,255,255,.1)}
-.wt.cur{background:rgba(124,106,255,.3);box-shadow:0 0 0 1px rgba(124,106,255,.6)}
+.wt.cur{background:rgba(242,201,76,.3);box-shadow:0 0 0 1px rgba(242,201,76,.6)}
 .wconf-hi{color:var(--text)}
 .wconf-mid{color:#f59e0b}
 .wconf-lo{color:var(--accent2)}
@@ -1026,9 +1008,9 @@ body.light footer{background:rgba(234,236,247,.8)}
 .spk-e{border-bottom:2px solid #a78bff}
 .spk-f{border-bottom:2px solid #34d399}
 body.light .wt:hover{background:rgba(0,0,0,.06)}
-body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71,232,.5)}
+body.light .wt.cur{background:rgba(138,100,0,.2);box-shadow:0 0 0 1px rgba(138,100,0,.5)}
 /* Rich toggle button */
-#richToggleBtn.rich-active{border-color:var(--accent);color:var(--accent);background:rgba(124,106,255,.12)}
+#richToggleBtn.rich-active{border-color:var(--accent);color:var(--accent);background:rgba(242,201,76,.12)}
 /* ── MIC ── */
 /* Désactiver le rendu natif VTT du browser (défense webkit Chrome) */
 #previewVideo::-webkit-media-text-track-container{display:none!important}
@@ -1152,7 +1134,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 <header>
   <div class="logo">
     <div class="logo-text"><span class="logo-sub">Sub</span><span class="logo-whisper">Whisper</span></div>
-    <span class="ver-badge">Pro v1.5.0</span>
+    <span class="ver-badge">Pro v1.6.0</span>
   </div>
   <div class="hdr-r">
     <div id="apiBar" title="API keys configured" style="display:none">
@@ -1738,7 +1720,7 @@ body.light .wt.cur{background:rgba(91,71,232,.2);box-shadow:0 0 0 1px rgba(91,71
 </div>
 
 <footer>
-  <span class="ft">SubWhisper Pro v1.5.0</span>
+  <span class="ft">SubWhisper Pro v1.6.0</span>
   <span class="ft">Universal-3-pro &middot; 99 languages</span>
 </footer>
 
@@ -4751,7 +4733,7 @@ async function exportDiag() {
   var engine = getAIEngine();
   var diag = {
     type: 'DIAG',
-    version: 'pro-v1.5.0',
+    version: 'pro-v1.6.0',
     date: new Date().toISOString(),
     file: origName || 'unknown',
     lang_source: src,
@@ -6633,8 +6615,8 @@ if ('serviceWorker' in navigator) {
       if (document.getElementById('updateBar')) return;
       var bar = document.createElement('div');
       bar.id = 'updateBar';
-      bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#7c6aff;color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;z-index:99999;font-size:14px;gap:12px';
-      bar.innerHTML = '<span>Nouvelle version disponible</span><button style="background:#fff;color:#7c6aff;border:none;padding:6px 16px;border-radius:6px;font-weight:bold;cursor:pointer" onclick="location.reload()">Rafra\u00eechir</button>';
+      bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#f2c94c;color:#1a1608;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;z-index:99999;font-size:14px;gap:12px';
+      bar.innerHTML = '<span>Nouvelle version disponible</span><button style="background:#1a1608;color:#f2c94c;border:none;padding:6px 16px;border-radius:6px;font-weight:bold;cursor:pointer" onclick="location.reload()">Rafra\u00eechir</button>';
       document.body.appendChild(bar);
     }
   });
@@ -6810,11 +6792,11 @@ if ('serviceWorker' in navigator) {
   </div>
 </div>
 <div id="proOnboard" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);align-items:center;justify-content:center">
-  <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:16px;padding:32px;max-width:420px;width:90%">
-    <h2 style="margin-bottom:12px;font-family:var(--mono)">Welcome to SubWhisper Pro</h2>
+  <div style="box-sizing:border-box;background:var(--card);border:1px solid var(--border2);border-radius:16px;padding:32px;max-width:420px;width:90%">
+    <h2 style="margin-bottom:12px;font-family:var(--sans);font-weight:600;letter-spacing:-.01em">Welcome to SubWhisper Pro</h2>
     <p id="proOnboardDesc" style="color:var(--muted);margin-bottom:20px;font-size:14px">Enter the email you used at checkout to activate your account.</p>
     <input type="email" id="proEmailInput" placeholder="your@email.com" style="width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);font-size:14px;margin-bottom:12px">
-    <button onclick="activateByEmail()" id="proEmailBtn" style="width:100%;padding:10px;border-radius:8px;border:none;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;font-size:14px">Activate</button>
+    <button onclick="activateByEmail()" id="proEmailBtn" style="width:100%;padding:10px;border-radius:8px;border:none;background:var(--accent);color:var(--sbtn-fg);font-weight:600;cursor:pointer;font-size:14px">Activate</button>
     <p id="proOnboardErr" style="color:#ff4d6d;font-size:12px;margin-top:8px;display:none"></p>
     <p id="proOnboardOk" style="color:var(--accent2);font-size:12px;margin-top:8px;display:none"></p>
     <details style="margin-top:16px">
